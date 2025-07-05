@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Professional Review System Demo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f1f5f9;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+    .review-section {
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(37,99,235,0.07);
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem 2.5rem;
+    }
+    .review-form {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(37,99,235,0.05);
+      margin-bottom: 2rem;
+    }
+    .review-form-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #2563eb;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .rating-stars {
+      display: flex;
+      gap: 0.4rem;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      user-select: none;
+    }
+    .rating-star {
+      color: #e2e8f0;
+      cursor: pointer;
+      transition: color 0.2s, transform 0.2s;
+      filter: drop-shadow(0 1px 2px rgba(37,99,235,0.08));
+    }
+    .rating-star.selected,
+    .rating-star:hover,
+    .rating-star.selected ~ .rating-star {
+      color: #f59e0b;
+      text-shadow: 0 2px 8px #f59e0b33;
+      transform: scale(1.18) rotate(-6deg);
+    }
+    .form-textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      font-family: inherit;
+      background: #fff;
+      resize: vertical;
+      min-height: 80px;
+      transition: border 0.2s;
+    }
+    .review-photo-upload {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+    .photo-preview {
+      width: 70px;
+      height: 70px;
+      border-radius: 14px;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 2px dashed #cbd5e1;
+      position: relative;
+      transition: border 0.2s;
+    }
+    .photo-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+    .photo-placeholder {
+      color: #b6c3d1;
+      font-size: 2rem;
+    }
+    .photo-upload-btn {
+      background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      padding: 0.7rem 1.3rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+    }
+    .photo-upload-btn:hover {
+      background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
+      transform: translateY(-2px) scale(1.04);
+    }
+    .submit-btn {
+      background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      padding: 0.9rem 1.7rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 2px 12px rgba(37,99,235,0.10);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover {
+      background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
+      transform: translateY(-2px) scale(1.03);
+    }
+    .review-summary {
+      margin: 1rem 0 1.5rem 0;
+      font-size: 1.1rem;
+      color: #64748b;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .review-list .review-card {
+      background: #f8fafc;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(37,99,235,0.04);
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      animation: fadeIn 0.5s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .review-rating {
+      color: #f59e0b;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .review-content {
+      margin-bottom: 0.5rem;
+      color: #334155;
+    }
+    .review-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+      margin-top: 0.5rem;
+      border: 1px solid #e2e8f0;
+    }
+    .view-more-btn {
+      margin: 1rem auto 0 auto;
+      display: block;
+      width: 60%;
+    }
+    @media (max-width: 700px) {
+      .review-section { padding: 1rem; }
+      .review-form { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="review-section">
+    <form class="review-form" id="reviewForm">
+      <div class="review-form-title">
+        <i class="fas fa-star"></i> Add Your Review
+      </div>
+      <div class="rating-stars" id="ratingStars">
+        <i class="far fa-star rating-star" data-rating="1"></i>
+        <i class="far fa-star rating-star" data-rating="2"></i>
+        <i class="far fa-star rating-star" data-rating="3"></i>
+        <i class="far fa-star rating-star" data-rating="4"></i>
+        <i class="far fa-star rating-star" data-rating="5"></i>
+      </div>
+      <textarea id="reviewText" class="form-textarea" placeholder="Share your experience..."></textarea>
+      <div class="review-photo-upload" id="photoUploadArea">
+        <input type="file" id="reviewImage" accept="image/*" hidden>
+        <div class="photo-preview" id="photoPreview">
+          <span class="photo-placeholder"><i class="fas fa-camera"></i></span>
+        </div>
+        <button type="button" class="photo-upload-btn" id="photoUploadBtn">
+          <i class="fas fa-upload"></i> Upload Photo
+        </button>
+      </div>
+      <div style="margin-bottom:1rem;">
+        <label><input type="checkbox" id="anonymousToggle"> Post as Anonymous</label>
+      </div>
+      <button class="submit-btn" id="submitReviewBtn" type="submit">
+        <i class="fas fa-paper-plane"></i> Submit Review
+      </button>
+    </form>
+    <div class="review-summary">
+      <span><b>Weighted Avg:</b> <span id="weightedAvg" style="color:#f59e0b;font-weight:600;">0.00</span></span>
+      <span><b>Total Reviews:</b> <span id="reviewCount" style="color:#2563eb;font-weight:600;">0</span></span>
+    </div>
+    <div class="review-list" id="reviewsList"></div>
+    <button class="submit-btn view-more-btn" id="viewMoreBtn" style="display:none;">Tap to view more</button>
+  </div>
+  <script>
+    // --- Config ---
+    const PROFILE_ID = 'demo_profile_1'; // Simulate a profile
+    const IS_LOGGED_IN = true; // Simulate login
+    const HAS_FULL_PROFILE = true; // Simulate full profile
+
+    // --- Review Weights ---
+    const REVIEW_WEIGHTS = {
+      'anonymous': 1,
+      'verified': 2,
+      'verified_photo': 4,
+      'verified_photo_full': 6
+    };
+
+    // --- Helpers ---
+    function getUserId() {
+      if (!IS_LOGGED_IN) return 'anon_' + (localStorage.getItem('anon_id') || (function(){const id = 'a'+Math.random().toString(36).slice(2);localStorage.setItem('anon_id',id);return id;})());
+      return 'user_123'; // Simulate user id
+    }
+    function getReviews() {
+      return JSON.parse(localStorage.getItem('reviews_' + PROFILE_ID) || '[]');
+    }
+    function saveReviews(reviews) {
+      localStorage.setItem('reviews_' + PROFILE_ID, JSON.stringify(reviews));
+    }
+    function getReviewType({isAnon, hasImg, hasProfile}) {
+      if (!IS_LOGGED_IN) return 'anonymous';
+      if (hasImg && hasProfile) return 'verified_photo_full';
+      if (hasImg) return 'verified_photo';
+      return 'verified';
+    }
+    function weightedAvg(reviews) {
+      let sum = 0, wsum = 0;
+      reviews.forEach(r => {
+        const w = REVIEW_WEIGHTS[r.type] || 1;
+        sum += r.rating * w;
+        wsum += w;
+      });
+      return wsum ? (sum/wsum).toFixed(2) : '0.00';
+    }
+
+    // --- Star rating logic ---
+    let selectedRating = 0;
+    const stars = document.querySelectorAll('#ratingStars .rating-star');
+    stars.forEach(star => {
+      star.onclick = function() {
+        selectedRating = +this.dataset.rating;
+        stars.forEach(s => s.classList.toggle('fas', +s.dataset.rating <= selectedRating));
+        stars.forEach(s => s.classList.toggle('far', +s.dataset.rating > selectedRating));
+        stars.forEach(s => s.classList.toggle('selected', +s.dataset.rating <= selectedRating));
+      }
+    });
+
+    // --- Photo upload logic ---
+    const photoUploadBtn = document.getElementById('photoUploadBtn');
+    const photoInput = document.getElementById('reviewImage');
+    const photoPreview = document.getElementById('photoPreview');
+
+    photoUploadBtn.onclick = () => photoInput.click();
+
+    photoInput.onchange = function() {
+      if (this.files && this.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          photoPreview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+        };
+        reader.readAsDataURL(this.files[0]);
+      } else {
+        photoPreview.innerHTML = `<span class="photo-placeholder"><i class="fas fa-camera"></i></span>`;
+      }
+    };
+
+    // --- Review form submission ---
+    document.getElementById('reviewForm').onsubmit = function(e) {
+      e.preventDefault();
+      const text = document.getElementById('reviewText').value.trim();
+      const isAnon = document.getElementById('anonymousToggle').checked;
+      const imgInput = document.getElementById('reviewImage');
+      const userId = getUserId();
+      let reviews = getReviews();
+      const existing = reviews.find(r => r.userId === userId);
+
+      if (!selectedRating) return alert('Please select a rating!');
+      if (!text) return alert('Please enter your review!');
+      if (existing && !imgInput.files.length) return alert('Second review requires image upload!');
+
+      let imgData = '';
+      if (imgInput.files.length) {
+        const reader = new FileReader();
+        reader.onload = function(ev) {
+          imgData = ev.target.result;
+          saveReview();
+        };
+        reader.readAsDataURL(imgInput.files[0]);
+      } else {
+        saveReview();
+      }
+
+      function saveReview() {
+        const type = getReviewType({
+          isAnon,
+          hasImg: !!imgData,
+          hasProfile: HAS_FULL_PROFILE
+        });
+        reviews.push({
+          userId,
+          rating: selectedRating,
+          text,
+          image: imgData,
+          type,
+          timestamp: Date.now(),
+          anonymous: isAnon
+        });
+        saveReviews(reviews);
+        renderReviews();
+        document.getElementById('reviewForm').reset();
+        photoPreview.innerHTML = `<span class="photo-placeholder"><i class="fas fa-camera"></i></span>`;
+        selectedRating = 0;
+        stars.forEach(s => { s.classList.remove('fas', 'selected'); s.classList.add('far'); });
+      }
+    };
+
+    function renderReviews(showAll = false) {
+      const reviews = getReviews();
+      document.getElementById('weightedAvg').textContent = weightedAvg(reviews);
+      document.getElementById('reviewCount').textContent = reviews.length;
+      const container = document.getElementById('reviewsList');
+      container.innerHTML = '';
+      const toShow = showAll ? reviews : reviews.slice(0,3);
+      toShow.forEach(r => {
+        const div = document.createElement('div');
+        div.className = 'review-card';
+        div.innerHTML = `
+          <div class="review-header">
+            <div>
+              <span style="font-weight:600;">${r.anonymous ? 'Anonymous' : 'User'}</span>
+              <span style="color:#64748b;font-size:0.9rem;margin-left:0.5rem;">${new Date(r.timestamp).toLocaleDateString()}</span>
+            </div>
+            <div class="review-rating">
+              ${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}
+            </div>
+          </div>
+          <div class="review-content">
+            <p>${r.text}</p>
+          </div>
+          ${r.image ? `<img src="${r.image}" class="review-img"/>` : ''}
+        `;
+        container.appendChild(div);
+      });
+      const btn = document.getElementById('viewMoreBtn');
+      btn.style.display = (reviews.length > 3 && !showAll) ? 'block' : 'none';
+    }
+    document.getElementById('viewMoreBtn').onclick = () => renderReviews(true);
+
+    // Initial render
+    renderReviews();
+  </script>
+</body>
+</html>

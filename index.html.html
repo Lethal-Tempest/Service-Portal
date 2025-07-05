@@ -1,0 +1,2639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worker Connect | Professional Service Provider Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #f97316;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --dark-gray: #334155;
+            --success: #10b981;
+            --danger: #ef4444;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .language-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 0.4rem;
+            display: flex;
+        }
+
+        .lang-btn {
+            padding: 0.3rem 0.8rem;
+            border-radius: 16px;
+            background: transparent;
+            border: none;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .page-title i {
+            color: var(--primary);
+        }
+
+        /* Home Page */
+        .search-container {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 2rem;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.9rem 1.2rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        .search-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0 1.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .filter-section {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            padding: 1.5rem 1.5rem 1rem;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid white;
+            object-fit: cover;
+            background: #e2e8f0;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .profile-name {
+            text-align: center;
+            font-weight: 600;
+            margin-top: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .profile-profession {
+            text-align: center;
+            background: #dbeafe;
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 0.5rem auto;
+        }
+
+        .profile-details {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .profile-info i {
+            color: var(--primary);
+            width: 24px;
+            font-size: 0.9rem;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: #f59e0b;
+            font-weight: 500;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            background: #eff6ff;
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .profile-actions {
+            display: flex;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 0.8rem;
+            text-align: center;
+            color: var(--gray);
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .action-btn:hover {
+            background: #f8fafc;
+            color: var(--primary);
+        }
+
+        /* Create Profile Page */
+        .profile-form-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-col {
+            flex: 1;
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .file-upload {
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .file-upload input {
+            display: none;
+        }
+
+        .file-label {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #eff6ff;
+            color: var(--primary);
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .file-label:hover {
+            background: #dbeafe;
+        }
+
+        .preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .preview-item {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .preview-item img, .preview-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Profile View Page */
+        .profile-view-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .profile-banner {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-view-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            background: #e2e8f0;
+        }
+
+        .profile-view-name {
+            color: white;
+            margin-top: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .profile-view-profession {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 0.8rem;
+        }
+
+        .profile-actions-bar {
+            display: flex;
+            background: #f1f5f9;
+            padding: 0.8rem;
+            justify-content: space-between;
+        }
+
+        .action-bar-btn {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .action-bar-btn:hover {
+            background: #eff6ff;
+            transform: translateY(-2px);
+        }
+
+        .profile-content {
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-card {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 1.2rem;
+        }
+
+        .info-card-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            color: var(--gray);
+        }
+
+        .info-card-content {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .skill-tag-lg {
+            background: #eff6ff;
+            color: var(--primary);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            margin-bottom: 2rem;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 300px;
+            margin-bottom: 2rem;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            margin-top: 2rem;
+        }
+
+        .review-card {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .reviewer-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #e2e8f0;
+        }
+
+        .reviewer-info h4 {
+            font-weight: 600;
+        }
+
+        .reviewer-info span {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .review-rating {
+            display: flex;
+            gap: 0.3rem;
+            color: #f59e0b;
+        }
+
+        .review-content {
+            margin-bottom: 1rem;
+        }
+
+        .review-images {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .review-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .add-review-form {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .review-form-title {
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .rating-input {
+            margin-bottom: 1.2rem;
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .rating-star {
+            font-size: 1.8rem;
+            color: #e2e8f0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .rating-star.active, .rating-star:hover {
+            color: #f59e0b;
+        }
+
+        .anonymous-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #cbd5e1;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.8rem;
+        }
+
+        .share-options {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .share-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .whatsapp { background: #25D366; }
+        .facebook { background: #4267B2; }
+        .twitter { background: #1DA1F2; }
+        .link { background: var(--primary); }
+
+        .share-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Auth Modal Styles */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .auth-container {
+            background-color: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+            animation: modalFadeIn 0.3s;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6b7280;
+        }
+        
+        .close-modal:hover { color: #111827; }
+        
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .auth-tab {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #6b7280;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .auth-tab.active { color: #2563eb; }
+        
+        .auth-tab.active::after {
+            content: ''; 
+            position: absolute; 
+            bottom: -1px;
+            left: 0; 
+            width: 100%; 
+            height: 2px;
+            background-color: #2563eb;
+        }
+        
+        .auth-form { display: none; }
+        .auth-form.active { display: block; }
+        
+        .user-type-selector {
+            display: flex;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .user-type-btn {
+            flex: 1; 
+            padding: 10px;
+            background: none; 
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .user-type-btn.active {
+            background-color: #2563eb;
+            color: white;
+        }
+        
+        .login-section, .signup-section { display: none; }
+        .login-section.active, .signup-section.active { display: block; }
+        
+        .auth-form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .auth-form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #111827;
+        }
+        
+        .auth-form-group input, .auth-form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .auth-form-group input:focus, .auth-form-group select:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+        
+        .auth-submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .auth-submit-btn:hover { background-color: #1e40af; }
+        
+        .auth-alt {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        .auth-alt a { 
+            color: #2563eb; 
+            text-decoration: none; 
+            font-weight: 500; 
+        }
+        
+        .auth-divider {
+            position: relative;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .auth-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0; 
+            right: 0;
+            height: 1px;
+            background-color: #e2e8f0;
+        }
+        
+        .auth-divider span {
+            position: relative;
+            z-index: 2;
+            background-color: white;
+            padding: 0 15px;
+            color: #6b7280;
+        }
+        
+        .social-auth {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .social-auth-btn {
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 1px solid #e2e8f0;
+            background-color: white;
+        }
+        
+        .social-auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .google-btn { color: #DB4437; }
+        .facebook-btn { color: #4267B2; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .profile-actions-bar {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+        }
+
+        /* --- Professional Star Rating --- */
+        .rating-stars-pro {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 2.3rem;
+            margin-bottom: 1.2rem;
+            user-select: none;
+        }
+        .rating-star {
+            color: #e2e8f0;
+            cursor: pointer;
+            transition: color 0.2s, transform 0.2s;
+            filter: drop-shadow(0 1px 2px rgba(37,99,235,0.08));
+        }
+        .rating-star.selected,
+        .rating-star:hover,
+        .rating-star.selected ~ .rating-star {
+            color: #f59e0b;
+            text-shadow: 0 2px 8px #f59e0b33;
+            transform: scale(1.18) rotate(-6deg);
+        }
+        /* --- End Professional Star Rating --- */
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-hard-hat"></i>
+                <span>Worker Connect</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#" class="nav-link active" data-page="home">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#" class="nav-link" data-page="search">
+                    <i class="fas fa-search"></i>
+                    <span>Search</span>
+                </a>
+                <a href="#" class="nav-link" data-page="create">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Create Profile</span>
+                </a>
+                <a href="#" class="nav-link" id="myProfileBtn">
+                    <i class="fas fa-user"></i>
+                    <span>My Profile</span>
+                </a>
+            </div>
+            
+            <div class="user-actions">
+                <div class="language-toggle">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="hi">HI</button>
+                </div>
+                <button class="btn btn-outline" id="authToggleBtn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Home Page -->
+        <div class="page active" id="homePage">
+            <h1 class="page-title">
+                <i class="fas fa-home"></i>
+                Find Skilled Professionals
+            </h1>
+            
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Search by profession, skills, or name...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                        Search
+                    </button>
+                </div>
+                
+                <div class="filter-section">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Plumbers</button>
+                    <button class="filter-btn">Electricians</button>
+                    <button class="filter-btn">Carpenters</button>
+                    <button class="filter-btn">Painters</button>
+                    <button class="filter-btn">Mechanics</button>
+                    <button class="filter-btn">AC Technicians</button>
+                </div>
+            </div>
+            
+            <div class="profiles-grid" id="profilesContainer">
+                <!-- Profiles will be loaded here dynamically -->
+            </div>
+        </div>
+        
+        <!-- Create Profile Page -->
+        <div class="page" id="createPage">
+            <h1 class="page-title">
+                <i class="fas fa-user-plus"></i>
+                Create Your Professional Profile
+            </h1>
+            
+            <div class="profile-form-container">
+                <form id="profileForm">
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label" for="fullName">Full Name</label>
+                                <input type="text" id="fullName" class="form-input" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label" for="profession">Profession</label>
+                                <select id="profession" class="form-select" required>
+                                    <option value="">Select your profession</option>
+                                    <option value="Plumber">Plumber</option>
+                                    <option value="Electrician">Electrician</option>
+                                    <option value="Carpenter">Carpenter</option>
+                                    <option value="Painter">Painter</option>
+                                    <option value="Mason">Mason</option>
+                                    <option value="AC Technician">AC Technician</option>
+                                    <option value="Mechanic">Mechanic</option>
+                                    <option value="Driver">Driver</option>
+                                    <option value="Cook">Cook</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label" for="location">Location</label>
+                                <input type="text" id="location" class="form-input" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label" for="contact">Contact Number</label>
+                                <input type="tel" id="contact" class="form-input" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="skills">Skills (comma separated)</label>
+                        <input type="text" id="skills" class="form-input" placeholder="e.g., pipe fitting, faucet repair" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="bio">Professional Bio</label>
+                        <textarea id="bio" class="form-textarea" placeholder="Describe your experience and expertise..."></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label" for="experience">Years of Experience</label>
+                                <input type="number" id="experience" class="form-input" min="0">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label" for="rate">Hourly Rate (₹)</label>
+                                <input type="number" id="rate" class="form-input" min="0">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Portfolio Images</label>
+                        <div class="file-upload">
+                            <input type="file" id="portfolioImages" accept="image/*" multiple>
+                            <label for="portfolioImages" class="file-label">
+                                <i class="fas fa-upload"></i> Upload Images
+                            </label>
+                            <p class="small-text">Upload images of your previous work (max 5)</p>
+                        </div>
+                        <div class="preview-container" id="imagePreview"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Introduction Video (Optional)</label>
+                        <div class="file-upload">
+                            <input type="file" id="introVideo" accept="video/*">
+                            <label for="introVideo" class="file-label">
+                                <i class="fas fa-video"></i> Upload Video
+                            </label>
+                        </div>
+                        <div class="preview-container" id="videoPreview"></div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-save"></i> Save Profile
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Profile View Page -->
+        <div class="page" id="profilePage">
+            <div class="profile-view-container">
+                <div class="profile-banner">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" class="profile-view-img">
+                    <h2 class="profile-view-name">Rajesh Kumar</h2>
+                    <div class="profile-view-profession">Plumber</div>
+                </div>
+                
+                <div class="profile-actions-bar">
+                    <button class="action-bar-btn" id="editProfileBtn">
+                        <i class="fas fa-edit"></i> Edit Profile
+                    </button>
+                    <button class="action-bar-btn" id="shareProfileBtn">
+                        <i class="fas fa-share-alt"></i> Share Profile
+                    </button>
+                    <button class="action-bar-btn" id="exportPdfBtn">
+                        <i class="fas fa-file-pdf"></i> Export to PDF
+                    </button>
+                    <button class="action-bar-btn" id="contactBtn">
+                        <i class="fas fa-phone"></i> Contact
+                    </button>
+                </div>
+                
+                <div class="profile-content">
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <div class="info-card-title">
+                                <i class="fas fa-map-marker-alt"></i> Location
+                            </div>
+                            <div class="info-card-content">New Delhi, India</div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-title">
+                                <i class="fas fa-phone"></i> Contact
+                            </div>
+                            <div class="info-card-content">+91 9876543210</div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-title">
+                                <i class="fas fa-star"></i> Rating
+                            </div>
+                            <div class="info-card-content">
+                                <span class="rating">
+                                    <i class="fas fa-star"></i> 4.7 (128 reviews)
+                                </span>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-title">
+                                <i class="fas fa-briefcase"></i> Experience
+                            </div>
+                            <div class="info-card-content">12 years</div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-title">
+                                <i class="fas fa-rupee-sign"></i> Hourly Rate
+                            </div>
+                            <div class="info-card-content">₹350/hour</div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-title">
+                                <i class="fas fa-clock"></i> Availability
+                            </div>
+                            <div class="info-card-content">Mon-Sat: 9AM-7PM</div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-title">
+                        <i class="fas fa-tools"></i> Skills
+                    </div>
+                    <div class="skills-container">
+                        <span class="skill-tag-lg">Pipe Fitting</span>
+                        <span class="skill-tag-lg">Faucet Repair</span>
+                        <span class="skill-tag-lg">Water Tank Installation</span>
+                        <span class="skill-tag-lg">Bathroom Fittings</span>
+                        <span class="skill-tag-lg">Leak Detection</span>
+                        <span class="skill-tag-lg">Drain Cleaning</span>
+                    </div>
+                    
+                    <div class="section-title">
+                        <i class="fas fa-file-alt"></i> About Me
+                    </div>
+                    <p class="profile-bio">
+                        With over 12 years of experience in plumbing, I specialize in residential and commercial pipe fitting, faucet repair, and water tank installations. I pride myself on prompt service, quality workmanship, and transparent pricing. Certified by the National Plumbing Association with expertise in modern plumbing solutions.
+                    </p>
+                    
+                    <div class="portfolio-section">
+                        <div class="section-title">
+                            <i class="fas fa-images"></i> Portfolio
+                        </div>
+                        <div class="swiper mySwiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Work">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Work">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Work">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="reviews-section">
+                        <div class="section-title">
+                            <i class="fas fa-star"></i> Reviews (128)
+                        </div>
+                        
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Reviewer" class="reviewer-img">
+                                    <div class="reviewer-info">
+                                        <h4>Priya Sharma</h4>
+                                        <span>2 days ago</span>
+                                    </div>
+                                </div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <p>Rajesh fixed our bathroom leak quickly and professionally. He explained the issue clearly and gave us tips to prevent it in the future. Highly recommended!</p>
+                            </div>
+                            <div class="review-images">
+                                <img src="https://images.unsplash.com/photo-1600585152915-d208bec867a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Review" class="review-img">
+                            </div>
+                        </div>
+                        
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer">
+                                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Reviewer" class="reviewer-img">
+                                    <div class="reviewer-info">
+                                        <h4>Anonymous</h4>
+                                        <span>1 week ago</span>
+                                    </div>
+                                </div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <p>Good service, arrived on time and completed the work as promised. Fair pricing and clean work.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="add-review-form" id="customAddReviewForm">
+                            <h3 class="review-form-title">Add Your Review</h3>
+                            <div class="rating-input">
+                                <label class="form-label">Your Rating</label>
+                                <div class="rating-stars-pro" id="customRatingStars">
+                                    <i class="far fa-star rating-star" data-rating="1"></i>
+                                    <i class="far fa-star rating-star" data-rating="2"></i>
+                                    <i class="far fa-star rating-star" data-rating="3"></i>
+                                    <i class="far fa-star rating-star" data-rating="4"></i>
+                                    <i class="far fa-star rating-star" data-rating="5"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="reviewText">Your Review</label>
+                                <textarea id="reviewText" class="form-input" placeholder="Share your experience..."></textarea>
+                            </div>
+                            <div class="anonymous-toggle">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="anonymousToggle">
+                                    <span class="slider"></span>
+                                </div>
+                                <label for="anonymousToggle">Post as Anonymous</label>
+                            </div>
+                            <button class="submit-btn" id="submitReviewBtn">
+                                <i class="fas fa-paper-plane"></i> Submit Review
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Share Modal -->
+    <div class="modal" id="shareModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Share Profile</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Share this professional's profile with others</p>
+                <div class="share-options">
+                    <div class="share-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="share-btn facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="share-btn twitter">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <div class="share-btn link" id="copyLinkBtn">
+                        <i class="fas fa-link"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline close-modal">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contact Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Contact Professional</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="info-card">
+                    <div class="info-card-title">
+                        <i class="fas fa-user"></i> Name
+                    </div>
+                    <div class="info-card-content">Rajesh Kumar</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-title">
+                        <i class="fas fa-briefcase"></i> Profession
+                    </div>
+                    <div class="info-card-content">Plumber</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-title">
+                        <i class="fas fa-phone"></i> Contact Number
+                    </div>
+                    <div class="info-card-content">+91 9876543210</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-title">
+                        <i class="fas fa-envelope"></i> Email
+                    </div>
+                    <div class="info-card-content">rajesh.plumbing@example.com</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline close-modal">Close</button>
+                <button class="btn btn-primary">
+                    <i class="fab fa-whatsapp"></i> Message on WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-container">
+            <span class="close-modal" id="closeAuthModal">&times;</span>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="signup">Sign Up</button>
+            </div>
+
+            <div class="auth-content">
+                <div class="auth-form active" id="loginForm">
+                    <div class="user-type-selector">
+                        <button class="user-type-btn active" data-user-type="customer">I'm a Customer</button>
+                        <button class="user-type-btn" data-user-type="worker">I'm a Worker</button>
+                    </div>
+
+                    <div class="login-section active" id="customerLogin">
+                        <h3>Customer Login</h3>
+                        <form id="customerLoginForm">
+                            <div class="auth-form-group">
+                                <label for="customerEmail">Email</label>
+                                <input type="email" id="customerEmail" placeholder="Enter your email" required>
+                            </div>
+                            <div class="auth-form-group">
+                                <label for="customerPassword">Password</label>
+                                <input type="password" id="customerPassword" placeholder="Enter your password" required>
+                            </div>
+                            <button type="submit" class="auth-submit-btn">Login</button>
+                        </form>
+                    </div>
+
+                    <div class="login-section" id="workerLogin">
+                        <h3>Worker Login</h3>
+                        <form id="workerLoginForm">
+                            <div class="auth-form-group">
+                                <label for="workerEmail">Email</label>
+                                <input type="email" id="workerEmail" placeholder="Enter your email" required>
+                            </div>
+                            <div class="auth-form-group">
+                                <label for="workerPassword">Password</label>
+                                <input type="password" id="workerPassword" placeholder="Enter your password" required>
+                            </div>
+                            <button type="submit" class="auth-submit-btn">Login</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="auth-form" id="signupForm">
+                    <div class="user-type-selector">
+                        <button class="user-type-btn active" data-user-type="customer">I'm a Customer</button>
+                        <button class="user-type-btn" data-user-type="worker">I'm a Worker</button>
+                    </div>
+
+                    <div class="signup-section active" id="customerSignup">
+                        <h3>Customer Sign Up</h3>
+                        <form id="customerSignupForm">
+                            <div class="auth-form-group">
+                                <label for="customerSignupName">Full Name</label>
+                                <input type="text" id="customerSignupName" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="auth-form-group">
+                                <label for="customerSignupEmail">Email</label>
+                                <input type="email" id="customerSignupEmail" placeholder="Enter your email" required>
+                            </div>
+                            <div class="auth-form-group">
+                                <label for="customerSignupPassword">Password</label>
+                                <input type="password" id="customerSignupPassword" placeholder="Create a password" required>
+                            </div>
+                            <button type="submit" class="auth-submit-btn">Create Account</button>
+                        </form>
+                    </div>
+
+                    <div class="signup-section" id="workerSignup">
+                        <h3>Worker Sign Up</h3>
+                        <form id="workerSignupForm">
+                            <div class="auth-form-group">
+                                <label for="workerSignupName">Full Name</label>
+                                <input type="text" id="workerSignupName" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="auth-form-group">
+                                <label for="workerSignupEmail">Email</label>
+                                <input type="email" id="workerSignupEmail" placeholder="Enter your email" required>
+                            </div>
+                            <div class="auth-form-group">
+                                <label for="workerSignupPassword">Password</label>
+                                <input type="password" id="workerSignupPassword" placeholder="Create a password" required>
+                            </div>
+                            <div class="auth-form-group">
+                                <label for="workerSignupPhone">Phone Number</label>
+                                <input type="tel" id="workerSignupPhone" placeholder="Enter your phone number" required>
+                            </div>
+                            <div class="auth-form-group">
+                                <label for="workerSignupService">Service Category</label>
+                                <select id="workerSignupService" required>
+                                    <option value="">Select your service</option>
+                                    <option value="plumbing">Plumbing</option>
+                                    <option value="electrical">Electrical</option>
+                                    <option value="cleaning">Cleaning</option>
+                                    <option value="painting">Painting</option>
+                                    <option value="landscaping">Landscaping</option>
+                                    <option value="carpentry">Carpentry</option>
+                                    <option value="mechanic">Mechanic</option>
+                                    <option value="driver">Driver</option>
+                                    <option value="technician">Technician</option>
+                                    <option value="cook">Cook</option>
+                                    <option value="maid">Maid</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="auth-submit-btn">Apply as Professional</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="auth-divider"><span>OR</span></div>
+
+            <div class="social-auth">
+                <button class="social-auth-btn google-btn"><i class="fab fa-google"></i> Continue with Google</button>
+                <button class="social-auth-btn facebook-btn"><i class="fab fa-facebook-f"></i> Continue with Facebook</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize Swiper
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+        // Sample profiles data
+        const profiles = [
+            {
+                id: 1,
+                name: "Rajesh Kumar",
+                profession: "Plumber",
+                location: "New Delhi",
+                contact: "+91 9876543210",
+                rating: 4.7,
+                reviews: 128,
+                experience: 12,
+                rate: "₹350/hour",
+                skills: ["Pipe Fitting", "Faucet Repair", "Water Tank Installation"],
+                img: "https://randomuser.me/api/portraits/men/32.jpg"
+            },
+            {
+                id: 2,
+                name: "Amit Singh",
+                profession: "Electrician",
+                location: "Noida",
+                contact: "+91 8765432109",
+                rating: 4.5,
+                reviews: 92,
+                experience: 8,
+                rate: "₹400/hour",
+                skills: ["Wiring", "Switch Repair", "Inverter Installation"],
+                img: "https://randomuser.me/api/portraits/men/44.jpg"
+            },
+            {
+                id: 3,
+                name: "Vijay Malhotra",
+                profession: "Carpenter",
+                location: "Gurgaon",
+                contact: "+91 7654321098",
+                rating: 4.8,
+                reviews: 75,
+                experience: 15,
+                rate: "₹450/hour",
+                skills: ["Furniture Making", "Wood Polishing", "Door Installation"],
+                img: "https://randomuser.me/api/portraits/men/22.jpg"
+            },
+            {
+                id: 4,
+                name: "Sunita Patel",
+                profession: "Painter",
+                location: "Faridabad",
+                contact: "+91 6543210987",
+                rating: 4.6,
+                reviews: 68,
+                experience: 10,
+                rate: "₹300/hour",
+                skills: ["Wall Painting", "Texture Work", "Waterproofing"],
+                img: "https://randomuser.me/api/portraits/women/65.jpg"
+            },
+            {
+                id: 5,
+                name: "Ramesh Gupta",
+                profession: "AC Technician",
+                location: "Ghaziabad",
+                contact: "+91 9432109876",
+                rating: 4.4,
+                reviews: 85,
+                experience: 7,
+                rate: "₹500/hour",
+                skills: ["AC Repair", "Gas Refilling", "Installation"],
+                img: "https://randomuser.me/api/portraits/men/55.jpg"
+            },
+            {
+                id: 6,
+                name: "Sanjay Verma",
+                profession: "Mechanic",
+                location: "Delhi",
+                contact: "+91 8321098765",
+                rating: 4.9,
+                reviews: 120,
+                experience: 18,
+                rate: "₹600/hour",
+                skills: ["Engine Repair", "Brake Service", "Car Maintenance"],
+                img: "https://randomuser.me/api/portraits/men/33.jpg"
+            }
+        ];
+
+        // DOM Elements
+        const pages = document.querySelectorAll('.page');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const profileForm = document.getElementById('profileForm');
+        const profilesContainer = document.getElementById('profilesContainer');
+        const shareModal = document.getElementById('shareModal');
+        const contactModal = document.getElementById('contactModal');
+        const authModal = document.getElementById('authModal');
+        const closeModalButtons = document.querySelectorAll('.modal-close, .close-modal');
+        const closeAuthModalBtn = document.getElementById('closeAuthModal');
+        const shareProfileBtn = document.getElementById('shareProfileBtn');
+        const contactBtn = document.getElementById('contactBtn');
+        const copyLinkBtn = document.getElementById('copyLinkBtn');
+        const exportPdfBtn = document.getElementById('exportPdfBtn');
+        const editProfileBtn = document.getElementById('editProfileBtn');
+        const myProfileBtn = document.getElementById('myProfileBtn');
+        const ratingStars = document.querySelectorAll('.rating-star');
+        const submitReviewBtn = document.getElementById('submitReviewBtn');
+        const authToggleBtn = document.getElementById('authToggleBtn');
+        const authTabs = document.querySelectorAll('.auth-tab');
+        const userTypeBtns = document.querySelectorAll('.user-type-btn');
+        const langBtns = document.querySelectorAll('.lang-btn');
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load profiles
+            renderProfiles();
+            
+            // Set up event listeners
+            setupEventListeners();
+        });
+
+        // Render profiles to the home page
+        function renderProfiles() {
+            profilesContainer.innerHTML = '';
+            
+            profiles.forEach(profile => {
+                const profileCard = document.createElement('div');
+                profileCard.className = 'profile-card';
+                profileCard.innerHTML = `
+                    <div class="profile-header">
+                        <img src="${profile.img}" alt="${profile.name}" class="profile-img">
+                        <div class="profile-name">${profile.name}</div>
+                        <div class="profile-profession">${profile.profession}</div>
+                    </div>
+                    <div class="profile-details">
+                        <div class="profile-info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${profile.location}</span>
+                        </div>
+                        <div class="profile-info">
+                            <i class="fas fa-star"></i>
+                            <span class="rating">${profile.rating} (${profile.reviews} reviews)</span>
+                        </div>
+                        <div class="profile-info">
+                            <i class="fas fa-briefcase"></i>
+                            <span>${profile.experience} years experience</span>
+                        </div>
+                        <div class="profile-info">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>${profile.rate}</span>
+                        </div>
+                        <div class="skills">
+                            ${profile.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <a href="#" class="action-btn view-profile" data-id="${profile.id}">
+                            <i class="fas fa-eye"></i> View
+                        </a>
+                        <a href="#" class="action-btn contact-profile" data-id="${profile.id}">
+                            <i class="fas fa-phone"></i> Contact
+                        </a>
+                    </div>
+                    <div class="profile-reviews" data-profile-id="${profile.id}"></div>
+                `;
+                profilesContainer.appendChild(profileCard);
+            });
+            
+            // Add event listeners to view and contact buttons
+            document.querySelectorAll('.view-profile').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const profileId = button.getAttribute('data-id');
+                    showProfile(profileId);
+                });
+            });
+            
+            document.querySelectorAll('.contact-profile').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const profileId = button.getAttribute('data-id');
+                    showContactModal(profileId);
+                });
+            });
+        }
+
+        // Show a specific profile
+        function showProfile(profileId) {
+            const profile = profiles.find(p => p.id == profileId);
+            if (!profile) return;
+            
+            // Update profile view with actual data
+            document.querySelector('.profile-view-name').textContent = profile.name;
+            document.querySelector('.profile-view-profession').textContent = profile.profession;
+            
+            // Set active page
+            setActivePage('profilePage');
+        }
+
+        // Set active page
+        function setActivePage(pageId) {
+            pages.forEach(page => {
+                page.classList.remove('active');
+                if (page.id === pageId) {
+                    page.classList.add('active');
+                }
+            });
+            
+            // Update active nav link
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-page') === pageId.replace('Page', '')) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Show contact modal
+        function showContactModal(profileId) {
+            const profile = profiles.find(p => p.id == profileId);
+            if (!profile) return;
+            
+            // Update modal content with profile data
+            contactModal.classList.add('active');
+        }
+
+        // Setup all event listeners
+        function setupEventListeners() {
+            // Navigation
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const page = link.getAttribute('data-page') + 'Page';
+                    setActivePage(page);
+                });
+            });
+            
+            // My Profile button
+            myProfileBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                showProfile(1); // Assuming ID 1 is the current user
+            });
+            
+            // Form submission
+            profileForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Profile saved successfully!');
+                setActivePage('homePage');
+            });
+            
+            // Modal controls
+            shareProfileBtn.addEventListener('click', () => {
+                shareModal.classList.add('active');
+            });
+            
+            contactBtn.addEventListener('click', () => {
+                contactModal.classList.add('active');
+            });
+            
+            closeModalButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    shareModal.classList.remove('active');
+                    contactModal.classList.remove('active');
+                });
+            });
+            
+            // Copy link functionality
+            copyLinkBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Link copied to clipboard!');
+            });
+            
+            // Export to PDF
+            exportPdfBtn.addEventListener('click', () => {
+                alert('Exporting profile to PDF...');
+                // In a real implementation, this would generate a PDF
+            });
+            
+            // Edit profile
+            editProfileBtn.addEventListener('click', () => {
+                setActivePage('createPage');
+            });
+            
+            // Rating stars
+            ratingStars.forEach(star => {
+                star.addEventListener('click', () => {
+                    const rating = parseInt(star.getAttribute('data-rating'));
+                    
+                    // Update stars
+                    ratingStars.forEach((s, index) => {
+                        if (index < rating) {
+                            s.classList.remove('far');
+                            s.classList.add('fas', 'active');
+                        } else {
+                            s.classList.remove('fas', 'active');
+                            s.classList.add('far');
+                        }
+                    });
+                });
+            });
+            
+            // Submit review
+            submitReviewBtn.addEventListener('click', () => {
+                const reviewText = document.getElementById('reviewText').value;
+                if (!reviewText) {
+                    alert('Please write a review before submitting');
+                    return;
+                }
+                
+                const rating = document.querySelectorAll('.rating-star.fas').length;
+                if (rating === 0) {
+                    alert('Please select a rating');
+                    return;
+                }
+                
+                alert('Review submitted successfully!');
+                document.getElementById('reviewText').value = '';
+                
+                // Reset stars
+                ratingStars.forEach(star => {
+                    star.classList.remove('fas', 'active');
+                    star.classList.add('far');
+                });
+            });
+            
+            // Login modal toggle
+            authToggleBtn.addEventListener('click', () => {
+                authModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Close auth modal
+            closeAuthModalBtn.addEventListener('click', () => {
+                authModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Close auth modal when clicking outside
+            window.addEventListener('click', e => {
+                if (e.target === authModal) {
+                    authModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Auth tab switching
+            authTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabName = this.getAttribute('data-tab');
+                    authTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
+                    document.getElementById(`${tabName}Form`).classList.add('active');
+                });
+            });
+            
+            // User type switching
+            userTypeBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const userType = this.getAttribute('data-user-type');
+                    const formType = document.querySelector('.auth-form.active').id.replace('Form', '');
+                    this.parentNode.querySelectorAll('.user-type-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    document.querySelectorAll(`.${formType}-section`).forEach(section => section.classList.remove('active'));
+                    document.getElementById(`${userType}${formType.charAt(0).toUpperCase() + formType.slice(1)}`).classList.add('active');
+                });
+            });
+            
+            // Form submission handling
+            const authForms = document.querySelectorAll('.auth-form form');
+            authForms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Form submitted successfully!');
+                    authModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    
+                    // Update login button to logout
+                    authToggleBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i> Logout';
+                    this.reset();
+                });
+            });
+            
+            // Aadhaar validation for worker signup
+            const workerAadhaar = document.getElementById('workerAadhaar');
+            if (workerAadhaar) {
+                workerAadhaar.addEventListener('input', function() {
+                    this.value = this.value.replace(/\D/g, '').slice(0, 12);
+                });
+            }
+            
+            // File upload previews
+            document.getElementById('portfolioImages').addEventListener('change', function(e) {
+                const previewContainer = document.getElementById('imagePreview');
+                previewContainer.innerHTML = '';
+                
+                for (const file of e.target.files) {
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                            const previewItem = document.createElement('div');
+                            previewItem.className = 'preview-item';
+                            previewItem.innerHTML = `
+                                <img src="${e.target.result}" alt="Preview">
+                                <button class="remove-btn">&times;</button>
+                            `;
+                            previewContainer.appendChild(previewItem);
+                            
+                            // Add remove button functionality
+                            previewItem.querySelector('.remove-btn').addEventListener('click', () => {
+                                previewItem.remove();
+                            });
+                        }
+                        
+                        reader.readAsDataURL(file);
+                    }
+                }
+            });
+            
+            document.getElementById('introVideo').addEventListener('change', function(e) {
+                const previewContainer = document.getElementById('videoPreview');
+                previewContainer.innerHTML = '';
+                
+                for (const file of e.target.files) {
+                    if (file.type.startsWith('video/')) {
+                        const reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                            const previewItem = document.createElement('div');
+                            previewItem.className = 'preview-item';
+                            previewItem.innerHTML = `
+                                <video controls>
+                                    <source src="${e.target.result}" type="${file.type}">
+                                </video>
+                                <button class="remove-btn">&times;</button>
+                            `;
+                            previewContainer.appendChild(previewItem);
+                            
+                            // Add remove button functionality
+                            previewItem.querySelector('.remove-btn').addEventListener('click', () => {
+                                previewItem.remove();
+                            });
+                        }
+                        
+                        reader.readAsDataURL(file);
+                    }
+                }
+            });
+            
+            // Language toggle
+            langBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    langBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    alert(`Language changed to ${lang === 'en' ? 'English' : 'Hindi'}`);
+                });
+            });
+        }
+
+        // --- Review System Helpers ---
+        const REVIEW_WEIGHTS = {
+            'anonymous': 1,
+            'verified': 2,
+            'verified_photo': 4,
+            'verified_photo_full': 6
+        };
+
+        // Simulate user auth (for demo: random userId or null for anonymous)
+        function getCurrentUser() {
+            // For demo: use a random userId for 'logged in', or null for anonymous
+            // In real app, replace with actual auth logic
+            return localStorage.getItem('demo_user_id') || null;
+        }
+        function isUserLoggedIn() {
+            return !!getCurrentUser();
+        }
+        function getUserProfileStatus() {
+            // For demo: return true if user has filled profile (simulate)
+            return localStorage.getItem('demo_full_profile') === '1';
+        }
+
+        // Get reviews for a profile
+        function getReviews(profileId) {
+            const all = JSON.parse(localStorage.getItem('reviews') || '{}');
+            return all[profileId] || [];
+        }
+        // Save reviews for a profile
+        function saveReviews(profileId, reviews) {
+            const all = JSON.parse(localStorage.getItem('reviews') || '{}');
+            all[profileId] = reviews;
+            localStorage.setItem('reviews', JSON.stringify(all));
+        }
+        // Check if user has reviewed
+        function hasUserReviewed(profileId, userId) {
+            const reviews = getReviews(profileId);
+            return reviews.find(r => r.userId === userId);
+        }
+        // Weighted average
+        function getWeightedAverage(reviews) {
+            let sum = 0, wsum = 0;
+            reviews.forEach(r => {
+                const w = REVIEW_WEIGHTS[r.type] || 1;
+                sum += r.rating * w;
+                wsum += w;
+            });
+            return wsum ? (sum / wsum).toFixed(2) : '0.00';
+        }
+
+        // --- UI/DOM for Reviews ---
+        function renderReviews(profileId, showAll = false) {
+            const reviews = getReviews(profileId).sort((a, b) => b.timestamp - a.timestamp);
+            const reviewsSection = document.querySelector('.reviews-section');
+            if (!reviewsSection) return;
+            // Remove old reviews
+            reviewsSection.querySelectorAll('.dynamic-review').forEach(e => e.remove());
+            reviewsSection.querySelectorAll('.view-more-btn').forEach(e => e.remove());
+
+            // Weighted average
+            const avg = getWeightedAverage(reviews);
+            const ratingElem = reviewsSection.querySelector('.section-title .fa-star').parentNode;
+            if (ratingElem) {
+                ratingElem.innerHTML = `<i class="fas fa-star"></i> Reviews (${reviews.length}) <span style="font-size:1rem;color:#f59e0b;">Avg: ${avg}</span>`;
+            }
+
+            // Show top 3 or all
+            const toShow = showAll ? reviews : reviews.slice(0, 3);
+            toShow.forEach(r => {
+                const card = document.createElement('div');
+                card.className = 'review-card dynamic-review';
+                card.innerHTML = `
+                    <div class="review-header">
+                        <div class="reviewer">
+                            <img src="${r.avatar || 'https://randomuser.me/api/portraits/lego/1.jpg'}" alt="Reviewer" class="reviewer-img">
+                            <div class="reviewer-info">
+                                <h4>${r.anonymous ? 'Anonymous' : (r.name || 'User')}</h4>
+                                <span>${timeAgo(r.timestamp)}</span>
+                            </div>
+                        </div>
+                        <div class="review-rating">
+                            ${'<i class="fas fa-star"></i>'.repeat(r.rating)}${'<i class="far fa-star"></i>'.repeat(5 - r.rating)}
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>${escapeHtml(r.text)}</p>
+                    </div>
+                    ${r.image ? `<div class="review-images"><img src="${r.image}" class="review-img"/></div>` : ''}
+                `;
+                reviewsSection.insertBefore(card, reviewsSection.querySelector('.add-review-form'));
+            });
+            if (!showAll && reviews.length > 3) {
+                const btn = document.createElement('button');
+                btn.className = 'submit-btn view-more-btn dynamic-review';
+                btn.textContent = 'Tap to view more';
+                btn.onclick = () => renderReviews(profileId, true);
+                reviewsSection.insertBefore(btn, reviewsSection.querySelector('.add-review-form'));
+            }
+        }
+        function timeAgo(ts) {
+            const now = Date.now();
+            const diff = Math.floor((now - ts) / 1000);
+            if (diff < 60) return 'just now';
+            if (diff < 3600) return `${Math.floor(diff/60)} min ago`;
+            if (diff < 86400) return `${Math.floor(diff/3600)} hr ago`;
+            return `${Math.floor(diff/86400)} days ago`;
+        }
+        function escapeHtml(str) {
+            return str.replace(/[&<>"']/g, function(tag) {
+                const charsToReplace = {
+                    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+                };
+                return charsToReplace[tag] || tag;
+            });
+        }
+
+        // --- Review Form Logic ---
+        function setupReviewForm(profileId) {
+            const form = document.querySelector('.add-review-form');
+            if (!form) return;
+            const stars = form.querySelectorAll('.rating-star');
+            const submitBtn = form.querySelector('#submitReviewBtn');
+            const textInput = form.querySelector('#reviewText');
+            let selectedRating = 0;
+            let imageData = null;
+            let forceImage = false;
+
+            // Star rating
+            stars.forEach(star => {
+                star.onclick = () => {
+                    selectedRating = parseInt(star.getAttribute('data-rating'));
+                    stars.forEach((s, i) => {
+                        if (i < selectedRating) {
+                            s.classList.remove('far');
+                            s.classList.add('fas', 'active');
+                        } else {
+                            s.classList.remove('fas', 'active');
+                            s.classList.add('far');
+                        }
+                    });
+                };
+            });
+
+            // Add image upload
+            let imgInput = form.querySelector('.review-image-input');
+            if (!imgInput) {
+                imgInput = document.createElement('input');
+                imgInput.type = 'file';
+                imgInput.accept = 'image/*';
+                imgInput.className = 'review-image-input';
+                imgInput.style.margin = '10px 0';
+                form.insertBefore(imgInput, submitBtn);
+            }
+            imgInput.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(ev) {
+                        imageData = ev.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+
+            // On submit
+            submitBtn.onclick = (e) => {
+                e.preventDefault();
+                const userId = getCurrentUser() || 'anon_' + (localStorage.getItem('anon_id') || (function(){const id = 'a'+Math.random().toString(36).slice(2);localStorage.setItem('anon_id',id);return id;})());
+                const reviews = getReviews(profileId);
+                const existing = reviews.find(r => r.userId === userId);
+                if (!selectedRating) {
+                    alert('Please select a rating');
+                    return;
+                }
+                if (!textInput.value.trim()) {
+                    alert('Please write a review before submitting');
+                    return;
+                }
+                // If already reviewed, force image
+                if (existing && !imageData) {
+                    alert('You have already reviewed. Please upload a work image to submit another review.');
+                    return;
+                }
+                // Determine review type
+                let type = 'anonymous';
+                let name = '';
+                let avatar = '';
+                let anonymous = form.querySelector('#anonymousToggle')?.checked;
+                if (isUserLoggedIn()) {
+                    if (imageData && getUserProfileStatus()) type = 'verified_photo_full';
+                    else if (imageData) type = 'verified_photo';
+                    else type = 'verified';
+                    name = anonymous ? '' : 'Demo User'; // Replace with real name if available
+                    avatar = anonymous ? '' : 'https://randomuser.me/api/portraits/men/32.jpg';
+                }
+                // Save review
+                reviews.push({
+                    id: 'r' + Date.now(),
+                    profileId,
+                    rating: selectedRating,
+                    text: textInput.value.trim(),
+                    image: imageData,
+                    type,
+                    timestamp: Date.now(),
+                    userId,
+                    name,
+                    avatar,
+                    anonymous
+                });
+                saveReviews(profileId, reviews);
+                alert('Review submitted successfully!');
+                textInput.value = '';
+                imageData = null;
+                imgInput.value = '';
+                stars.forEach(s => { s.classList.remove('fas', 'active'); s.classList.add('far'); });
+                renderReviews(profileId);
+            };
+        }
+
+        // --- Patch showProfile to load reviews ---
+        const origShowProfile = showProfile;
+        showProfile = function(profileId) {
+            origShowProfile(profileId);
+            renderReviews(profileId);
+            setupReviewForm(profileId);
+        };
+
+        // --- Patch initial load to show reviews for default profile ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // ... existing code ...
+            renderProfiles();
+            setupEventListeners();
+            // Show reviews for default profile (ID 1)
+            renderReviews(1);
+            setupReviewForm(1);
+        });
+
+        // --- Professional Star Rating Selection ---
+        let selectedRating = 0;
+        const proStars = document.querySelectorAll('#customRatingStars .rating-star');
+        proStars.forEach(star => {
+            star.onclick = function() {
+                selectedRating = +this.dataset.rating;
+                proStars.forEach(s => s.classList.toggle('fas', +s.dataset.rating <= selectedRating));
+                proStars.forEach(s => s.classList.toggle('far', +s.dataset.rating > selectedRating));
+                proStars.forEach(s => s.classList.toggle('selected', +s.dataset.rating <= selectedRating));
+            }
+        });
+        // ... existing code ...
+
+        function renderReviewSystemForProfile(profileId, container) {
+          container.innerHTML = `
+            <form class="review-form" id="reviewForm_${profileId}">
+              <div class="review-form-title">
+                <i class="fas fa-star"></i> Add Your Review
+              </div>
+              <div class="rating-stars" id="ratingStars_${profileId}">
+                <i class="far fa-star rating-star" data-rating="1"></i>
+                <i class="far fa-star rating-star" data-rating="2"></i>
+                <i class="far fa-star rating-star" data-rating="3"></i>
+                <i class="far fa-star rating-star" data-rating="4"></i>
+                <i class="far fa-star rating-star" data-rating="5"></i>
+              </div>
+              <textarea id="reviewText_${profileId}" class="form-textarea" placeholder="Share your experience..."></textarea>
+              <div class="review-photo-upload">
+                <input type="file" id="reviewImage_${profileId}" accept="image/*" hidden>
+                <div class="photo-preview" id="photoPreview_${profileId}">
+                  <span class="photo-placeholder"><i class="fas fa-camera"></i></span>
+                </div>
+                <button type="button" class="photo-upload-btn" id="photoUploadBtn_${profileId}">
+                  <i class="fas fa-upload"></i> Photo
+                </button>
+              </div>
+              <div style="margin-bottom:0.3rem;">
+                <label style="font-size:0.85rem;"><input type="checkbox" id="anonymousToggle_${profileId}"> Anonymous</label>
+              </div>
+              <button class="submit-btn" id="submitReviewBtn_${profileId}" type="submit">
+                <i class="fas fa-paper-plane"></i> Submit
+              </button>
+            </form>
+            <div class="review-summary">
+              <span><b>Avg:</b> <span id="weightedAvg_${profileId}" style="color:#f59e0b;font-weight:600;">0.00</span></span>
+              <span><b>Reviews:</b> <span id="reviewCount_${profileId}" style="color:#2563eb;font-weight:600;">0</span></span>
+            </div>
+            <div class="review-list" id="reviewsList_${profileId}"></div>
+            <button class="submit-btn view-more-btn" id="viewMoreBtn_${profileId}" style="display:none;">View more</button>
+          `;
+
+          // --- Star rating logic ---
+          let selectedRating = 0;
+          const stars = container.querySelectorAll(`#ratingStars_${profileId} .rating-star`);
+          stars.forEach(star => {
+            star.onclick = function() {
+              selectedRating = +this.dataset.rating;
+              stars.forEach(s => s.classList.toggle('fas', +s.dataset.rating <= selectedRating));
+              stars.forEach(s => s.classList.toggle('far', +s.dataset.rating > selectedRating));
+              stars.forEach(s => s.classList.toggle('selected', +s.dataset.rating <= selectedRating));
+            }
+          });
+
+          // --- Photo upload logic ---
+          const photoUploadBtn = container.querySelector(`#photoUploadBtn_${profileId}`);
+          const photoInput = container.querySelector(`#reviewImage_${profileId}`);
+          const photoPreview = container.querySelector(`#photoPreview_${profileId}`);
+          photoUploadBtn.onclick = () => photoInput.click();
+          photoInput.onchange = function() {
+            if (this.files && this.files[0]) {
+              const reader = new FileReader();
+              reader.onload = function(e) {
+                photoPreview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+              };
+              reader.readAsDataURL(this.files[0]);
+            } else {
+              photoPreview.innerHTML = `<span class="photo-placeholder"><i class="fas fa-camera"></i></span>`;
+            }
+          };
+
+          // --- Review form submission ---
+          container.querySelector(`#reviewForm_${profileId}`).onsubmit = function(e) {
+            e.preventDefault();
+            const text = container.querySelector(`#reviewText_${profileId}`).value.trim();
+            const isAnon = container.querySelector(`#anonymousToggle_${profileId}`).checked;
+            const imgInput = container.querySelector(`#reviewImage_${profileId}`);
+            const userId = getUserId();
+            let reviews = getReviews(profileId);
+            const existing = reviews.find(r => r.userId === userId);
+            if (!selectedRating) return alert('Select a rating!');
+            if (!text) return alert('Enter your review!');
+            if (existing && !imgInput.files.length) return alert('Second review requires image upload!');
+            let imgData = '';
+            if (imgInput.files.length) {
+              const reader = new FileReader();
+              reader.onload = function(ev) {
+                imgData = ev.target.result;
+                saveReview();
+              };
+              reader.readAsDataURL(imgInput.files[0]);
+            } else {
+              saveReview();
+            }
+            function saveReview() {
+              const type = getReviewType({
+                isAnon,
+                hasImg: !!imgData,
+                hasProfile: true // or your logic
+              });
+              reviews.push({
+                userId,
+                rating: selectedRating,
+                text,
+                image: imgData,
+                type,
+                timestamp: Date.now(),
+                anonymous: isAnon
+              });
+              saveReviews(profileId, reviews);
+              renderReviews();
+              container.querySelector(`#reviewForm_${profileId}`).reset();
+              photoPreview.innerHTML = `<span class="photo-placeholder"><i class="fas fa-camera"></i></span>`;
+              selectedRating = 0;
+              stars.forEach(s => { s.classList.remove('fas', 'selected'); s.classList.add('far'); });
+            }
+          };
+
+          function renderReviews(showAll = false) {
+            let reviews = getReviews(profileId);
+            container.querySelector(`#weightedAvg_${profileId}`).textContent = weightedAvg(reviews);
+            container.querySelector(`#reviewCount_${profileId}`).textContent = reviews.length;
+            const list = container.querySelector(`#reviewsList_${profileId}`);
+            list.innerHTML = '';
+            const toShow = showAll ? reviews : reviews.slice(0,3);
+            toShow.forEach(r => {
+              const div = document.createElement('div');
+              div.className = 'review-card';
+              div.innerHTML = `
+                <div class="review-header">
+                  <div>
+                    <span style="font-weight:600;">${r.anonymous ? 'Anonymous' : 'User'}</span>
+                    <span style="color:#64748b;font-size:0.8rem;margin-left:0.3rem;">${new Date(r.timestamp).toLocaleDateString()}</span>
+                  </div>
+                  <div class="review-rating">
+                    ${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}
+                  </div>
+                </div>
+                <div class="review-content">
+                  <p>${r.text}</p>
+                </div>
+                ${r.image ? `<img src="${r.image}" class="review-img"/>` : ''}
+              `;
+              list.appendChild(div);
+            });
+            const btn = container.querySelector(`#viewMoreBtn_${profileId}`);
+            btn.style.display = (reviews.length > 3 && !showAll) ? 'block' : 'none';
+            btn.onclick = () => renderReviews(true);
+          }
+
+          // --- Storage helpers for dynamic profileId ---
+          function getReviews(profileId) {
+            return JSON.parse(localStorage.getItem('reviews_' + profileId) || '[]');
+          }
+          function saveReviews(profileId, reviews) {
+            localStorage.setItem('reviews_' + profileId, JSON.stringify(reviews));
+          }
+          function weightedAvg(reviews) {
+            let sum = 0, wsum = 0;
+            reviews.forEach(r => {
+              const w = REVIEW_WEIGHTS[r.type] || 1;
+              sum += r.rating * w;
+              wsum += w;
+            });
+            return wsum ? (sum/wsum).toFixed(2) : '0.00';
+          }
+          function getReviewType({isAnon, hasImg, hasProfile}) {
+            if (!IS_LOGGED_IN) return 'anonymous';
+            if (hasImg && hasProfile) return 'verified_photo_full';
+            if (hasImg) return 'verified_photo';
+            return 'verified';
+          }
+          function getUserId() {
+            if (!IS_LOGGED_IN) return 'anon_' + (localStorage.getItem('anon_id') || (function(){const id = 'a'+Math.random().toString(36).slice(2);localStorage.setItem('anon_id',id);return id;})());
+            return 'user_123';
+          }
+
+          renderReviews();
+        }
+
+        // --- Attach to all profile review containers on page load ---
+        document.addEventListener('DOMContentLoaded', function() {
+          document.querySelectorAll('.profile-reviews').forEach(container => {
+            const profileId = container.getAttribute('data-profile-id');
+            renderReviewSystemForProfile(profileId, container);
+          });
+        });
+    </script>
+</body>
+</html>
