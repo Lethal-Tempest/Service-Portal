@@ -1158,7 +1158,153 @@
             text-shadow: 0 2px 8px #f59e0b33;
             transform: scale(1.18) rotate(-6deg);
         }
+
+        /* review section CSS */
         /* --- End Professional Star Rating --- */
+      .review-section {
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(37,99,235,0.07);
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem 2.5rem;
+    }
+    .review-form {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(37,99,235,0.05);
+      margin-bottom: 2rem;
+    }
+    .review-form-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #2563eb;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .rating-stars {
+      display: flex;
+      gap: 0.4rem;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      user-select: none;
+    }
+    .rating-star {
+      color: #e2e8f0;
+      cursor: pointer;
+      transition: color 0.2s, transform 0.2s;
+      filter: drop-shadow(0 1px 2px rgba(37,99,235,0.08));
+    }
+    .rating-star.selected,
+    .rating-star:hover,
+    .rating-star.selected ~ .rating-star {
+      color: #f59e0b;
+      text-shadow: 0 2px 8px #f59e0b33;
+      transform: scale(1.18) rotate(-6deg);
+    }
+    .form-textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      font-family: inherit;
+      background: #fff;
+      resize: vertical;
+      min-height: 80px;
+      transition: border 0.2s;
+    }
+    .review-photo-upload {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+    .photo-preview {
+      width: 70px;
+      height: 70px;
+      border-radius: 14px;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 2px dashed #cbd5e1;
+      position: relative;
+      transition: border 0.2s;
+    }
+    .photo-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+    .photo-placeholder {
+      color: #b6c3d1;
+      font-size: 2rem;
+    }
+    .photo-upload-btn {
+      background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      padding: 0.7rem 1.3rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+    }
+    .photo-upload-btn:hover {
+      background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
+      transform: translateY(-2px) scale(1.04);
+    }
+    .submit-btn {
+      background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      padding: 0.9rem 1.7rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 2px 12px rgba(37,99,235,0.10);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover {
+      background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
+      transform: translateY(-2px) scale(1.03);
+    }
+    .review-summary {
+      margin: 1rem 0 1.5rem 0;
+      font-size: 1.1rem;
+      color: #64748b;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .review-list .review-card {
+      background: #f8fafc;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(37,99,235,0.04);
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      animation: fadeIn 0.5s;
+    }
     </style>
 </head>
 <body>
@@ -1333,7 +1479,7 @@
                         </div>
                         <div class="preview-container" id="videoPreview"></div>
                     </div>
-                    
+                    <!-- wait i will Look into it -->
                     <button type="submit" class="submit-btn">
                         <i class="fas fa-save"></i> Save Profile
                     </button>
@@ -1501,8 +1647,11 @@
                                 <p>Good service, arrived on time and completed the work as promised. Fair pricing and clean work.</p>
                             </div>
                         </div>
-                        
-                        <div class="add-review-form" id="customAddReviewForm">
+
+
+
+                        <!-- After you navigating to prfile p[ick logic of view profile section -->
+                        <!-- <div class="add-review-form" id="customAddReviewForm">
                             <h3 class="review-form-title">Add Your Review</h3>
                             <div class="rating-input">
                                 <label class="form-label">Your Rating</label>
@@ -1526,9 +1675,53 @@
                                 <label for="anonymousToggle">Post as Anonymous</label>
                             </div>
                             <button class="submit-btn" id="submitReviewBtn">
+                                <i class="fas fa-paper-plane"></i> 
+                                Submit - Review
+                            </button>
+                        </div> -->
+
+                        <!-- After you navigating to prfile p[ick logic of view profile section -->
+                        <div class="review-section">
+                            <form class="review-form" id="reviewForm">
+                            <div class="review-form-title">
+                                <i class="fas fa-star"></i> Add Your Review
+                            </div>
+                            <div class="rating-stars" id="ratingStars">
+                                <i class="far fa-star rating-star" data-rating="1"></i>
+                                <i class="far fa-star rating-star" data-rating="2"></i>
+                                <i class="far fa-star rating-star" data-rating="3"></i>
+                                <i class="far fa-star rating-star" data-rating="4"></i>
+                                <i class="far fa-star rating-star" data-rating="5"></i>
+                            </div>
+                            <textarea id="reviewText" class="form-textarea" placeholder="Share your experience..."></textarea>
+                            <div class="review-photo-upload" id="photoUploadArea">
+                                <input type="file" id="reviewImage" accept="image/*" hidden>
+                                <div class="photo-preview" id="photoPreview">
+                                <span class="photo-placeholder"><i class="fas fa-camera"></i></span>
+                                </div>
+                                <button type="button" class="photo-upload-btn" id="photoUploadBtn">
+                                <i class="fas fa-upload"></i> Upload Photo
+                                </button>
+                            </div>
+                            <div style="margin-bottom:1rem;">
+                                <label><input type="checkbox" id="anonymousToggle"> Post as Anonymous</label>
+                            </div>
+                            <button class="submit-btn" id="submitReviewBtn" type="submit">
                                 <i class="fas fa-paper-plane"></i> Submit Review
                             </button>
+                            </form>
+                            <div class="review-summary">
+                            <span><b>Weighted Avg:</b> <span id="weightedAvg" style="color:#f59e0b;font-weight:600;">0.00</span></span>
+                            <span><b>Total Reviews:</b> <span id="reviewCount" style="color:#2563eb;font-weight:600;">0</span></span>
+                            </div>
+                            <div class="review-list" id="reviewsList"></div>
+                            <button class="submit-btn view-more-btn" id="viewMoreBtn" style="display:none;">Tap to view more</button>
                         </div>
+
+
+
+
+
                     </div>
                 </div>
             </div>
@@ -1904,11 +2097,15 @@
                             <i class="fas fa-phone"></i> Contact
                         </a>
                     </div>
-                    <div class="profile-reviews" data-profile-id="${profile.id}"></div>
+                    
                 `;
                 profilesContainer.appendChild(profileCard);
             });
             
+
+            // above if we add review add above this line <div class="profile-reviews" data-profile-id="${profile.id}"></div>
+
+             
             // Add event listeners to view and contact buttons
             document.querySelectorAll('.view-profile').forEach(button => {
                 button.addEventListener('click', (e) => {
@@ -2317,108 +2514,142 @@
             });
         }
 
+
+
+
+
+
+        
         // --- Review Form Logic ---
         function setupReviewForm(profileId) {
-            const form = document.querySelector('.add-review-form');
-            if (!form) return;
-            const stars = form.querySelectorAll('.rating-star');
-            const submitBtn = form.querySelector('#submitReviewBtn');
-            const textInput = form.querySelector('#reviewText');
-            let selectedRating = 0;
-            let imageData = null;
-            let forceImage = false;
+    const form = document.getElementById('reviewForm');
+    if (!form) return;
 
-            // Star rating
-            stars.forEach(star => {
-                star.onclick = () => {
-                    selectedRating = parseInt(star.getAttribute('data-rating'));
-                    stars.forEach((s, i) => {
-                        if (i < selectedRating) {
-                            s.classList.remove('far');
-                            s.classList.add('fas', 'active');
-                        } else {
-                            s.classList.remove('fas', 'active');
-                            s.classList.add('far');
-                        }
-                    });
-                };
+    const stars = form.querySelectorAll('.rating-star');
+    const submitBtn = form.querySelector('#submitReviewBtn');
+    const textInput = form.querySelector('#reviewText');
+    const anonymousToggle = form.querySelector('#anonymousToggle');
+    const imageInput = form.querySelector('#reviewImage');
+    const photoUploadBtn = form.querySelector('#photoUploadBtn');
+    const photoPreview = form.querySelector('#photoPreview');
+
+    let selectedRating = 0;
+    let imageData = null;
+
+    // Star Rating Logic
+    stars.forEach(star => {
+        star.onclick = () => {
+            selectedRating = parseInt(star.getAttribute('data-rating'));
+            stars.forEach((s, i) => {
+                if (i < selectedRating) {
+                    s.classList.remove('far');
+                    s.classList.add('fas', 'active');
+                } else {
+                    s.classList.remove('fas', 'active');
+                    s.classList.add('far');
+                }
             });
+        };
+    });
 
-            // Add image upload
-            let imgInput = form.querySelector('.review-image-input');
-            if (!imgInput) {
-                imgInput = document.createElement('input');
-                imgInput.type = 'file';
-                imgInput.accept = 'image/*';
-                imgInput.className = 'review-image-input';
-                imgInput.style.margin = '10px 0';
-                form.insertBefore(imgInput, submitBtn);
-            }
-            imgInput.onchange = function(e) {
-                const file = e.target.files[0];
-                if (file && file.type.startsWith('image/')) {
-                    const reader = new FileReader();
-                    reader.onload = function(ev) {
-                        imageData = ev.target.result;
-                    };
-                    reader.readAsDataURL(file);
-                }
-            };
+    // Photo Upload Button Logic
+    photoUploadBtn.onclick = () => imageInput.click();
 
-            // On submit
-            submitBtn.onclick = (e) => {
-                e.preventDefault();
-                const userId = getCurrentUser() || 'anon_' + (localStorage.getItem('anon_id') || (function(){const id = 'a'+Math.random().toString(36).slice(2);localStorage.setItem('anon_id',id);return id;})());
-                const reviews = getReviews(profileId);
-                const existing = reviews.find(r => r.userId === userId);
-                if (!selectedRating) {
-                    alert('Please select a rating');
-                    return;
-                }
-                if (!textInput.value.trim()) {
-                    alert('Please write a review before submitting');
-                    return;
-                }
-                // If already reviewed, force image
-                if (existing && !imageData) {
-                    alert('You have already reviewed. Please upload a work image to submit another review.');
-                    return;
-                }
-                // Determine review type
-                let type = 'anonymous';
-                let name = '';
-                let avatar = '';
-                let anonymous = form.querySelector('#anonymousToggle')?.checked;
-                if (isUserLoggedIn()) {
-                    if (imageData && getUserProfileStatus()) type = 'verified_photo_full';
-                    else if (imageData) type = 'verified_photo';
-                    else type = 'verified';
-                    name = anonymous ? '' : 'Demo User'; // Replace with real name if available
-                    avatar = anonymous ? '' : 'https://randomuser.me/api/portraits/men/32.jpg';
-                }
-                // Save review
-                reviews.push({
-                    id: 'r' + Date.now(),
-                    profileId,
-                    rating: selectedRating,
-                    text: textInput.value.trim(),
-                    image: imageData,
-                    type,
-                    timestamp: Date.now(),
-                    userId,
-                    name,
-                    avatar,
-                    anonymous
-                });
-                saveReviews(profileId, reviews);
-                alert('Review submitted successfully!');
-                textInput.value = '';
-                imageData = null;
-                imgInput.value = '';
-                stars.forEach(s => { s.classList.remove('fas', 'active'); s.classList.add('far'); });
-                renderReviews(profileId);
+    // Preview image after upload
+    imageInput.onchange = function (e) {
+        const file = e.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function (ev) {
+                imageData = ev.target.result;
+                photoPreview.innerHTML = `<img src="${imageData}" alt="Review Image" style="max-width:100px; border-radius:8px;">`;
             };
+            reader.readAsDataURL(file);
         }
+    };
+
+    // Submit Review
+    submitBtn.onclick = (e) => {
+        e.preventDefault();
+
+        const userId = getCurrentUser() || 'anon_' + (localStorage.getItem('anon_id') || (() => {
+            const id = 'a' + Math.random().toString(36).slice(2);
+            localStorage.setItem('anon_id', id);
+            return id;
+        })());
+
+        const reviews = getReviews(profileId);
+        const existing = reviews.find(r => r.userId === userId);
+
+        if (!selectedRating) {
+            alert('Please select a rating');
+            return;
+        }
+
+        if (!textInput.value.trim()) {
+            alert('Please write a review before submitting');
+            return;
+        }
+
+        if (existing && !imageData) {
+            alert('You have already reviewed. Please upload a photo to submit another review.');
+            return;
+        }
+
+        // Determine review type and identity
+        let type = 'anonymous';
+        let name = '';
+        let avatar = '';
+        const anonymous = anonymousToggle?.checked;
+
+        if (isUserLoggedIn()) {
+            if (imageData && getUserProfileStatus()) type = 'verified_photo_full';
+            else if (imageData) type = 'verified_photo';
+            else type = 'verified';
+
+            name = anonymous ? '' : 'Demo User';
+            avatar = anonymous ? '' : 'https://randomuser.me/api/portraits/men/32.jpg';
+        }
+
+        // Save review
+        reviews.push({
+            id: 'r' + Date.now(),
+            profileId,
+            rating: selectedRating,
+            text: textInput.value.trim(),
+            image: imageData,
+            type,
+            timestamp: Date.now(),
+            userId,
+            name,
+            avatar,
+            anonymous
+        });
+
+        saveReviews(profileId, reviews);
+        alert('Review submitted successfully!');
+
+        // Reset form
+        selectedRating = 0;
+        textInput.value = '';
+        imageInput.value = '';
+        imageData = null;
+        photoPreview.innerHTML = `<span class="photo-placeholder"><i class="fas fa-camera"></i></span>`;
+        stars.forEach(s => {
+            s.classList.remove('fas', 'active');
+            s.classList.add('far');
+        });
+
+        renderReviews(profileId);
+    };
+}
+
+
+
+
+
+
+
 
         // --- Patch showProfile to load reviews ---
         const origShowProfile = showProfile;
