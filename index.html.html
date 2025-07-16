@@ -201,6 +201,7 @@
             display: flex;
             gap: 1rem;
             margin-bottom: 1.5rem;
+            position: relative;
         }
 
         .search-input {
@@ -1305,6 +1306,422 @@
       flex-direction: column;
       animation: fadeIn 0.5s;
     }
+
+    .search-suggestions {
+        position: absolute;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+        z-index: 10;
+        width: 100%;
+        max-height: 220px;
+        overflow-y: auto;
+        display: none;
+    }
+    .search-suggestion-item {
+        padding: 0.7rem 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .search-suggestion-item:hover {
+        background: #f1f5f9;
+    }
+
+    /* City Filter Professional Style */
+    #cityFilterSection {
+        display: flex;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+        justify-content: flex-start;
+    }
+
+    .city-filter-btn {
+        background: #f1f5f9;
+        border: none;
+        padding: 0.6rem 1.4rem;
+        border-radius: 20px;
+        font-size: 1rem;
+        color: #2563eb;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 8px rgba(37,99,235,0.04);
+        outline: none;
+    }
+
+    .city-filter-btn:hover,
+    .city-filter-btn:focus {
+        background: #2563eb;
+        color: #fff;
+        box-shadow: 0 4px 16px rgba(37,99,235,0.10);
+    }
+
+    .city-filter-btn.active {
+        background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+        color: #fff;
+        box-shadow: 0 4px 16px rgba(37,99,235,0.13);
+        font-weight: 600;
+        transform: translateY(-2px) scale(1.04);
+    }
+    </style>
+    <!-- Create Profile Dynamic Page -->
+    <style>
+    /* --- Professional Create Profile Page Styles --- */
+    #createProfilePage {
+       background: linear-gradient(120deg, #e3e9f0 0%, #f4f6f8 100%);
+       min-height: 100vh;
+       padding: 0 0 2rem 0;
+    }
+    #createProfilePage .profile-card {
+       background: #fff;
+       border-radius: 18px;
+       box-shadow: 0 8px 32px rgba(25, 118, 210, 0.13);
+       padding: 0 36px 36px 36px;
+       max-width: 520px;
+       width: 100%;
+       margin: 36px auto 36px auto;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       position: relative;
+       overflow: hidden;
+       animation: fadeInUp 0.7s;
+    }
+    #createProfilePage .profile-header {
+       width: 100%;
+       background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+       color: #fff;
+       padding: 32px 0 18px 0;
+       text-align: center;
+       border-radius: 0 0 60% 60% / 0 0 18% 18%;
+       margin-bottom: 18px;
+       box-shadow: 0 2px 12px rgba(25, 118, 210, 0.08);
+    }
+    #createProfilePage .profile-header .logo {
+       font-size: 2.2rem;
+       font-weight: 700;
+       letter-spacing: 1px;
+       margin-bottom: 4px;
+       display: inline-block;
+    }
+    #createProfilePage .profile-header .subtitle {
+       font-size: 1.08rem;
+       font-weight: 400;
+       opacity: 0.93;
+       margin-bottom: 0;
+    }
+    #createProfilePage .divider {
+       width: 40px;
+       height: 3px;
+       background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+       border-radius: 2px;
+       margin: 18px auto 24px auto;
+       opacity: 0.18;
+    }
+    #createProfilePage .progress-bar {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       width: 100%;
+       max-width: 400px;
+       margin: 0 auto 28px auto;
+       position: relative;
+    }
+    #createProfilePage .progress-bar::before {
+       content: '';
+       position: absolute;
+       top: 50%;
+       left: 30px;
+       right: 30px;
+       height: 3px;
+       background: #e3e9f0;
+       z-index: 0;
+       transform: translateY(-50%);
+    }
+    #createProfilePage .progress-step {
+       position: relative;
+       z-index: 1;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       flex: 1;
+       transition: color 0.2s;
+    }
+    #createProfilePage .step-circle {
+       width: 32px;
+       height: 32px;
+       border-radius: 50%;
+       background: #e3e9f0;
+       color: #2563eb;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       font-weight: 700;
+       font-size: 1.1rem;
+       margin-bottom: 6px;
+       border: 2px solid #fff;
+       box-shadow: 0 2px 8px rgba(25,118,210,0.07);
+       transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    #createProfilePage .progress-step.active .step-circle,
+    #createProfilePage .progress-step.completed .step-circle {
+       background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+       color: #fff;
+       box-shadow: 0 4px 16px rgba(37,99,235,0.13);
+    }
+    #createProfilePage .progress-step .step-label {
+       font-size: 0.98rem;
+       color: #888;
+       font-weight: 500;
+       text-align: center;
+       transition: color 0.2s;
+    }
+    #createProfilePage .progress-step.active .step-label {
+       color: #2563eb;
+       font-weight: 700;
+    }
+    #createProfilePage .form-step {
+       display: none;
+       width: 100%;
+       animation: fadeInUp 0.5s;
+    }
+    #createProfilePage .form-step.active {
+       display: block;
+    }
+    @keyframes fadeInUp {
+       from { opacity: 0; transform: translateY(20px); }
+       to { opacity: 1; transform: translateY(0); }
+    }
+    #createProfilePage .profile-form label {
+       font-weight: 500;
+       color: #2563eb;
+       margin-bottom: 6px;
+       font-size: 1.05rem;
+       letter-spacing: 0.1px;
+       display: block;
+    }
+    #createProfilePage .profile-form input, #createProfilePage .profile-form textarea, #createProfilePage .profile-form select {
+       padding: 12px 15px;
+       border-radius: 8px;
+       border: 1.5px solid #c2d3e8;
+       font-size: 1rem;
+       background: #f7f9fa;
+       color: #222;
+       transition: border 0.2s, box-shadow 0.2s;
+       outline: none;
+       width: 100%;
+       box-sizing: border-box;
+       margin-bottom: 2px;
+    }
+    #createProfilePage .profile-form input:focus, #createProfilePage .profile-form textarea:focus, #createProfilePage .profile-form select:focus {
+       border: 1.5px solid #2563eb;
+       box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+       background: #fff;
+    }
+    #createProfilePage .profile-form textarea {
+       min-height: 80px;
+       resize: vertical;
+    }
+    #createProfilePage .profile-form .form-row {
+       display: flex;
+       gap: 16px;
+    }
+    #createProfilePage .profile-form .form-row > div {
+       flex: 1;
+       display: flex;
+       flex-direction: column;
+    }
+    #createProfilePage .file-upload {
+       background: #f7f9fa;
+       border: 2px dashed #b3d0fd;
+       border-radius: 10px;
+       padding: 18px 0;
+       text-align: center;
+       color: #2563eb;
+       font-size: 1.05rem;
+       cursor: pointer;
+       margin-bottom: 8px;
+       transition: border 0.2s, background 0.2s;
+       position: relative;
+    }
+    #createProfilePage .file-upload:hover {
+       border-color: #2563eb;
+       background: #e3e9f0;
+    }
+    #createProfilePage .file-upload input[type="file"] {
+       display: none;
+    }
+    #createProfilePage .file-upload .file-label {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       gap: 6px;
+       font-size: 1.05rem;
+       color: #2563eb;
+    }
+    #createProfilePage .file-upload .file-label i {
+       font-size: 2.1rem;
+       color: #1d4ed8;
+       margin-bottom: 2px;
+    }
+    #createProfilePage .file-preview {
+       margin-top: 6px;
+       display: flex;
+       gap: 10px;
+       flex-wrap: wrap;
+       justify-content: center;
+    }
+    #createProfilePage .file-preview img, #createProfilePage .file-preview video {
+       max-width: 70px;
+       max-height: 70px;
+       border-radius: 8px;
+       box-shadow: 0 2px 8px rgba(25,118,210,0.08);
+       object-fit: cover;
+    }
+    #createProfilePage .file-preview span {
+       font-size: 0.98rem;
+       color: #444;
+       background: #e3e9f0;
+       border-radius: 6px;
+       padding: 2px 8px;
+       display: inline-block;
+    }
+    #createProfilePage .optional {
+       color: #888;
+       font-size: 0.98rem;
+       font-weight: 400;
+       margin-left: 4px;
+    }
+    #createProfilePage .step-actions {
+       display: flex;
+       justify-content: space-between;
+       gap: 12px;
+       margin-top: 18px;
+    }
+    #createProfilePage .submit-btn, #createProfilePage .btn-outline {
+       background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+       color: #fff;
+       border: none;
+       border-radius: 8px;
+       padding: 13px 0;
+       font-size: 1.13rem;
+       font-weight: 700;
+       cursor: pointer;
+       width: 100%;
+       transition: background 0.18s, box-shadow 0.18s;
+       box-shadow: 0 2px 8px rgba(37,99,235,0.10);
+       letter-spacing: 0.5px;
+    }
+    #createProfilePage .btn-outline {
+       background: #e3e9f0;
+       color: #2563eb;
+       font-weight: 600;
+       margin-right: 8px;
+       box-shadow: none;
+    }
+    #createProfilePage .submit-btn:hover, #createProfilePage .btn-outline:hover {
+       background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
+       color: #fff;
+       box-shadow: 0 4px 16px rgba(37,99,235,0.13);
+    }
+    #createProfilePage .btn-outline:hover {
+       background: #d0d8e6;
+       color: #125ea2;
+    }
+    #createProfilePage .review-section {
+       background: #f7f9fa;
+       border-radius: 10px;
+       padding: 18px 18px 10px 18px;
+       margin-bottom: 18px;
+       font-size: 1.05rem;
+       color: #333;
+    }
+    #createProfilePage .review-section h3 {
+       color: #2563eb;
+       font-size: 1.1rem;
+       margin-bottom: 8px;
+       font-weight: 700;
+    }
+    #createProfilePage .review-list {
+       list-style: none;
+       padding: 0;
+       margin: 0;
+    }
+    #createProfilePage .review-list li {
+       margin-bottom: 7px;
+       display: flex;
+       align-items: center;
+       gap: 8px;
+    }
+    #createProfilePage .review-list li strong {
+       min-width: 120px;
+       color: #2563eb;
+       font-weight: 500;
+    }
+    #createProfilePage .skills-input-container {
+       width: 100%;
+       margin-top: 10px;
+    }
+    #createProfilePage .skills-input-container input {
+       padding: 8px 10px;
+       border: 1.5px solid #c2d3e8;
+       border-radius: 8px;
+       font-size: 0.95rem;
+       background: #f7f9fa;
+       color: #222;
+       outline: none;
+       width: 100%;
+       box-sizing: border-box;
+       margin-bottom: 6px;
+    }
+    #createProfilePage .skills-input-container input:focus {
+       border: 1.5px solid #2563eb;
+       box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+       background: #fff;
+    }
+    #createProfilePage .skills-tags {
+       display: flex;
+       flex-wrap: wrap;
+       gap: 7px;
+       padding: 4px 8px;
+       background: #e7f0fe;
+       border-radius: 16px;
+       font-size: 0.97rem;
+       font-weight: 500;
+       color: #2563eb;
+    }
+    #createProfilePage .skill-tag {
+       display: flex;
+       align-items: center;
+       gap: 5px;
+       padding: 4px 12px;
+       border-radius: 16px;
+       background: #e7f0fe;
+       color: #2563eb;
+       font-weight: 500;
+       cursor: default;
+    }
+    #createProfilePage .remove-skill {
+       background: none;
+       border: none;
+       font-size: 1rem;
+       cursor: pointer;
+       color: #2563eb;
+       margin-left: 2px;
+    }
+    @media (max-width: 600px) {
+       #createProfilePage .profile-card {
+           padding: 0 6px 18px 6px;
+       }
+       #createProfilePage .profile-header .logo {
+           font-size: 1.3rem;
+       }
+       #createProfilePage .progress-bar {
+           max-width: 98vw;
+       }
+    }
     </style>
 </head>
 <body>
@@ -1313,37 +1730,34 @@
         <nav class="navbar">
             <div class="logo">
                 <i class="fas fa-hard-hat"></i>
-                <span>Worker Connect</span>
+                <span data-i18n="nav.brand">Worker Connect</span>
             </div>
             
             <div class="nav-links">
                 <a href="#" class="nav-link active" data-page="home">
                     <i class="fas fa-home"></i>
-                    <span>Home</span>
+                    <span data-i18n="nav.home">Home</span>
                 </a>
-                <a href="#" class="nav-link" data-page="search">
-                    <i class="fas fa-search"></i>
-                    <span>Search</span>
-                </a>
-                <a href="#" class="nav-link" data-page="create">
-                    <i class="fas fa-user-plus"></i>
-                    <span>Create Profile</span>
+           
+                <!-- Option 2: Just a link to language.html -->
+                <a href="language.html" class="nav-link"><span data-i18n="nav.selectLanguage">Select Language</span></a>
+                <a href="#" class="nav-link" id="createProfileNav" data-page="createProfile">
+                    <i class="fas fa-user-plus"></i> <span data-i18n="nav.createProfile">Create Profile</span>
                 </a>
                 <a href="#" class="nav-link" id="myProfileBtn">
                     <i class="fas fa-user"></i>
-                    <span>My Profile</span>
+                    <span data-i18n="nav.myProfile">My Profile</span>
                 </a>
             </div>
             
             <div class="user-actions">
-                <div class="language-toggle">
-                    <button class="lang-btn active" data-lang="en">EN</button>
-                    <button class="lang-btn" data-lang="hi">HI</button>
+                <div class="language-toggle professional-lang-switcher">
+                    <button class="lang-btn" data-lang="en"><span>🇬🇧</span> English</button>
+                    <button class="lang-btn" data-lang="hi"><span>🇮🇳</span> हिन्दी</button>
                 </div>
-                <button class="btn btn-outline" id="authToggleBtn">
-                    <i class="fas fa-sign-in-alt"></i>
-                    <span>Login</span>
-                </button>
+                <a href="login-standalone.html" class="btn btn-outline">
+                  <i class="fas fa-sign-in-alt"></i> <span data-i18n="nav.login">Login</span>
+                </a>
             </div>
         </nav>
     </header>
@@ -1354,26 +1768,30 @@
         <div class="page active" id="homePage">
             <h1 class="page-title">
                 <i class="fas fa-home"></i>
-                Find Skilled Professionals
+                <span data-i18n="home.heading">Find Skilled Professionals</span>
             </h1>
             
             <div class="search-container">
                 <div class="search-bar">
-                    <input type="text" class="search-input" placeholder="Search by profession, skills, or name...">
+                    <input type="text" class="search-input" data-i18n-placeholder="home.searchPlaceholder" placeholder="Search by name, city or profession...">
                     <button class="search-btn">
                         <i class="fas fa-search"></i>
-                        Search
+                        <span data-i18n="home.searchBtn">Search</span>
                     </button>
+                    <div id="searchSuggestions" class="search-suggestions"></div>
                 </div>
                 
-                <div class="filter-section">
-                    <button class="filter-btn active">All</button>
-                    <button class="filter-btn">Plumbers</button>
-                    <button class="filter-btn">Electricians</button>
-                    <button class="filter-btn">Carpenters</button>
-                    <button class="filter-btn">Painters</button>
-                    <button class="filter-btn">Mechanics</button>
-                    <button class="filter-btn">AC Technicians</button>
+                <div class="filter-section" id="cityFilterSection" style="margin-top:1rem;">
+                    <span style="display:flex;align-items:center;font-weight:600;color:#2563eb;margin-right:0.5rem;">
+                        <i class="fas fa-map-marker-alt" style="margin-right:0.4rem;"></i>City:
+                    </span>
+                    <button class="city-filter-btn active">All</button>
+                    <button class="city-filter-btn">New Delhi</button>
+                    <button class="city-filter-btn">Noida</button>
+                    <button class="city-filter-btn">Gurgaon</button>
+                    <button class="city-filter-btn">Faridabad</button>
+                    <button class="city-filter-btn">Ghaziabad</button>
+                    <button class="city-filter-btn">Delhi</button>
                 </div>
             </div>
             
@@ -1503,9 +1921,6 @@
                     <button class="action-bar-btn" id="shareProfileBtn">
                         <i class="fas fa-share-alt"></i> Share Profile
                     </button>
-                    <button class="action-bar-btn" id="exportPdfBtn">
-                        <i class="fas fa-file-pdf"></i> Export to PDF
-                    </button>
                     <button class="action-bar-btn" id="contactBtn">
                         <i class="fas fa-phone"></i> Contact
                     </button>
@@ -1523,7 +1938,7 @@
                             <div class="info-card-title">
                                 <i class="fas fa-phone"></i> Contact
                             </div>
-                            <div class="info-card-content">+91 9876543210</div>
+                            <div class="info-card-content" id="contactModalPhone">+91 9876543210</div>
                         </div>
                         <div class="info-card">
                             <div class="info-card-title">
@@ -1684,7 +2099,7 @@
                         <div class="review-section">
                             <form class="review-form" id="reviewForm">
                             <div class="review-form-title">
-                                <i class="fas fa-star"></i> Add Your Review
+                                <i class="fas fa-star"></i> <span data-i18n="review.addYourReview">Add Your Review</span>
                             </div>
                             <div class="rating-stars" id="ratingStars">
                                 <i class="far fa-star rating-star" data-rating="1"></i>
@@ -1693,21 +2108,21 @@
                                 <i class="far fa-star rating-star" data-rating="4"></i>
                                 <i class="far fa-star rating-star" data-rating="5"></i>
                             </div>
-                            <textarea id="reviewText" class="form-textarea" placeholder="Share your experience..."></textarea>
+                            <textarea id="reviewText" class="form-textarea" data-i18n-placeholder="review.placeholder"></textarea>
                             <div class="review-photo-upload" id="photoUploadArea">
                                 <input type="file" id="reviewImage" accept="image/*" hidden>
                                 <div class="photo-preview" id="photoPreview">
                                 <span class="photo-placeholder"><i class="fas fa-camera"></i></span>
                                 </div>
                                 <button type="button" class="photo-upload-btn" id="photoUploadBtn">
-                                <i class="fas fa-upload"></i> Upload Photo
+                                <i class="fas fa-upload"></i> <span data-i18n="review.uploadPhoto">Upload Photo</span>
                                 </button>
                             </div>
                             <div style="margin-bottom:1rem;">
-                                <label><input type="checkbox" id="anonymousToggle"> Post as Anonymous</label>
+                                <label><input type="checkbox" id="anonymousToggle"> <span data-i18n="review.postAsAnonymous">Post as Anonymous</span></label>
                             </div>
                             <button class="submit-btn" id="submitReviewBtn" type="submit">
-                                <i class="fas fa-paper-plane"></i> Submit Review
+                                <i class="fas fa-paper-plane"></i> <span data-i18n="review.submit">Submit Review</span>
                             </button>
                             </form>
                             <div class="review-summary">
@@ -1715,7 +2130,7 @@
                             <span><b>Total Reviews:</b> <span id="reviewCount" style="color:#2563eb;font-weight:600;">0</span></span>
                             </div>
                             <div class="review-list" id="reviewsList"></div>
-                            <button class="submit-btn view-more-btn" id="viewMoreBtn" style="display:none;">Tap to view more</button>
+                            <button class="submit-btn view-more-btn" id="viewMoreBtn" style="display:none;" data-i18n="review.viewMore">Tap to view more</button>
                         </div>
 
 
@@ -1770,30 +2185,30 @@
                     <div class="info-card-title">
                         <i class="fas fa-user"></i> Name
                     </div>
-                    <div class="info-card-content">Rajesh Kumar</div>
+                    <div class="info-card-content" id="contactModalName">Rajesh Kumar</div>
                 </div>
                 <div class="info-card">
                     <div class="info-card-title">
                         <i class="fas fa-briefcase"></i> Profession
                     </div>
-                    <div class="info-card-content">Plumber</div>
+                    <div class="info-card-content" id="contactModalProfession">Plumber</div>
                 </div>
                 <div class="info-card">
                     <div class="info-card-title">
                         <i class="fas fa-phone"></i> Contact Number
                     </div>
-                    <div class="info-card-content">+91 9876543210</div>
+                    <div class="info-card-content" id="contactModalPhone">+91 9876543210</div>
                 </div>
                 <div class="info-card">
                     <div class="info-card-title">
                         <i class="fas fa-envelope"></i> Email
                     </div>
-                    <div class="info-card-content">rajesh.plumbing@example.com</div>
+                    <div class="info-card-content" id="contactModalEmail">rajesh.plumbing@example.com</div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-outline close-modal">Close</button>
-                <button class="btn btn-primary">
+                <button class="btn btn-primary" id="contactModalWhatsappBtn">
                     <i class="fab fa-whatsapp"></i> Message on WhatsApp
                 </button>
             </div>
@@ -1922,6 +2337,147 @@
                 <button class="social-auth-btn google-btn"><i class="fab fa-google"></i> Continue with Google</button>
                 <button class="social-auth-btn facebook-btn"><i class="fab fa-facebook-f"></i> Continue with Facebook</button>
             </div>
+        </div>
+    </div>
+    
+    <!-- Create Profile Dynamic Page -->
+    <div class="page" id="createProfilePage" style="display:none;">
+        <div class="profile-card" style="max-width:600px;margin:2rem auto 2rem auto;">
+            <div class="profile-header" style="background:linear-gradient(90deg,#1976d2 0%,#2196f3 100%);color:#fff;padding:32px 0 18px 0;text-align:center;border-radius:0 0 60% 60% / 0 0 18% 18%;margin-bottom:18px;box-shadow:0 2px 12px rgba(25,118,210,0.08);">
+                <span class="logo" style="font-size:2.2rem;font-weight:700;letter-spacing:1px;margin-bottom:4px;display:inline-block;">WorkerConnect</span>
+                <div class="subtitle" style="font-size:1.08rem;font-weight:400;opacity:0.93;margin-bottom:0;">Create Your Professional Profile</div>
+            </div>
+            <div class="divider" style="width:40px;height:3px;background:linear-gradient(90deg,#1976d2 0%,#2196f3 100%);border-radius:2px;margin:18px auto 24px auto;opacity:0.18;"></div>
+            <div class="progress-bar" id="progressBar" style="display:flex;justify-content:space-between;align-items:center;width:100%;max-width:400px;margin:0 auto 28px auto;position:relative;">
+                <div class="progress-step" data-step="0">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">Basic Info</div>
+                </div>
+                <div class="progress-step" data-step="1">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Contact</div>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Documents</div>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <div class="step-circle">4</div>
+                    <div class="step-label">Review</div>
+                </div>
+            </div>
+            <form class="profile-form" id="dynamicProfileForm" enctype="multipart/form-data" autocomplete="off">
+                <!-- Step 1: Basic Info -->
+                <div class="form-step active" id="dynamic-step-0">
+                    <div class="form-row">
+                        <div>
+                            <label for="dynamicFirstName">First Name</label>
+                            <input type="text" id="dynamicFirstName" name="firstName" required>
+                        </div>
+                        <div>
+                            <label for="dynamicLastName">Last Name</label>
+                            <input type="text" id="dynamicLastName" name="lastName" required>
+                        </div>
+                    </div>
+                    <label for="dynamicProfessionSelect">Profession</label>
+                    <select id="dynamicProfessionSelect" name="professionSelect" required>
+                        <option value="">Select Profession</option>
+                        <option>Plumber</option>
+                        <option>Electrician</option>
+                        <option>Carpenter</option>
+                        <option>Painter</option>
+                        <option>Mechanic</option>
+                        <option>AC Technician</option>
+                        <option>Mason</option>
+                        <option>Welder</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="text" id="dynamicOtherProfession" name="otherProfession" placeholder="Enter your profession" style="display:none;"/>
+                    <div class="form-row">
+                        <div>
+                            <label for="dynamicExperience">Experience (years)</label>
+                            <input type="number" id="dynamicExperience" name="experience" min="0" placeholder="e.g. 5">
+                        </div>
+                        <div>
+                            <label for="dynamicLocation">Location</label>
+                            <input type="text" id="dynamicLocation" name="location" placeholder="e.g. New Delhi">
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button type="button" class="submit-btn" id="dynamicNext0">Next</button>
+                    </div>
+                </div>
+                <!-- Step 2: Contact Info -->
+                <div class="form-step" id="dynamic-step-1">
+                    <label for="dynamicEmail">Email</label>
+                    <input type="email" id="dynamicEmail" name="email" required>
+                    <label for="dynamicPhone">Phone Number</label>
+                    <input type="tel" id="dynamicPhone" name="phone" required>
+                    <label for="dynamicBio">Short Bio</label>
+                    <textarea id="dynamicBio" name="bio" placeholder="Tell us about yourself..." required></textarea>
+                    <label for="dynamicSkillsInput">Skills <span class="optional">(Press Enter to add)</span></label>
+                    <div class="skills-input-container" style="margin-bottom:10px;">
+                        <input type="text" id="dynamicSkillsInput" placeholder="e.g., Pipe fitting, Tap repair">
+                        <div class="skills-tags" id="dynamicSkillsTags" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:7px;"></div>
+                    </div>
+                    <div class="step-actions">
+                        <button type="button" class="submit-btn btn-outline" id="dynamicBack1">Back</button>
+                        <button type="button" class="submit-btn" id="dynamicNext1">Next</button>
+                    </div>
+                </div>
+                <!-- Step 3: Documents -->
+                <div class="form-step" id="dynamic-step-2">
+                    <label for="dynamicAadharNumber">Aadhar Number</label>
+                    <input type="text" id="dynamicAadharNumber" name="aadharNumber" maxlength="12" pattern="\d{12}" placeholder="Enter 12-digit Aadhar number" required>
+                    <div class="file-upload" onclick="document.getElementById('dynamicAadharCard').click()">
+                        <label class="file-label" for="dynamicAadharCard">
+                            <i class="fa-regular fa-id-card"></i>
+                            Upload Aadhar Card Image
+                        </label>
+                        <input type="file" id="dynamicAadharCard" name="aadharCard" accept="image/*" required style="display:none;">
+                        <div class="file-preview" id="dynamicAadharCardPreview"></div>
+                    </div>
+                    <div class="file-upload" onclick="document.getElementById('dynamicProfilePhoto').click()">
+                        <label class="file-label" for="dynamicProfilePhoto">
+                            <i class="fa-regular fa-user"></i>
+                            Upload Profile Photo
+                        </label>
+                        <input type="file" id="dynamicProfilePhoto" name="profilePhoto" accept="image/*" required style="display:none;">
+                        <div class="file-preview" id="dynamicProfilePhotoPreview"></div>
+                    </div>
+                    <div class="file-upload" onclick="document.getElementById('dynamicWorkImages').click()">
+                        <label class="file-label" for="dynamicWorkImages">
+                            <i class="fa-regular fa-images"></i>
+                            Upload Previous Work Images <span class="optional">(Optional, multiple allowed)</span>
+                        </label>
+                        <input type="file" id="dynamicWorkImages" name="workImages" accept="image/*" multiple style="display:none;">
+                        <div class="file-preview" id="dynamicWorkImagesPreview"></div>
+                    </div>
+                    <div class="file-upload" onclick="document.getElementById('dynamicIntroVideo').click()">
+                        <label class="file-label" for="dynamicIntroVideo">
+                            <i class="fa-solid fa-video"></i>
+                            Upload Short Intro Video <span class="optional">(Optional)</span>
+                        </label>
+                        <input type="file" id="dynamicIntroVideo" name="introVideo" accept="video/*" style="display:none;">
+                        <div class="file-preview" id="dynamicIntroVideoPreview"></div>
+                    </div>
+                    <div class="step-actions">
+                        <button type="button" class="submit-btn btn-outline" id="dynamicBack2">Back</button>
+                        <button type="button" class="submit-btn" id="dynamicNext2">Next</button>
+                    </div>
+                </div>
+                <!-- Step 4: Review & Submit -->
+                <div class="form-step" id="dynamic-step-3">
+                    <div class="review-section">
+                        <h3>Review Your Details</h3>
+                        <ul class="review-list" id="dynamicReviewList"></ul>
+                    </div>
+                    <div class="step-actions">
+                        <button type="button" class="submit-btn btn-outline" id="dynamicBack3">Back</button>
+                        <button type="submit" class="submit-btn">Create Profile</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     
@@ -2056,10 +2612,17 @@
         });
 
         // Render profiles to the home page
-        function renderProfiles() {
+        function renderProfiles(city = selectedCity) {
             profilesContainer.innerHTML = '';
-            
-            profiles.forEach(profile => {
+            let filteredProfiles = profiles;
+            if (city !== "All") {
+                filteredProfiles = filteredProfiles.filter(profile => profile.location === city);
+            }
+            if (filteredProfiles.length === 0) {
+                profilesContainer.innerHTML = '<div style="padding:2rem;text-align:center;color:#64748b;font-size:1.2rem;">No profiles found for this city.</div>';
+                return;
+            }
+            filteredProfiles.forEach(profile => {
                 const profileCard = document.createElement('div');
                 profileCard.className = 'profile-card';
                 profileCard.innerHTML = `
@@ -2097,15 +2660,15 @@
                             <i class="fas fa-phone"></i> Contact
                         </a>
                     </div>
-                    
                 `;
                 profilesContainer.appendChild(profileCard);
+                // Add click event to the whole card (except for the contact button)
+                profileCard.addEventListener('click', function(e) {
+                    // If the click is on the contact button, do nothing
+                    if (e.target.closest('.contact-profile')) return;
+                    showProfile(profile.id);
+                });
             });
-            
-
-            // above if we add review add above this line <div class="profile-reviews" data-profile-id="${profile.id}"></div>
-
-             
             // Add event listeners to view and contact buttons
             document.querySelectorAll('.view-profile').forEach(button => {
                 button.addEventListener('click', (e) => {
@@ -2114,7 +2677,6 @@
                     showProfile(profileId);
                 });
             });
-            
             document.querySelectorAll('.contact-profile').forEach(button => {
                 button.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -2128,24 +2690,111 @@
         function showProfile(profileId) {
             const profile = profiles.find(p => p.id == profileId);
             if (!profile) return;
-            
             // Update profile view with actual data
             document.querySelector('.profile-view-name').textContent = profile.name;
             document.querySelector('.profile-view-profession').textContent = profile.profession;
-            
+            // Update profile image
+            document.querySelector('.profile-view-img').src = profile.img;
+            // Update info cards
+            const infoCards = document.querySelectorAll('.profile-content .info-card');
+            infoCards[0].querySelector('.info-card-content').textContent = profile.location || '-';
+            infoCards[1].querySelector('.info-card-content').textContent = profile.contact || '-';
+            infoCards[2].querySelector('.info-card-content').innerHTML = `<span class="rating"><i class="fas fa-star"></i> ${profile.rating} (${profile.reviews} reviews)</span>`;
+            infoCards[3].querySelector('.info-card-content').textContent = profile.experience ? profile.experience + ' years' : '-';
+            infoCards[4].querySelector('.info-card-content').textContent = profile.rate || '-';
+            // Skills
+            const skillsContainer = document.querySelector('.skills-container');
+            skillsContainer.innerHTML = '';
+            if (profile.skills && profile.skills.length) {
+                profile.skills.forEach(skill => {
+                    const span = document.createElement('span');
+                    span.className = 'skill-tag-lg';
+                    span.textContent = skill;
+                    skillsContainer.appendChild(span);
+                });
+            }
+            // Bio
+            document.querySelector('.profile-bio').textContent = profile.bio || '';
+            // Portfolio images (not implemented for dynamic profiles, can be extended)
+            // Set up share modal for this profile
+            setupShareModal(profile);
             // Set active page
             setActivePage('profilePage');
         }
+
+        // Dynamically update share modal for the current profile
+        function setupShareModal(profile) {
+            // Set the share modal's profile name (if you want to show it)
+            const shareModal = document.getElementById('shareModal');
+            if (!shareModal) return;
+            // Optionally update modal content with profile name
+            const modalBody = shareModal.querySelector('.modal-body');
+            if (modalBody) {
+                // Add profile name to share message
+                let msg = `<p>Share <b>${profile.name}</b>'s professional profile with others</p>`;
+                msg += `<div class="share-link-box" style="margin:1rem 0;padding:0.7rem 1rem;background:#f1f5f9;border-radius:8px;word-break:break-all;">${window.location.origin + window.location.pathname}#profile-${profile.id}</div>`;
+                modalBody.innerHTML = msg + modalBody.innerHTML.replace(/<p>Share.*?profile with others<\/p>/, '');
+            }
+            // Dynamic share link
+            const link = window.location.origin + window.location.pathname + '#profile-' + profile.id;
+            const shareText = encodeURIComponent(`Check out ${profile.name}'s professional profile on Worker Connect: ${link}`);
+            // Update copy link button
+            const copyLinkBtn = document.getElementById('copyLinkBtn');
+            if (copyLinkBtn) {
+                copyLinkBtn.onclick = function() {
+                    navigator.clipboard.writeText(link);
+                    alert('Link copied to clipboard!');
+                };
+            }
+            // WhatsApp share
+            const whatsappBtn = shareModal.querySelector('.share-btn.whatsapp');
+            if (whatsappBtn) {
+                whatsappBtn.onclick = function() {
+                    window.open(`https://wa.me/?text=${shareText}`, '_blank');
+                };
+            }
+            // Facebook share
+            const facebookBtn = shareModal.querySelector('.share-btn.facebook');
+            if (facebookBtn) {
+                facebookBtn.onclick = function() {
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`, '_blank');
+                };
+            }
+            // Twitter share
+            const twitterBtn = shareModal.querySelector('.share-btn.twitter');
+            if (twitterBtn) {
+                twitterBtn.onclick = function() {
+                    window.open(`https://twitter.com/intent/tweet?text=${shareText}`, '_blank');
+                };
+            }
+        }
+
+        // On page load, check for hash and show profile if present
+        window.addEventListener('DOMContentLoaded', function() {
+            if (window.location.hash && window.location.hash.startsWith('#profile-')) {
+                const profileId = window.location.hash.replace('#profile-', '');
+                showProfile(profileId);
+            }
+        });
+
+        // Also handle hashchange (user pastes or clicks a link)
+        window.addEventListener('hashchange', function() {
+            if (window.location.hash && window.location.hash.startsWith('#profile-')) {
+                const profileId = window.location.hash.replace('#profile-', '');
+                showProfile(profileId);
+            }
+        });
 
         // Set active page
         function setActivePage(pageId) {
             pages.forEach(page => {
                 page.classList.remove('active');
+                page.style.display = 'none';
                 if (page.id === pageId) {
                     page.classList.add('active');
+                    page.style.display = 'block';
                 }
             });
-            
             // Update active nav link
             navLinks.forEach(link => {
                 link.classList.remove('active');
@@ -2159,9 +2808,29 @@
         function showContactModal(profileId) {
             const profile = profiles.find(p => p.id == profileId);
             if (!profile) return;
-            
-            // Update modal content with profile data
-            contactModal.classList.add('active');
+
+            const modal = document.getElementById('contactModal');
+            document.getElementById('contactModalName').textContent = profile.name || '-';
+            document.getElementById('contactModalProfession').textContent = profile.profession || '-';
+            document.getElementById('contactModalPhone').textContent = profile.contact || '-';
+            // If you have email in your profile object, use it; otherwise, leave as is
+            // document.getElementById('contactModalEmail').textContent = profile.email || '-';
+
+            // Set WhatsApp button
+            const whatsappBtn = document.getElementById('contactModalWhatsappBtn');
+            if (whatsappBtn) {
+                whatsappBtn.onclick = function() {
+                    // Remove non-digit characters for WhatsApp link
+                    const phone = (profile.contact || '').replace(/\D/g, '');
+                    if (phone) {
+                        window.open(`https://wa.me/91${phone}`, '_blank');
+                    } else {
+                        alert('No phone number available for WhatsApp.');
+                    }
+                };
+            }
+
+            modal.classList.add('active');
         }
 
         // Setup all event listeners
@@ -2190,7 +2859,7 @@
             
             // Modal controls
             shareProfileBtn.addEventListener('click', () => {
-                shareModal.classList.add('active');
+                document.getElementById('shareModal').classList.add('active');
             });
             
             contactBtn.addEventListener('click', () => {
@@ -2208,12 +2877,6 @@
             copyLinkBtn.addEventListener('click', () => {
                 navigator.clipboard.writeText(window.location.href);
                 alert('Link copied to clipboard!');
-            });
-            
-            // Export to PDF
-            exportPdfBtn.addEventListener('click', () => {
-                alert('Exporting profile to PDF...');
-                // In a real implementation, this would generate a PDF
             });
             
             // Edit profile
@@ -2464,17 +3127,37 @@
                 ratingElem.innerHTML = `<i class="fas fa-star"></i> Reviews (${reviews.length}) <span style="font-size:1rem;color:#f59e0b;">Avg: ${avg}</span>`;
             }
 
-            // Show top 3 or all
-            const toShow = showAll ? reviews : reviews.slice(0, 3);
+            // Find current user review(s)
+            const currentUserId = getCurrentUser() || 'anon_' + (localStorage.getItem('anon_id') || '');
+            // Show the latest review by the current user as "My Review"
+            const myReviews = reviews.filter(r => r.userId === currentUserId);
+            const myReview = myReviews.length ? myReviews[0] : null;
+            const otherReviews = reviews.filter(r => r.userId !== currentUserId);
+
+            // Build the list to show
+            let toShow;
+            if (showAll) {
+                toShow = reviews;
+            } else {
+                toShow = reviews.slice(0, 3);
+            }
+
+            // Render reviews
+            const addAfter = reviewsSection.querySelector('.review-form') || reviewsSection.querySelector('.add-review-form');
             toShow.forEach(r => {
+                if (!r) return;
                 const card = document.createElement('div');
                 card.className = 'review-card dynamic-review';
+                let myReviewLabel = '';
+                if (r.userId === currentUserId) {
+                    myReviewLabel = `<span style="color:#2563eb;font-weight:600;margin-left:8px;">(My Review)</span>`;
+                }
                 card.innerHTML = `
                     <div class="review-header">
                         <div class="reviewer">
                             <img src="${r.avatar || 'https://randomuser.me/api/portraits/lego/1.jpg'}" alt="Reviewer" class="reviewer-img">
                             <div class="reviewer-info">
-                                <h4>${r.anonymous ? 'Anonymous' : (r.name || 'User')}</h4>
+                                <h4>${r.anonymous ? 'Anonymous' : (r.name || 'User')} ${myReviewLabel}</h4>
                                 <span>${timeAgo(r.timestamp)}</span>
                             </div>
                         </div>
@@ -2487,14 +3170,24 @@
                     </div>
                     ${r.image ? `<div class="review-images"><img src="${r.image}" class="review-img"/></div>` : ''}
                 `;
-                reviewsSection.insertBefore(card, reviewsSection.querySelector('.add-review-form'));
+                // Insert after the review form
+                if (addAfter && addAfter.parentNode) {
+                    addAfter.parentNode.insertBefore(card, addAfter.nextSibling);
+                } else {
+                    reviewsSection.appendChild(card);
+                }
             });
+
             if (!showAll && reviews.length > 3) {
                 const btn = document.createElement('button');
                 btn.className = 'submit-btn view-more-btn dynamic-review';
                 btn.textContent = 'Tap to view more';
                 btn.onclick = () => renderReviews(profileId, true);
-                reviewsSection.insertBefore(btn, reviewsSection.querySelector('.add-review-form'));
+                if (addAfter && addAfter.parentNode) {
+                    addAfter.parentNode.insertBefore(btn, addAfter.nextSibling);
+                } else {
+                    reviewsSection.appendChild(btn);
+                }
             }
         }
         function timeAgo(ts) {
@@ -2522,127 +3215,122 @@
         
         // --- Review Form Logic ---
         function setupReviewForm(profileId) {
-    const form = document.getElementById('reviewForm');
-    if (!form) return;
-
-    const stars = form.querySelectorAll('.rating-star');
-    const submitBtn = form.querySelector('#submitReviewBtn');
-    const textInput = form.querySelector('#reviewText');
-    const anonymousToggle = form.querySelector('#anonymousToggle');
-    const imageInput = form.querySelector('#reviewImage');
-    const photoUploadBtn = form.querySelector('#photoUploadBtn');
-    const photoPreview = form.querySelector('#photoPreview');
-
-    let selectedRating = 0;
-    let imageData = null;
-
-    // Star Rating Logic
-    stars.forEach(star => {
-        star.onclick = () => {
-            selectedRating = parseInt(star.getAttribute('data-rating'));
-            stars.forEach((s, i) => {
-                if (i < selectedRating) {
-                    s.classList.remove('far');
-                    s.classList.add('fas', 'active');
-                } else {
+            const form = document.getElementById('reviewForm');
+            if (!form) return;
+            // Remove any previous submit handler
+            form.onsubmit = null;
+            // Star rating logic
+            let selectedRating = 0;
+            const stars = form.querySelectorAll('.rating-star');
+            stars.forEach(star => {
+                star.onclick = () => {
+                    selectedRating = parseInt(star.getAttribute('data-rating'));
+                    stars.forEach((s, i) => {
+                        if (i < selectedRating) {
+                            s.classList.remove('far');
+                            s.classList.add('fas', 'active');
+                        } else {
+                            s.classList.remove('fas', 'active');
+                            s.classList.add('far');
+                        }
+                    });
+                };
+            });
+            // Photo upload logic
+            let imageData = null;
+            const imageInput = form.querySelector('#reviewImage');
+            const photoUploadBtn = form.querySelector('#photoUploadBtn');
+            const photoPreview = form.querySelector('#photoPreview');
+            if (photoUploadBtn && imageInput) {
+                photoUploadBtn.onclick = () => imageInput.click();
+                imageInput.onchange = function (e) {
+                    const file = e.target.files[0];
+                    if (file && file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function (ev) {
+                            imageData = ev.target.result;
+                            if (photoPreview) {
+                                photoPreview.innerHTML = `<img src="${imageData}" alt="Review Image" style="max-width:100px; border-radius:8px;">`;
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        imageData = null;
+                        if (photoPreview) {
+                            photoPreview.innerHTML = `<span class="photo-placeholder"><i class="fas fa-camera"></i></span>`;
+                        }
+                    }
+                };
+            }
+            // Submit handler
+            form.onsubmit = function(e) {
+                e.preventDefault();
+                const textInput = form.querySelector('#reviewText');
+                const anonymousToggle = form.querySelector('#anonymousToggle');
+                const userId = (typeof getCurrentUser === 'function' ? getCurrentUser() : null) || 'anon_' + (localStorage.getItem('anon_id') || (() => {
+                    const id = 'a' + Math.random().toString(36).slice(2);
+                    localStorage.setItem('anon_id', id);
+                    return id;
+                })());
+                // Get existing reviews for this profile from localStorage
+                const reviews = getReviews(profileId);
+                const existing = reviews.find(r => r.userId === userId);
+                if (!selectedRating) {
+                    alert('Please select a rating');
+                    return;
+                }
+                if (!textInput.value.trim()) {
+                    alert('Please write a review before submitting');
+                    return;
+                }
+                if (existing && !imageData) {
+                    alert('You have already reviewed. Please upload a photo to submit another review.');
+                    return;
+                }
+                // Determine review type and identity
+                let type = 'anonymous';
+                let name = '';
+                let avatar = '';
+                const anonymous = anonymousToggle?.checked;
+                if (typeof isUserLoggedIn === 'function' && isUserLoggedIn()) {
+                    if (imageData && typeof getUserProfileStatus === 'function' && getUserProfileStatus()) type = 'verified_photo_full';
+                    else if (imageData) type = 'verified_photo';
+                    else type = 'verified';
+                    name = anonymous ? '' : 'Demo User';
+                    avatar = anonymous ? '' : 'https://randomuser.me/api/portraits/men/32.jpg';
+                }
+                // Save review to localStorage for this profile
+                reviews.push({
+                    id: 'r' + Date.now(),
+                    profileId,
+                    rating: selectedRating,
+                    text: textInput.value.trim(),
+                    image: imageData,
+                    type,
+                    timestamp: Date.now(),
+                    userId,
+                    name,
+                    avatar,
+                    anonymous
+                });
+                saveReviews(profileId, reviews); // Save updated reviews array to localStorage
+                alert('Review submitted successfully!');
+                // Reset form
+                selectedRating = 0;
+                textInput.value = '';
+                if (imageInput) imageInput.value = '';
+                imageData = null;
+                if (photoPreview) photoPreview.innerHTML = `<span class="photo-placeholder"><i class="fas fa-camera"></i></span>`;
+                stars.forEach(s => {
                     s.classList.remove('fas', 'active');
                     s.classList.add('far');
-                }
-            });
-        };
-    });
-
-    // Photo Upload Button Logic
-    photoUploadBtn.onclick = () => imageInput.click();
-
-    // Preview image after upload
-    imageInput.onchange = function (e) {
-        const file = e.target.files[0];
-        if (file && file.type.startsWith('image/')) {
-            const reader = new FileReader();
-            reader.onload = function (ev) {
-                imageData = ev.target.result;
-                photoPreview.innerHTML = `<img src="${imageData}" alt="Review Image" style="max-width:100px; border-radius:8px;">`;
+                });
+                // Rerender reviews for this profile so the new review appears instantly
+                renderReviews(profileId);
+                // Re-attach the form handler for the new form (if the DOM was re-rendered)
+                setupReviewForm(profileId);
             };
-            reader.readAsDataURL(file);
         }
-    };
-
-    // Submit Review
-    submitBtn.onclick = (e) => {
-        e.preventDefault();
-
-        const userId = getCurrentUser() || 'anon_' + (localStorage.getItem('anon_id') || (() => {
-            const id = 'a' + Math.random().toString(36).slice(2);
-            localStorage.setItem('anon_id', id);
-            return id;
-        })());
-
-        const reviews = getReviews(profileId);
-        const existing = reviews.find(r => r.userId === userId);
-
-        if (!selectedRating) {
-            alert('Please select a rating');
-            return;
-        }
-
-        if (!textInput.value.trim()) {
-            alert('Please write a review before submitting');
-            return;
-        }
-
-        if (existing && !imageData) {
-            alert('You have already reviewed. Please upload a photo to submit another review.');
-            return;
-        }
-
-        // Determine review type and identity
-        let type = 'anonymous';
-        let name = '';
-        let avatar = '';
-        const anonymous = anonymousToggle?.checked;
-
-        if (isUserLoggedIn()) {
-            if (imageData && getUserProfileStatus()) type = 'verified_photo_full';
-            else if (imageData) type = 'verified_photo';
-            else type = 'verified';
-
-            name = anonymous ? '' : 'Demo User';
-            avatar = anonymous ? '' : 'https://randomuser.me/api/portraits/men/32.jpg';
-        }
-
-        // Save review
-        reviews.push({
-            id: 'r' + Date.now(),
-            profileId,
-            rating: selectedRating,
-            text: textInput.value.trim(),
-            image: imageData,
-            type,
-            timestamp: Date.now(),
-            userId,
-            name,
-            avatar,
-            anonymous
-        });
-
-        saveReviews(profileId, reviews);
-        alert('Review submitted successfully!');
-
-        // Reset form
-        selectedRating = 0;
-        textInput.value = '';
-        imageInput.value = '';
-        imageData = null;
-        photoPreview.innerHTML = `<span class="photo-placeholder"><i class="fas fa-camera"></i></span>`;
-        stars.forEach(s => {
-            s.classList.remove('fas', 'active');
-            s.classList.add('far');
-        });
-
-        renderReviews(profileId);
-    };
-}
 
 
 
@@ -2865,6 +3553,516 @@
             renderReviewSystemForProfile(profileId, container);
           });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+          if (localStorage.getItem('isLoggedIn') === 'true') {
+            // Update UI to show user is logged in
+            document.getElementById('authToggleBtn').innerHTML = '<i class="fas fa-sign-out-alt"></i> Logout';
+          }
+        });
+
+        // --- Live Search Suggestions ---
+        const searchInput = document.querySelector('.search-input');
+        const suggestionsBox = document.getElementById('searchSuggestions');
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value.trim().toLowerCase();
+            if (!query) {
+                suggestionsBox.style.display = 'none';
+                return;
+            }
+            // Find matching profiles
+            const matches = profiles.filter(profile =>
+                profile.name.toLowerCase().includes(query) ||
+                profile.profession.toLowerCase().includes(query) ||
+                profile.skills.some(skill => skill.toLowerCase().includes(query))
+            );
+            if (matches.length === 0) {
+                suggestionsBox.style.display = 'none';
+                return;
+            }
+            // Build suggestions list
+            suggestionsBox.innerHTML = matches.map(profile => `
+                <div class="search-suggestion-item" data-id="${profile.id}">
+                    <strong>${profile.name}</strong> &mdash; ${profile.profession}
+                    <div style="font-size:0.9em;color:#64748b;">${profile.skills.join(', ')}</div>
+                </div>
+            `).join('');
+            suggestionsBox.style.display = 'block';
+        });
+
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!suggestionsBox.contains(e.target) && e.target !== searchInput) {
+                suggestionsBox.style.display = 'none';
+            }
+        });
+
+        // Handle click on suggestion
+        suggestionsBox.addEventListener('click', function(e) {
+            const item = e.target.closest('.search-suggestion-item');
+            if (item) {
+                const profileId = item.getAttribute('data-id');
+                suggestionsBox.style.display = 'none';
+                searchInput.value = '';
+                showProfile(profileId);
+            }
+        });
+
+        let selectedCity = "All";
+
+        document.querySelectorAll('.city-filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.city-filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedCity = this.textContent.trim();
+                renderProfiles(selectedCity);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProfiles(selectedCity);
+            setupEventListeners();
+            // ... rest of your code ...
+        });
+    </script>
+    <script>
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      localStorage.setItem('lang', lang);
+    }
+
+    document.getElementById('languageSwitcher').addEventListener('change', function() {
+      setLanguage(this.value);
+    });
+
+  /*  // On page load, set language from localStorage or default to English
+    const savedLang = localStorage.getItem('lang') || 'en';
+    document.getElementById('languageSwitcher').value = savedLang;
+    setLanguage(savedLang);
+    </script>
+    <script>
+    // ... existing code ...
+    // --- DYNAMIC CREATE PROFILE PAGE LOGIC ---
+    (function(){
+        // Navigation: Show/hide create profile page
+        const createProfileNav = document.getElementById('createProfileNav');
+        const createProfilePage = document.getElementById('createProfilePage');
+        const allPages = document.querySelectorAll('.page');
+        createProfileNav.addEventListener('click', function(e) {
+            e.preventDefault();
+            allPages.forEach(p => p.classList.remove('active'));
+            createProfilePage.style.display = 'block';
+            createProfilePage.classList.add('active');
+            allPages.forEach(p => { if(p!==createProfilePage) p.style.display='none'; });
+            window.scrollTo({top:0,behavior:'smooth'});
+            showDynamicStep(0);
+        });
+        // Hide create profile page when navigating elsewhere
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if(link!==createProfileNav) {
+                link.addEventListener('click',()=>{
+                    createProfilePage.style.display='none';
+                    createProfilePage.classList.remove('active');
+                });
+            }
+        });
+        // Multi-step logic
+        let dynamicCurrentStep = 0;
+        const dynamicSteps = [0,1,2,3].map(i=>document.getElementById('dynamic-step-'+i));
+        const dynamicProgressSteps = document.querySelectorAll('#progressBar .progress-step');
+        function showDynamicStep(idx) {
+            dynamicSteps.forEach((s,i)=>s.classList.toggle('active',i===idx));
+            dynamicProgressSteps.forEach((ps,i)=>{
+                ps.classList.toggle('active',i===idx);
+                ps.classList.toggle('completed',i<idx);
+            });
+            dynamicCurrentStep = idx;
+            if(idx===3) fillDynamicReview();
+        }
+        document.getElementById('dynamicNext0').onclick = ()=>{ if(validateDynamicStep(0)) showDynamicStep(1); };
+        document.getElementById('dynamicBack1').onclick = ()=>showDynamicStep(0);
+        document.getElementById('dynamicNext1').onclick = ()=>{ if(validateDynamicStep(1)) showDynamicStep(2); };
+        document.getElementById('dynamicBack2').onclick = ()=>showDynamicStep(1);
+        document.getElementById('dynamicNext2').onclick = ()=>{ if(validateDynamicStep(2)) showDynamicStep(3); };
+        document.getElementById('dynamicBack3').onclick = ()=>showDynamicStep(2);
+        // Profession select/other logic
+        document.getElementById('dynamicProfessionSelect').onchange = function() {
+            const other = document.getElementById('dynamicOtherProfession');
+            if(this.value==='other') { other.style.display='block'; other.required=true; }
+            else { other.style.display='none'; other.required=false; }
+        };
+        // File preview logic
+        function showDynamicPreview(inputId, previewId) {
+            const input = document.getElementById(inputId);
+            const preview = document.getElementById(previewId);
+            preview.innerHTML = '';
+            const files = input.files;
+            if (!files || !files.length) return;
+            Array.from(files).forEach(file => {
+                let el;
+                if (file.type.startsWith('image/')) {
+                    el = document.createElement('img');
+                    el.src = URL.createObjectURL(file);
+                    el.style.maxWidth = '70px';
+                    el.style.maxHeight = '70px';
+                    el.style.borderRadius = '8px';
+                    el.style.objectFit = 'cover';
+                } else if (file.type.startsWith('video/')) {
+                    el = document.createElement('video');
+                    el.src = URL.createObjectURL(file);
+                    el.controls = true;
+                    el.style.maxWidth = '70px';
+                    el.style.maxHeight = '70px';
+                    el.style.borderRadius = '8px';
+                } else {
+                    el = document.createElement('span');
+                    el.textContent = file.name;
+                }
+                preview.appendChild(el);
+            });
+        }
+        document.getElementById('dynamicAadharCard').onchange = function(e){ showDynamicPreview('dynamicAadharCard','dynamicAadharCardPreview'); };
+        document.getElementById('dynamicProfilePhoto').onchange = function(e){ showDynamicPreview('dynamicProfilePhoto','dynamicProfilePhotoPreview'); };
+        document.getElementById('dynamicWorkImages').onchange = function(e){ showDynamicPreview('dynamicWorkImages','dynamicWorkImagesPreview'); };
+        document.getElementById('dynamicIntroVideo').onchange = function(e){ showDynamicPreview('dynamicIntroVideo','dynamicIntroVideoPreview'); };
+        // Skills tag input logic
+        const dynamicSkillsInput = document.getElementById('dynamicSkillsInput');
+        const dynamicSkillsTags = document.getElementById('dynamicSkillsTags');
+        let dynamicSkillsArr = [];
+        dynamicSkillsInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && this.value.trim()) {
+                e.preventDefault();
+                addDynamicSkillTag(this.value.trim());
+                this.value = '';
+            }
+        });
+        function addDynamicSkillTag(skill) {
+            if (!dynamicSkillsArr.includes(skill)) {
+                dynamicSkillsArr.push(skill);
+                renderDynamicSkillsTags();
+            }
+        }
+        function removeDynamicSkillTag(skill) {
+            dynamicSkillsArr = dynamicSkillsArr.filter(s => s !== skill);
+            renderDynamicSkillsTags();
+        }
+        function renderDynamicSkillsTags() {
+            dynamicSkillsTags.innerHTML = '';
+            dynamicSkillsArr.forEach(skill => {
+                const tag = document.createElement('span');
+                tag.className = 'skill-tag';
+                tag.style = 'background:#e7f0fe;color:#1976d2;border-radius:16px;padding:4px 12px;font-size:0.97rem;display:flex;align-items:center;gap:5px;font-weight:500;cursor:default;margin-bottom:4px;';
+                tag.innerHTML = `${skill} <button class='remove-skill' title='Remove' style='color:#1976d2;background:none;border:none;font-size:1rem;cursor:pointer;margin-left:2px;' onclick='(function(){removeDynamicSkillTag("${skill}")})()'>&times;</button>`;
+                dynamicSkillsTags.appendChild(tag);
+            });
+        }
+        window.removeDynamicSkillTag = removeDynamicSkillTag;
+        // Review step logic
+        function fillDynamicReview() {
+            const getVal = id => document.getElementById(id)?.value || '';
+            const getProf = () => {
+                const sel = document.getElementById('dynamicProfessionSelect');
+                if(sel.value === 'other') return getVal('dynamicOtherProfession');
+                return sel.value;
+            };
+            const reviewList = document.getElementById('dynamicReviewList');
+            const workImages = document.getElementById('dynamicWorkImages').files;
+            reviewList.innerHTML = `
+                <li><strong>Name:</strong> ${getVal('dynamicFirstName')} ${getVal('dynamicLastName')}</li>
+                <li><strong>Profession:</strong> ${getProf()}</li>
+                <li><strong>Experience:</strong> ${getVal('dynamicExperience') ? getVal('dynamicExperience') + ' years' : '-'}</li>
+                <li><strong>Location:</strong> ${getVal('dynamicLocation') || '-'}</li>
+                <li><strong>Email:</strong> ${getVal('dynamicEmail')}</li>
+                <li><strong>Phone:</strong> ${getVal('dynamicPhone')}</li>
+                <li><strong>Bio:</strong> ${getVal('dynamicBio')}</li>
+                <li><strong>Skills:</strong> ${dynamicSkillsArr.length ? dynamicSkillsArr.join(', ') : '-'}</li>
+                <li><strong>Aadhar Number:</strong> ${getVal('dynamicAadharNumber')}</li>
+                <li><strong>Aadhar Card:</strong> ${document.getElementById('dynamicAadharCard').files[0]?.name || '-'}</li>
+                <li><strong>Profile Photo:</strong> ${document.getElementById('dynamicProfilePhoto').files[0]?.name || '-'}</li>
+                <li><strong>Work Images:</strong> ${workImages.length ? Array.from(workImages).map(f=>f.name).join(', ') : '-'}</li>
+                <li><strong>Intro Video:</strong> ${document.getElementById('dynamicIntroVideo').files[0]?.name || '-'}</li>
+            `;
+        }
+        // Validation logic
+        function validateDynamicStep(step) {
+            if(step === 0) {
+                if(!document.getElementById('dynamicFirstName').value.trim() || !document.getElementById('dynamicLastName').value.trim()) return alert('Please enter your name.'), false;
+                const sel = document.getElementById('dynamicProfessionSelect');
+                if(!sel.value) return alert('Please select your profession.'), false;
+                if(sel.value === 'other' && !document.getElementById('dynamicOtherProfession').value.trim()) return alert('Please enter your profession.'), false;
+                return true;
+            }
+            if(step === 1) {
+                if(!document.getElementById('dynamicEmail').value.trim() || !document.getElementById('dynamicPhone').value.trim() || !document.getElementById('dynamicBio').value.trim()) return alert('Please fill all fields.'), false;
+                return true;
+            }
+            if(step === 2) {
+                if(!document.getElementById('dynamicAadharNumber').value.trim() || !/^\d{12}$/.test(document.getElementById('dynamicAadharNumber').value.trim())) return alert('Enter a valid 12-digit Aadhar number.'), false;
+                if(!document.getElementById('dynamicAadharCard').files.length) return alert('Please upload your Aadhar card image.'), false;
+                if(!document.getElementById('dynamicProfilePhoto').files.length) return alert('Please upload your profile photo.'), false;
+                return true;
+            }
+            return true;
+        }
+        // Form submit
+        document.getElementById('dynamicProfileForm').onsubmit = function(e) {
+            e.preventDefault();
+            // Gather form data
+            const firstName = document.getElementById('dynamicFirstName').value.trim();
+            const lastName = document.getElementById('dynamicLastName').value.trim();
+            const name = firstName + ' ' + lastName;
+            const professionSel = document.getElementById('dynamicProfessionSelect');
+            const profession = (professionSel.value === 'other') ? document.getElementById('dynamicOtherProfession').value.trim() : professionSel.value;
+            const contact = document.getElementById('dynamicPhone').value.trim();
+            const email = document.getElementById('dynamicEmail').value.trim();
+            const bio = document.getElementById('dynamicBio').value.trim();
+            const skills = dynamicSkillsArr.slice();
+            const experience = document.getElementById('dynamicExperience').value.trim();
+            const location = document.getElementById('dynamicLocation').value.trim();
+            const rate = '';
+            // Handle profile photo
+            let img = 'https://randomuser.me/api/portraits/lego/1.jpg';
+            const photoInput = document.getElementById('dynamicProfilePhoto');
+            if (photoInput.files && photoInput.files[0]) {
+                img = URL.createObjectURL(photoInput.files[0]);
+            }
+            // Add to profiles array (at the start)
+            profiles.unshift({
+                id: Date.now(),
+                name,
+                profession,
+                location,
+                contact,
+                rating: 0,
+                reviews: 0,
+                experience,
+                rate,
+                skills,
+                img,
+                bio
+            });
+            // Re-render profiles on home page
+            renderProfiles(selectedCity);
+            alert('Profile created successfully!');
+            // Switch to home page
+            allPages.forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
+            const homePage = document.getElementById('homePage');
+            homePage.classList.add('active');
+            homePage.style.display = 'block';
+            window.scrollTo({top:0,behavior:'smooth'});
+            localStorage.setItem('profiles', JSON.stringify(profiles));
+        };
+    })();
+    // ... existing code ...
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const allPages = document.querySelectorAll('.page');
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const pageAttr = link.getAttribute('data-page');
+                if (pageAttr) {
+                    e.preventDefault();
+                    // Hide all pages
+                    allPages.forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
+                    // Show the correct page
+                    const showPage = document.getElementById(pageAttr + 'Page');
+                    if (showPage) {
+                        showPage.classList.add('active');
+                        showPage.style.display = 'block';
+                    }
+                    window.scrollTo({top:0,behavior:'smooth'});
+                }
+            });
+        });
+    });
+    </script>
+    <script>
+    // ... existing code ...
+    let editProfileId = null; // Track which profile is being edited
+
+    // Edit Profile button logic
+    if (typeof editProfileBtn !== 'undefined' && editProfileBtn) {
+        editProfileBtn.onclick = function() {
+            // Find the currently viewed profile
+            const profileName = document.querySelector('.profile-view-name').textContent;
+            const profile = profiles.find(p => p.name === profileName);
+            if (!profile) return;
+            editProfileId = profile.id;
+            // Open create profile page and pre-fill form
+            setActivePage('createProfilePage');
+            // Fill form fields
+            document.getElementById('dynamicFirstName').value = profile.name.split(' ')[0] || '';
+            document.getElementById('dynamicLastName').value = profile.name.split(' ').slice(1).join(' ') || '';
+            document.getElementById('dynamicProfessionSelect').value = profile.profession;
+            document.getElementById('dynamicOtherProfession').value = '';
+            document.getElementById('dynamicExperience').value = profile.experience || '';
+            document.getElementById('dynamicLocation').value = profile.location || '';
+            document.getElementById('dynamicEmail').value = '';
+            document.getElementById('dynamicPhone').value = profile.contact || '';
+            document.getElementById('dynamicBio').value = profile.bio || '';
+            // Skills
+            dynamicSkillsArr = Array.isArray(profile.skills) ? profile.skills.slice() : [];
+            renderDynamicSkillsTags();
+            // Photo preview (cannot set file input for security, but can show preview)
+            const preview = document.getElementById('dynamicProfilePhotoPreview');
+            preview.innerHTML = '';
+            if (profile.img) {
+                const img = document.createElement('img');
+                img.src = profile.img;
+                img.style.maxWidth = '70px';
+                img.style.maxHeight = '70px';
+                img.style.borderRadius = '8px';
+                img.style.objectFit = 'cover';
+                preview.appendChild(img);
+            }
+            // Reset file input
+            document.getElementById('dynamicProfilePhoto').value = '';
+            // Go to first step
+            showDynamicStep(0);
+        };
+    }
+
+    // Modify form submit to update profile if editing
+    const dynamicProfileForm = document.getElementById('dynamicProfileForm');
+    dynamicProfileForm.onsubmit = function(e) {
+        e.preventDefault();
+        // Gather form data
+        const firstName = document.getElementById('dynamicFirstName').value.trim();
+        const lastName = document.getElementById('dynamicLastName').value.trim();
+        const name = firstName + ' ' + lastName;
+        const professionSel = document.getElementById('dynamicProfessionSelect');
+        const profession = (professionSel.value === 'other') ? document.getElementById('dynamicOtherProfession').value.trim() : professionSel.value;
+        const contact = document.getElementById('dynamicPhone').value.trim();
+        const email = document.getElementById('dynamicEmail').value.trim();
+        const bio = document.getElementById('dynamicBio').value.trim();
+        const skills = dynamicSkillsArr.slice();
+        const experience = document.getElementById('dynamicExperience').value.trim();
+        const location = document.getElementById('dynamicLocation').value.trim();
+        const rate = '';
+        // Handle profile photo
+        let img = 'https://randomuser.me/api/portraits/lego/1.jpg';
+        const photoInput = document.getElementById('dynamicProfilePhoto');
+        if (photoInput.files && photoInput.files[0]) {
+            img = URL.createObjectURL(photoInput.files[0]);
+        } else if (editProfileId) {
+            // If editing and no new photo, keep old photo
+            const oldProfile = profiles.find(p => p.id === editProfileId);
+            if (oldProfile && oldProfile.img) img = oldProfile.img;
+        }
+        if (editProfileId) {
+            // Update existing profile
+            const idx = profiles.findIndex(p => p.id === editProfileId);
+            if (idx !== -1) {
+                profiles[idx] = {
+                    ...profiles[idx],
+                    name,
+                    profession,
+                    location,
+                    contact,
+                    rating: profiles[idx].rating || 0,
+                    reviews: profiles[idx].reviews || 0,
+                    experience,
+                    rate,
+                    skills,
+                    img,
+                    bio
+                };
+            }
+            alert('Profile updated successfully!');
+            // Show updated profile
+            showProfile(editProfileId);
+            editProfileId = null;
+        } else {
+            // Add to profiles array (at the start)
+            profiles.unshift({
+                id: Date.now(),
+                name,
+                profession,
+                location,
+                contact,
+                rating: 0,
+                reviews: 0,
+                experience,
+                rate,
+                skills,
+                img,
+                bio
+            });
+            alert('Profile created successfully!');
+            // Switch to home page
+            allPages.forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
+            const homePage = document.getElementById('homePage');
+            homePage.classList.add('active');
+            homePage.style.display = 'block';
+        }
+        // Re-render profiles on home page
+        renderProfiles(selectedCity);
+        window.scrollTo({top:0,behavior:'smooth'});
+        localStorage.setItem('profiles', JSON.stringify(profiles));
+    };
+    // ... existing code ...
+    </script>
+    <script>
+    function applyTranslations() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        el.textContent = t(el.getAttribute('data-i18n'));
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        el.placeholder = t(el.getAttribute('data-i18n-placeholder'));
+      });
+    }
+    </script>
+    <script>
+    function t(key) {
+      const lang = localStorage.getItem('lang') || 'en';
+      return (translations[lang] && translations[lang][key]) || translations['en'][key] || key;
+    }
+    </script>
+    <script>
+    document.getElementById('languageSwitcher').addEventListener('change', function() {
+      localStorage.setItem('lang', this.value);
+      applyTranslations();
+      // Also re-render any dynamic content with translations if needed
+    });
+    </script>
+    <script>
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const lang = this.getAttribute('data-lang');
+        localStorage.setItem('lang', lang);
+        applyTranslations();
+        // Re-render dynamic content if needed
+      });
+    });
+    // On page load, set active button
+    const savedLang = localStorage.getItem('lang') || 'en';
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      if (btn.getAttribute('data-lang') === savedLang) btn.classList.add('active');
+    });
+    </script>
+    <script>
+    // Remove old select-based language switcher event handler and duplicate savedLang
+    // Only use the .lang-btn logic for language switching
+    // On page load, set the active .lang-btn and apply translations
+    (function() {
+      // Set active language button and apply translations on load
+      const savedLang = localStorage.getItem('lang') || 'en';
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        if (btn.getAttribute('data-lang') === savedLang) btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+      applyTranslations();
+    })();
+    // ... existing code ...
     </script>
 </body>
 </html>
