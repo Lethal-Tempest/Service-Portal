@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <h1>Sign Up User</h1>
+    <form id="signUpForm">
+      name <input type="text" name="name" required /><br />
+      email <input type="email" name="email" required /><br />
+      password <input type="password" name="password" required /><br />
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <script>
+      const form = document.getElementById("signUpForm");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const name = e.target[0].value.trim();
+        const email = e.target[1].value.trim();
+        const password = e.target[2].value;
+
+        try {
+          const res = await fetch("http://localhost:5000/api/signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, password, role: "client" }),
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            throw new Error(data.message || "Signup failed");
+          }
+
+          // Save token and optionally user data
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("user", JSON.stringify(data.user));
+
+          // Redirect to homepage
+          window.location.href = "login-standalone.html";
+        } catch (err) {
+          alert("Signup failed: " + err.message);
+          console.error("Signup error:", err);
+        }
+      });
+    </script>
+  </body>
+</html>

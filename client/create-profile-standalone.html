@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create Profile</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
   <style>
     body {
       background: linear-gradient(120deg, #e3e9f0 0%, #f4f6f8 100%);
@@ -17,6 +18,7 @@
       align-items: center;
       justify-content: center;
     }
+
     .profile-card {
       background: #fff;
       border-radius: 18px;
@@ -31,6 +33,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .profile-header {
       width: 100%;
       background: linear-gradient(90deg, #1976d2 0%, #2196f3 100%);
@@ -41,6 +44,7 @@
       margin-bottom: 18px;
       box-shadow: 0 2px 12px rgba(25, 118, 210, 0.08);
     }
+
     .profile-header .logo {
       font-size: 2.2rem;
       font-weight: 700;
@@ -48,12 +52,14 @@
       margin-bottom: 4px;
       display: inline-block;
     }
+
     .profile-header .subtitle {
       font-size: 1.08rem;
       font-weight: 400;
       opacity: 0.93;
       margin-bottom: 0;
     }
+
     .divider {
       width: 40px;
       height: 3px;
@@ -62,6 +68,7 @@
       margin: 18px auto 24px auto;
       opacity: 0.18;
     }
+
     .progress-bar {
       display: flex;
       justify-content: space-between;
@@ -71,6 +78,7 @@
       margin: 0 auto 28px auto;
       position: relative;
     }
+
     .progress-bar::before {
       content: '';
       position: absolute;
@@ -82,6 +90,7 @@
       z-index: 0;
       transform: translateY(-50%);
     }
+
     .progress-step {
       position: relative;
       z-index: 1;
@@ -90,6 +99,7 @@
       align-items: center;
       flex: 1;
     }
+
     .step-circle {
       width: 32px;
       height: 32px;
@@ -103,36 +113,50 @@
       font-size: 1.1rem;
       margin-bottom: 6px;
       border: 2px solid #fff;
-      box-shadow: 0 2px 8px rgba(25,118,210,0.07);
+      box-shadow: 0 2px 8px rgba(25, 118, 210, 0.07);
       transition: background 0.2s, color 0.2s;
     }
+
     .progress-step.active .step-circle,
     .progress-step.completed .step-circle {
       background: linear-gradient(90deg, #1976d2 0%, #2196f3 100%);
       color: #fff;
     }
+
     .progress-step .step-label {
       font-size: 0.98rem;
       color: #888;
       font-weight: 500;
       text-align: center;
     }
+
     .progress-step.active .step-label {
       color: #1976d2;
       font-weight: 700;
     }
+
     .form-step {
       display: none;
       width: 100%;
       animation: fadeInUp 0.5s;
     }
+
     .form-step.active {
       display: block;
     }
+
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     .profile-form label {
       font-weight: 500;
       color: #1976d2;
@@ -140,7 +164,10 @@
       font-size: 1.05rem;
       letter-spacing: 0.1px;
     }
-    .profile-form input, .profile-form textarea, .profile-form select {
+
+    .profile-form input,
+    .profile-form textarea,
+    .profile-form select {
       padding: 11px 13px;
       border-radius: 8px;
       border: 1.5px solid #c2d3e8;
@@ -153,24 +180,31 @@
       box-sizing: border-box;
       margin-bottom: 2px;
     }
-    .profile-form input:focus, .profile-form textarea:focus, .profile-form select:focus {
+
+    .profile-form input:focus,
+    .profile-form textarea:focus,
+    .profile-form select:focus {
       border: 1.5px solid #1976d2;
       box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
       background: #fff;
     }
+
     .profile-form textarea {
       min-height: 80px;
       resize: vertical;
     }
+
     .profile-form .form-row {
       display: flex;
       gap: 16px;
     }
-    .profile-form .form-row > div {
+
+    .profile-form .form-row>div {
       flex: 1;
       display: flex;
       flex-direction: column;
     }
+
     .file-upload {
       background: #f7f9fa;
       border: 2px dashed #b3d0fd;
@@ -184,13 +218,16 @@
       transition: border 0.2s, background 0.2s;
       position: relative;
     }
+
     .file-upload:hover {
       border-color: #1976d2;
       background: #e3e9f0;
     }
+
     .file-upload input[type="file"] {
       display: none;
     }
+
     .file-upload .file-label {
       display: flex;
       flex-direction: column;
@@ -199,11 +236,13 @@
       font-size: 1.05rem;
       color: #1976d2;
     }
+
     .file-upload .file-label i {
       font-size: 2.1rem;
       color: #2196f3;
       margin-bottom: 2px;
     }
+
     .file-preview {
       margin-top: 6px;
       display: flex;
@@ -211,13 +250,16 @@
       flex-wrap: wrap;
       justify-content: center;
     }
-    .file-preview img, .file-preview video {
+
+    .file-preview img,
+    .file-preview video {
       max-width: 70px;
       max-height: 70px;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(25,118,210,0.08);
+      box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
       object-fit: cover;
     }
+
     .file-preview span {
       font-size: 0.98rem;
       color: #444;
@@ -226,19 +268,23 @@
       padding: 2px 8px;
       display: inline-block;
     }
+
     .optional {
       color: #888;
       font-size: 0.98rem;
       font-weight: 400;
       margin-left: 4px;
     }
+
     .step-actions {
       display: flex;
       justify-content: space-between;
       gap: 12px;
       margin-top: 18px;
     }
-    .profile-btn, .profile-btn-secondary {
+
+    .profile-btn,
+    .profile-btn-secondary {
       background: linear-gradient(90deg, #1976d2 0%, #2196f3 100%);
       color: #fff;
       border: none;
@@ -249,13 +295,16 @@
       cursor: pointer;
       width: 100%;
       transition: background 0.18s, box-shadow 0.18s;
-      box-shadow: 0 2px 8px rgba(25,118,210,0.10);
+      box-shadow: 0 2px 8px rgba(25, 118, 210, 0.10);
       letter-spacing: 0.5px;
     }
-    .profile-btn:hover, .profile-btn-secondary:hover {
+
+    .profile-btn:hover,
+    .profile-btn-secondary:hover {
       background: linear-gradient(90deg, #125ea2 0%, #1976d2 100%);
-      box-shadow: 0 4px 16px rgba(25,118,210,0.13);
+      box-shadow: 0 4px 16px rgba(25, 118, 210, 0.13);
     }
+
     .profile-btn-secondary {
       background: #e3e9f0;
       color: #1976d2;
@@ -263,10 +312,12 @@
       margin-right: 8px;
       box-shadow: none;
     }
+
     .profile-btn-secondary:hover {
       background: #d0d8e6;
       color: #125ea2;
     }
+
     .review-section {
       background: #f7f9fa;
       border-radius: 10px;
@@ -275,32 +326,38 @@
       font-size: 1.05rem;
       color: #333;
     }
+
     .review-section h3 {
       color: #1976d2;
       font-size: 1.1rem;
       margin-bottom: 8px;
       font-weight: 700;
     }
+
     .review-list {
       list-style: none;
       padding: 0;
       margin: 0;
     }
+
     .review-list li {
       margin-bottom: 7px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
+
     .review-list li strong {
       min-width: 120px;
       color: #1976d2;
       font-weight: 500;
     }
+
     .skills-input-container {
       width: 100%;
       margin-top: 10px;
     }
+
     .skills-input-container input {
       padding: 8px 10px;
       border: 1.5px solid #c2d3e8;
@@ -313,11 +370,13 @@
       box-sizing: border-box;
       margin-bottom: 6px;
     }
+
     .skills-input-container input:focus {
       border: 1.5px solid #1976d2;
       box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
       background: #fff;
     }
+
     .skills-tags {
       display: flex;
       flex-wrap: wrap;
@@ -329,6 +388,7 @@
       font-weight: 500;
       color: #1976d2;
     }
+
     .skill-tag {
       display: flex;
       align-items: center;
@@ -340,6 +400,7 @@
       font-weight: 500;
       cursor: default;
     }
+
     .remove-skill {
       background: none;
       border: none;
@@ -348,19 +409,23 @@
       color: #1976d2;
       margin-left: 2px;
     }
+
     @media (max-width: 600px) {
       .profile-card {
         padding: 0 6px 18px 6px;
       }
+
       .profile-header .logo {
         font-size: 1.3rem;
       }
+
       .progress-bar {
         max-width: 98vw;
       }
     }
   </style>
 </head>
+
 <body>
   <div class="profile-card">
     <div class="profile-header">
@@ -414,7 +479,8 @@
           <option>Cleaning</option>
           <option value="other">Other</option>
         </select>
-        <input type="text" id="otherProfession" name="otherProfession" placeholder="Enter your profession" style="display:none;"/>
+        <input type="text" id="otherProfession" name="otherProfession" placeholder="Enter your profession"
+          style="display:none;" />
         <div class="step-actions">
           <button type="button" class="profile-btn" onclick="nextStep(0)">Next</button>
         </div>
@@ -440,13 +506,15 @@
       <!-- Step 3: Documents -->
       <div class="form-step" id="step-2">
         <label for="aadharNumber">Aadhar Number</label>
-        <input type="text" id="aadharNumber" name="aadharNumber" maxlength="12" pattern="\d{12}" placeholder="Enter 12-digit Aadhar number" required>
+        <input type="text" id="aadharNumber" name="aadharNumber" maxlength="12" pattern="\d{12}"
+          placeholder="Enter 12-digit Aadhar number" required>
         <div class="file-upload" onclick="document.getElementById('aadharCard').click()">
           <label class="file-label" for="aadharCard">
             <i class="fa-regular fa-id-card"></i>
             Upload Aadhar Card Image
           </label>
-          <input type="file" id="aadharCard" name="aadharCard" accept="image/*" required onchange="showPreview(event, 'aadharCardPreview')">
+          <input type="file" id="aadharCard" name="aadharCard" accept="image/*" required
+            onchange="showPreview(event, 'aadharCardPreview')">
           <div class="file-preview" id="aadharCardPreview"></div>
         </div>
         <div class="file-upload" onclick="document.getElementById('profilePhoto').click()">
@@ -454,7 +522,8 @@
             <i class="fa-regular fa-user"></i>
             Upload Profile Photo
           </label>
-          <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*" required onchange="showPreview(event, 'profilePhotoPreview')">
+          <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*" required
+            onchange="showPreview(event, 'profilePhotoPreview')">
           <div class="file-preview" id="profilePhotoPreview"></div>
         </div>
         <div class="file-upload" onclick="document.getElementById('workImages').click()">
@@ -462,7 +531,8 @@
             <i class="fa-regular fa-images"></i>
             Upload Previous Work Images <span class="optional">(Optional, multiple allowed)</span>
           </label>
-          <input type="file" id="workImages" name="workImages" accept="image/*" multiple onchange="showPreview(event, 'workImagesPreview')">
+          <input type="file" id="workImages" name="workImages" accept="image/*" multiple
+            onchange="showPreview(event, 'workImagesPreview')">
           <div class="file-preview" id="workImagesPreview"></div>
         </div>
         <div class="file-upload" onclick="document.getElementById('introVideo').click()">
@@ -470,7 +540,8 @@
             <i class="fa-solid fa-video"></i>
             Upload Short Intro Video <span class="optional">(Optional)</span>
           </label>
-          <input type="file" id="introVideo" name="introVideo" accept="video/*" onchange="showPreview(event, 'introVideoPreview')">
+          <input type="file" id="introVideo" name="introVideo" accept="video/*"
+            onchange="showPreview(event, 'introVideoPreview')">
           <div class="file-preview" id="introVideoPreview"></div>
         </div>
         <div class="step-actions">
@@ -503,19 +574,19 @@
         ps.classList.toggle('completed', i < idx);
       });
       currentStep = idx;
-      window.scrollTo({top:0,behavior:'smooth'});
-      if(idx === 3) fillReview();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (idx === 3) fillReview();
     }
     function nextStep(from) {
-      if (validateStep(from)) showStep(from+1);
+      if (validateStep(from)) showStep(from + 1);
     }
     function prevStep(from) {
-      showStep(from-1);
+      showStep(from - 1);
     }
     // Profession select/other logic
     function toggleOtherProfession(val) {
       const other = document.getElementById('otherProfession');
-      if(val === 'other') {
+      if (val === 'other') {
         other.style.display = 'block';
         other.required = true;
       } else {
@@ -549,7 +620,7 @@
     const skillsInput = document.getElementById('skillsInput');
     const skillsTags = document.getElementById('skillsTags');
     let skillsArr = [];
-    skillsInput.addEventListener('keydown', function(e) {
+    skillsInput.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' && this.value.trim()) {
         e.preventDefault();
         addSkillTag(this.value.trim());
@@ -581,7 +652,7 @@
       const getVal = id => document.getElementById(id)?.value || '';
       const getProf = () => {
         const sel = document.getElementById('professionSelect');
-        if(sel.value === 'other') return getVal('otherProfession');
+        if (sel.value === 'other') return getVal('otherProfession');
         return sel.value;
       };
       const reviewList = document.getElementById('reviewList');
@@ -596,39 +667,66 @@
         <li><strong>Aadhar Number:</strong> ${getVal('aadharNumber')}</li>
         <li><strong>Aadhar Card:</strong> ${document.getElementById('aadharCard').files[0]?.name || '-'}</li>
         <li><strong>Profile Photo:</strong> ${document.getElementById('profilePhoto').files[0]?.name || '-'}</li>
-        <li><strong>Work Images:</strong> ${workImages.length ? Array.from(workImages).map(f=>f.name).join(', ') : '-'}</li>
+        <li><strong>Work Images:</strong> ${workImages.length ? Array.from(workImages).map(f => f.name).join(', ') : '-'}</li>
         <li><strong>Intro Video:</strong> ${document.getElementById('introVideo').files[0]?.name || '-'}</li>
       `;
     }
     // Validation logic
     function validateStep(step) {
-      if(step === 0) {
-        if(!document.getElementById('firstName').value.trim() || !document.getElementById('lastName').value.trim()) return alert('Please enter your name.'), false;
+      if (step === 0) {
+        if (!document.getElementById('firstName').value.trim() || !document.getElementById('lastName').value.trim()) return alert('Please enter your name.'), false;
         const sel = document.getElementById('professionSelect');
-        if(!sel.value) return alert('Please select your profession.'), false;
-        if(sel.value === 'other' && !document.getElementById('otherProfession').value.trim()) return alert('Please enter your profession.'), false;
+        if (!sel.value) return alert('Please select your profession.'), false;
+        if (sel.value === 'other' && !document.getElementById('otherProfession').value.trim()) return alert('Please enter your profession.'), false;
         return true;
       }
-      if(step === 1) {
-        if(!document.getElementById('email').value.trim() || !document.getElementById('phone').value.trim() || !document.getElementById('bio').value.trim()) return alert('Please fill all fields.'), false;
+      if (step === 1) {
+        if (!document.getElementById('email').value.trim() || !document.getElementById('phone').value.trim() || !document.getElementById('bio').value.trim()) return alert('Please fill all fields.'), false;
         return true;
       }
-      if(step === 2) {
-        if(!document.getElementById('aadharNumber').value.trim() || !/^\d{12}$/.test(document.getElementById('aadharNumber').value.trim())) return alert('Enter a valid 12-digit Aadhar number.'), false;
-        if(!document.getElementById('aadharCard').files.length) return alert('Please upload your Aadhar card image.'), false;
-        if(!document.getElementById('profilePhoto').files.length) return alert('Please upload your profile photo.'), false;
+      if (step === 2) {
+        if (!document.getElementById('aadharNumber').value.trim() || !/^\d{12}$/.test(document.getElementById('aadharNumber').value.trim())) return alert('Enter a valid 12-digit Aadhar number.'), false;
+        if (!document.getElementById('aadharCard').files.length) return alert('Please upload your Aadhar card image.'), false;
+        if (!document.getElementById('profilePhoto').files.length) return alert('Please upload your profile photo.'), false;
         return true;
       }
       return true;
     }
     // Form submit
-    document.getElementById('profileForm').onsubmit = function(e) {
+    document.getElementById('profileForm').onsubmit = async function (e) {
       e.preventDefault();
-      alert('Profile created successfully!');
-      // Here you can handle the form data as needed
+
+      const form = e.target;
+      const formData = new FormData(form);
+
+      // Append role manually as 'worker'
+      formData.append("role", "worker");
+
+      try {
+        const res = await fetch("http://localhost:5000/api/signup", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!res.ok) {
+          const err = await res.json();
+          alert("Error: " + err.message);
+          return;
+        }
+
+        const data = await res.json();
+        alert("Profile created successfully!");
+
+        // Redirect to index page
+        window.location.href = "index.html.html";
+      } catch (err) {
+        console.error("Error:", err);
+        alert("Something went wrong. Please try again.");
+      }
     };
     // Initialize
     showStep(0);
   </script>
 </body>
-</html> 
+
+</html>

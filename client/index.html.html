@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Worker Connect | Professional Service Provider Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -87,7 +89,8 @@
             gap: 0.5rem;
         }
 
-        .nav-link:hover, .nav-link.active {
+        .nav-link:hover,
+        .nav-link.active {
             background: rgba(255, 255, 255, 0.15);
             color: white;
         }
@@ -170,8 +173,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .page-title {
@@ -251,7 +261,8 @@
             transition: var(--transition);
         }
 
-        .filter-btn.active, .filter-btn:hover {
+        .filter-btn.active,
+        .filter-btn:hover {
             background: var(--primary);
             color: white;
         }
@@ -397,7 +408,9 @@
             font-weight: 500;
         }
 
-        .form-input, .form-select, .form-textarea {
+        .form-input,
+        .form-select,
+        .form-textarea {
             width: 100%;
             padding: 0.9rem 1.2rem;
             border: 1px solid #e2e8f0;
@@ -406,7 +419,9 @@
             transition: var(--transition);
         }
 
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
@@ -489,7 +504,8 @@
             position: relative;
         }
 
-        .preview-item img, .preview-item video {
+        .preview-item img,
+        .preview-item video {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -763,7 +779,8 @@
             transition: var(--transition);
         }
 
-        .rating-star.active, .rating-star:hover {
+        .rating-star.active,
+        .rating-star:hover {
             color: #f59e0b;
         }
 
@@ -811,11 +828,11 @@
             border-radius: 50%;
         }
 
-        input:checked + .slider {
+        input:checked+.slider {
             background-color: var(--primary);
         }
 
-        input:checked + .slider:before {
+        input:checked+.slider:before {
             transform: translateX(26px);
         }
 
@@ -847,8 +864,15 @@
         }
 
         @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .modal-header {
@@ -904,15 +928,26 @@
             transition: var(--transition);
         }
 
-        .whatsapp { background: #25D366; }
-        .facebook { background: #4267B2; }
-        .twitter { background: #1DA1F2; }
-        .link { background: var(--primary); }
+        .whatsapp {
+            background: #25D366;
+        }
+
+        .facebook {
+            background: #4267B2;
+        }
+
+        .twitter {
+            background: #1DA1F2;
+        }
+
+        .link {
+            background: var(--primary);
+        }
 
         .share-btn:hover {
             transform: translateY(-3px);
         }
-        
+
         /* Auth Modal Styles */
         .auth-modal {
             display: none;
@@ -921,12 +956,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.5);
             z-index: 3000;
             justify-content: center;
             align-items: center;
         }
-        
+
         .auth-container {
             background-color: white;
             border-radius: 12px;
@@ -934,10 +969,10 @@
             max-width: 500px;
             padding: 30px;
             position: relative;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
             animation: modalFadeIn 0.3s;
         }
-        
+
         .close-modal {
             position: absolute;
             top: 15px;
@@ -946,15 +981,17 @@
             cursor: pointer;
             color: #6b7280;
         }
-        
-        .close-modal:hover { color: #111827; }
-        
+
+        .close-modal:hover {
+            color: #111827;
+        }
+
         .auth-tabs {
             display: flex;
             margin-bottom: 25px;
             border-bottom: 1px solid #e2e8f0;
         }
-        
+
         .auth-tab {
             padding: 10px 20px;
             background: none;
@@ -965,22 +1002,29 @@
             cursor: pointer;
             position: relative;
         }
-        
-        .auth-tab.active { color: #2563eb; }
-        
+
+        .auth-tab.active {
+            color: #2563eb;
+        }
+
         .auth-tab.active::after {
-            content: ''; 
-            position: absolute; 
+            content: '';
+            position: absolute;
             bottom: -1px;
-            left: 0; 
-            width: 100%; 
+            left: 0;
+            width: 100%;
             height: 2px;
             background-color: #2563eb;
         }
-        
-        .auth-form { display: none; }
-        .auth-form.active { display: block; }
-        
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
         .user-type-selector {
             display: flex;
             margin-bottom: 20px;
@@ -988,50 +1032,59 @@
             overflow: hidden;
             border: 1px solid #e2e8f0;
         }
-        
+
         .user-type-btn {
-            flex: 1; 
+            flex: 1;
             padding: 10px;
-            background: none; 
+            background: none;
             border: none;
             cursor: pointer;
             font-weight: 500;
         }
-        
+
         .user-type-btn.active {
             background-color: #2563eb;
             color: white;
         }
-        
-        .login-section, .signup-section { display: none; }
-        .login-section.active, .signup-section.active { display: block; }
-        
+
+        .login-section,
+        .signup-section {
+            display: none;
+        }
+
+        .login-section.active,
+        .signup-section.active {
+            display: block;
+        }
+
         .auth-form-group {
             margin-bottom: 15px;
             text-align: left;
         }
-        
+
         .auth-form-group label {
             display: block;
             margin-bottom: 5px;
             font-weight: 500;
             color: #111827;
         }
-        
-        .auth-form-group input, .auth-form-group select {
+
+        .auth-form-group input,
+        .auth-form-group select {
             width: 100%;
             padding: 12px 15px;
             border: 1px solid #e2e8f0;
             border-radius: 6px;
             font-size: 1rem;
         }
-        
-        .auth-form-group input:focus, .auth-form-group select:focus {
+
+        .auth-form-group input:focus,
+        .auth-form-group select:focus {
             outline: none;
             border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
-        
+
         .auth-submit-btn {
             width: 100%;
             padding: 12px;
@@ -1044,37 +1097,39 @@
             cursor: pointer;
             margin-top: 10px;
         }
-        
-        .auth-submit-btn:hover { background-color: #1e40af; }
-        
+
+        .auth-submit-btn:hover {
+            background-color: #1e40af;
+        }
+
         .auth-alt {
             margin-top: 15px;
             font-size: 0.9rem;
             color: #6b7280;
         }
-        
-        .auth-alt a { 
-            color: #2563eb; 
-            text-decoration: none; 
-            font-weight: 500; 
+
+        .auth-alt a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
         }
-        
+
         .auth-divider {
             position: relative;
             margin: 25px 0;
             text-align: center;
         }
-        
+
         .auth-divider::before {
             content: '';
             position: absolute;
             top: 50%;
-            left: 0; 
+            left: 0;
             right: 0;
             height: 1px;
             background-color: #e2e8f0;
         }
-        
+
         .auth-divider span {
             position: relative;
             z-index: 2;
@@ -1082,13 +1137,13 @@
             padding: 0 15px;
             color: #6b7280;
         }
-        
+
         .social-auth {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-        
+
         .social-auth-btn {
             padding: 12px;
             border-radius: 6px;
@@ -1102,14 +1157,19 @@
             border: 1px solid #e2e8f0;
             background-color: white;
         }
-        
+
         .social-auth-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         }
-        
-        .google-btn { color: #DB4437; }
-        .facebook-btn { color: #4267B2; }
+
+        .google-btn {
+            color: #DB4437;
+        }
+
+        .facebook-btn {
+            color: #4267B2;
+        }
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -1117,21 +1177,21 @@
                 flex-direction: column;
                 gap: 1rem;
             }
-            
+
             .nav-links {
                 width: 100%;
                 justify-content: center;
             }
-            
+
             .search-bar {
                 flex-direction: column;
             }
-            
+
             .form-row {
                 flex-direction: column;
                 gap: 0;
             }
-            
+
             .profile-actions-bar {
                 flex-wrap: wrap;
                 gap: 0.5rem;
@@ -1146,15 +1206,17 @@
             margin-bottom: 1.2rem;
             user-select: none;
         }
+
         .rating-star {
             color: #e2e8f0;
             cursor: pointer;
             transition: color 0.2s, transform 0.2s;
-            filter: drop-shadow(0 1px 2px rgba(37,99,235,0.08));
+            filter: drop-shadow(0 1px 2px rgba(37, 99, 235, 0.08));
         }
+
         .rating-star.selected,
         .rating-star:hover,
-        .rating-star.selected ~ .rating-star {
+        .rating-star.selected~.rating-star {
             color: #f59e0b;
             text-shadow: 0 2px 8px #f59e0b33;
             transform: scale(1.18) rotate(-6deg);
@@ -1162,568 +1224,650 @@
 
         /* review section CSS */
         /* --- End Professional Star Rating --- */
-      .review-section {
-      background: white;
-      border-radius: 18px;
-      box-shadow: 0 4px 24px rgba(37,99,235,0.07);
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 2rem 2.5rem;
-    }
-    .review-form {
-      background: #f8fafc;
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 8px rgba(37,99,235,0.05);
-      margin-bottom: 2rem;
-    }
-    .review-form-title {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: #2563eb;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .rating-stars {
-      display: flex;
-      gap: 0.4rem;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      user-select: none;
-    }
-    .rating-star {
-      color: #e2e8f0;
-      cursor: pointer;
-      transition: color 0.2s, transform 0.2s;
-      filter: drop-shadow(0 1px 2px rgba(37,99,235,0.08));
-    }
-    .rating-star.selected,
-    .rating-star:hover,
-    .rating-star.selected ~ .rating-star {
-      color: #f59e0b;
-      text-shadow: 0 2px 8px #f59e0b33;
-      transform: scale(1.18) rotate(-6deg);
-    }
-    .form-textarea {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      border: 1px solid #e2e8f0;
-      border-radius: 10px;
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      font-family: inherit;
-      background: #fff;
-      resize: vertical;
-      min-height: 80px;
-      transition: border 0.2s;
-    }
-    .review-photo-upload {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      margin-bottom: 1.2rem;
-    }
-    .photo-preview {
-      width: 70px;
-      height: 70px;
-      border-radius: 14px;
-      background: #f1f5f9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      border: 2px dashed #cbd5e1;
-      position: relative;
-      transition: border 0.2s;
-    }
-    .photo-preview img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 14px;
-    }
-    .photo-placeholder {
-      color: #b6c3d1;
-      font-size: 2rem;
-    }
-    .photo-upload-btn {
-      background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      padding: 0.7rem 1.3rem;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      box-shadow: 0 2px 8px rgba(37,99,235,0.08);
-    }
-    .photo-upload-btn:hover {
-      background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
-      transform: translateY(-2px) scale(1.04);
-    }
-    .submit-btn {
-      background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-weight: 600;
-      padding: 0.9rem 1.7rem;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
-      box-shadow: 0 2px 12px rgba(37,99,235,0.10);
-      font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    .submit-btn:hover {
-      background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
-      transform: translateY(-2px) scale(1.03);
-    }
-    .review-summary {
-      margin: 1rem 0 1.5rem 0;
-      font-size: 1.1rem;
-      color: #64748b;
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-    .review-list .review-card {
-      background: #f8fafc;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(37,99,235,0.04);
-      padding: 1rem 1.2rem;
-      margin-bottom: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      animation: fadeIn 0.5s;
-    }
+        .review-section {
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(37, 99, 235, 0.07);
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem 2.5rem;
+        }
 
-    .search-suggestions {
-        position: absolute;
-        background: #fff;
-        border: 1px solid #e2e8f0;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(37,99,235,0.08);
-        z-index: 10;
-        width: 100%;
-        max-height: 220px;
-        overflow-y: auto;
-        display: none;
-    }
-    .search-suggestion-item {
-        padding: 0.7rem 1rem;
-        cursor: pointer;
-        transition: background 0.2s;
-    }
-    .search-suggestion-item:hover {
-        background: #f1f5f9;
-    }
+        .review-form {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.05);
+            margin-bottom: 2rem;
+        }
 
-    /* City Filter Professional Style */
-    #cityFilterSection {
-        display: flex;
-        gap: 0.7rem;
-        flex-wrap: wrap;
-        margin-bottom: 1rem;
-        justify-content: flex-start;
-    }
+        .review-form-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-    .city-filter-btn {
-        background: #f1f5f9;
-        border: none;
-        padding: 0.6rem 1.4rem;
-        border-radius: 20px;
-        font-size: 1rem;
-        color: #2563eb;
-        font-weight: 500;
-        cursor: pointer;
-        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-        box-shadow: 0 2px 8px rgba(37,99,235,0.04);
-        outline: none;
-    }
+        .rating-stars {
+            display: flex;
+            gap: 0.4rem;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            user-select: none;
+        }
 
-    .city-filter-btn:hover,
-    .city-filter-btn:focus {
-        background: #2563eb;
-        color: #fff;
-        box-shadow: 0 4px 16px rgba(37,99,235,0.10);
-    }
+        .rating-star {
+            color: #e2e8f0;
+            cursor: pointer;
+            transition: color 0.2s, transform 0.2s;
+            filter: drop-shadow(0 1px 2px rgba(37, 99, 235, 0.08));
+        }
 
-    .city-filter-btn.active {
-        background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
-        color: #fff;
-        box-shadow: 0 4px 16px rgba(37,99,235,0.13);
-        font-weight: 600;
-        transform: translateY(-2px) scale(1.04);
-    }
+        .rating-star.selected,
+        .rating-star:hover,
+        .rating-star.selected~.rating-star {
+            color: #f59e0b;
+            text-shadow: 0 2px 8px #f59e0b33;
+            transform: scale(1.18) rotate(-6deg);
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-family: inherit;
+            background: #fff;
+            resize: vertical;
+            min-height: 80px;
+            transition: border 0.2s;
+        }
+
+        .review-photo-upload {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .photo-preview {
+            width: 70px;
+            height: 70px;
+            border-radius: 14px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px dashed #cbd5e1;
+            position: relative;
+            transition: border 0.2s;
+        }
+
+        .photo-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 14px;
+        }
+
+        .photo-placeholder {
+            color: #b6c3d1;
+            font-size: 2rem;
+        }
+
+        .photo-upload-btn {
+            background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            padding: 0.7rem 1.3rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+        }
+
+        .photo-upload-btn:hover {
+            background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
+            transform: translateY(-2px) scale(1.04);
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            padding: 0.9rem 1.7rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 2px 12px rgba(37, 99, 235, 0.10);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
+            transform: translateY(-2px) scale(1.03);
+        }
+
+        .review-summary {
+            margin: 1rem 0 1.5rem 0;
+            font-size: 1.1rem;
+            color: #64748b;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .review-list .review-card {
+            background: #f8fafc;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.04);
+            padding: 1rem 1.2rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 0.5s;
+        }
+
+        .search-suggestions {
+            position: absolute;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+            z-index: 10;
+            width: 100%;
+            max-height: 220px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .search-suggestion-item {
+            padding: 0.7rem 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .search-suggestion-item:hover {
+            background: #f1f5f9;
+        }
+
+        /* City Filter Professional Style */
+        #cityFilterSection {
+            display: flex;
+            gap: 0.7rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+            justify-content: flex-start;
+        }
+
+        .city-filter-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 20px;
+            font-size: 1rem;
+            color: #2563eb;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.04);
+            outline: none;
+        }
+
+        .city-filter-btn:hover,
+        .city-filter-btn:focus {
+            background: #2563eb;
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.10);
+        }
+
+        .city-filter-btn.active {
+            background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.13);
+            font-weight: 600;
+            transform: translateY(-2px) scale(1.04);
+        }
     </style>
     <!-- Create Profile Dynamic Page -->
     <style>
-    /* --- Professional Create Profile Page Styles --- */
-    #createProfilePage {
-       background: linear-gradient(120deg, #e3e9f0 0%, #f4f6f8 100%);
-       min-height: 100vh;
-       padding: 0 0 2rem 0;
-    }
-    #createProfilePage .profile-card {
-       background: #fff;
-       border-radius: 18px;
-       box-shadow: 0 8px 32px rgba(25, 118, 210, 0.13);
-       padding: 0 36px 36px 36px;
-       max-width: 520px;
-       width: 100%;
-       margin: 36px auto 36px auto;
-       display: flex;
-       flex-direction: column;
-       align-items: center;
-       position: relative;
-       overflow: hidden;
-       animation: fadeInUp 0.7s;
-    }
-    #createProfilePage .profile-header {
-       width: 100%;
-       background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
-       color: #fff;
-       padding: 32px 0 18px 0;
-       text-align: center;
-       border-radius: 0 0 60% 60% / 0 0 18% 18%;
-       margin-bottom: 18px;
-       box-shadow: 0 2px 12px rgba(25, 118, 210, 0.08);
-    }
-    #createProfilePage .profile-header .logo {
-       font-size: 2.2rem;
-       font-weight: 700;
-       letter-spacing: 1px;
-       margin-bottom: 4px;
-       display: inline-block;
-    }
-    #createProfilePage .profile-header .subtitle {
-       font-size: 1.08rem;
-       font-weight: 400;
-       opacity: 0.93;
-       margin-bottom: 0;
-    }
-    #createProfilePage .divider {
-       width: 40px;
-       height: 3px;
-       background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
-       border-radius: 2px;
-       margin: 18px auto 24px auto;
-       opacity: 0.18;
-    }
-    #createProfilePage .progress-bar {
-       display: flex;
-       justify-content: space-between;
-       align-items: center;
-       width: 100%;
-       max-width: 400px;
-       margin: 0 auto 28px auto;
-       position: relative;
-    }
-    #createProfilePage .progress-bar::before {
-       content: '';
-       position: absolute;
-       top: 50%;
-       left: 30px;
-       right: 30px;
-       height: 3px;
-       background: #e3e9f0;
-       z-index: 0;
-       transform: translateY(-50%);
-    }
-    #createProfilePage .progress-step {
-       position: relative;
-       z-index: 1;
-       display: flex;
-       flex-direction: column;
-       align-items: center;
-       flex: 1;
-       transition: color 0.2s;
-    }
-    #createProfilePage .step-circle {
-       width: 32px;
-       height: 32px;
-       border-radius: 50%;
-       background: #e3e9f0;
-       color: #2563eb;
-       display: flex;
-       align-items: center;
-       justify-content: center;
-       font-weight: 700;
-       font-size: 1.1rem;
-       margin-bottom: 6px;
-       border: 2px solid #fff;
-       box-shadow: 0 2px 8px rgba(25,118,210,0.07);
-       transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-    }
-    #createProfilePage .progress-step.active .step-circle,
-    #createProfilePage .progress-step.completed .step-circle {
-       background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
-       color: #fff;
-       box-shadow: 0 4px 16px rgba(37,99,235,0.13);
-    }
-    #createProfilePage .progress-step .step-label {
-       font-size: 0.98rem;
-       color: #888;
-       font-weight: 500;
-       text-align: center;
-       transition: color 0.2s;
-    }
-    #createProfilePage .progress-step.active .step-label {
-       color: #2563eb;
-       font-weight: 700;
-    }
-    #createProfilePage .form-step {
-       display: none;
-       width: 100%;
-       animation: fadeInUp 0.5s;
-    }
-    #createProfilePage .form-step.active {
-       display: block;
-    }
-    @keyframes fadeInUp {
-       from { opacity: 0; transform: translateY(20px); }
-       to { opacity: 1; transform: translateY(0); }
-    }
-    #createProfilePage .profile-form label {
-       font-weight: 500;
-       color: #2563eb;
-       margin-bottom: 6px;
-       font-size: 1.05rem;
-       letter-spacing: 0.1px;
-       display: block;
-    }
-    #createProfilePage .profile-form input, #createProfilePage .profile-form textarea, #createProfilePage .profile-form select {
-       padding: 12px 15px;
-       border-radius: 8px;
-       border: 1.5px solid #c2d3e8;
-       font-size: 1rem;
-       background: #f7f9fa;
-       color: #222;
-       transition: border 0.2s, box-shadow 0.2s;
-       outline: none;
-       width: 100%;
-       box-sizing: border-box;
-       margin-bottom: 2px;
-    }
-    #createProfilePage .profile-form input:focus, #createProfilePage .profile-form textarea:focus, #createProfilePage .profile-form select:focus {
-       border: 1.5px solid #2563eb;
-       box-shadow: 0 2px 8px rgba(37,99,235,0.08);
-       background: #fff;
-    }
-    #createProfilePage .profile-form textarea {
-       min-height: 80px;
-       resize: vertical;
-    }
-    #createProfilePage .profile-form .form-row {
-       display: flex;
-       gap: 16px;
-    }
-    #createProfilePage .profile-form .form-row > div {
-       flex: 1;
-       display: flex;
-       flex-direction: column;
-    }
-    #createProfilePage .file-upload {
-       background: #f7f9fa;
-       border: 2px dashed #b3d0fd;
-       border-radius: 10px;
-       padding: 18px 0;
-       text-align: center;
-       color: #2563eb;
-       font-size: 1.05rem;
-       cursor: pointer;
-       margin-bottom: 8px;
-       transition: border 0.2s, background 0.2s;
-       position: relative;
-    }
-    #createProfilePage .file-upload:hover {
-       border-color: #2563eb;
-       background: #e3e9f0;
-    }
-    #createProfilePage .file-upload input[type="file"] {
-       display: none;
-    }
-    #createProfilePage .file-upload .file-label {
-       display: flex;
-       flex-direction: column;
-       align-items: center;
-       gap: 6px;
-       font-size: 1.05rem;
-       color: #2563eb;
-    }
-    #createProfilePage .file-upload .file-label i {
-       font-size: 2.1rem;
-       color: #1d4ed8;
-       margin-bottom: 2px;
-    }
-    #createProfilePage .file-preview {
-       margin-top: 6px;
-       display: flex;
-       gap: 10px;
-       flex-wrap: wrap;
-       justify-content: center;
-    }
-    #createProfilePage .file-preview img, #createProfilePage .file-preview video {
-       max-width: 70px;
-       max-height: 70px;
-       border-radius: 8px;
-       box-shadow: 0 2px 8px rgba(25,118,210,0.08);
-       object-fit: cover;
-    }
-    #createProfilePage .file-preview span {
-       font-size: 0.98rem;
-       color: #444;
-       background: #e3e9f0;
-       border-radius: 6px;
-       padding: 2px 8px;
-       display: inline-block;
-    }
-    #createProfilePage .optional {
-       color: #888;
-       font-size: 0.98rem;
-       font-weight: 400;
-       margin-left: 4px;
-    }
-    #createProfilePage .step-actions {
-       display: flex;
-       justify-content: space-between;
-       gap: 12px;
-       margin-top: 18px;
-    }
-    #createProfilePage .submit-btn, #createProfilePage .btn-outline {
-       background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
-       color: #fff;
-       border: none;
-       border-radius: 8px;
-       padding: 13px 0;
-       font-size: 1.13rem;
-       font-weight: 700;
-       cursor: pointer;
-       width: 100%;
-       transition: background 0.18s, box-shadow 0.18s;
-       box-shadow: 0 2px 8px rgba(37,99,235,0.10);
-       letter-spacing: 0.5px;
-    }
-    #createProfilePage .btn-outline {
-       background: #e3e9f0;
-       color: #2563eb;
-       font-weight: 600;
-       margin-right: 8px;
-       box-shadow: none;
-    }
-    #createProfilePage .submit-btn:hover, #createProfilePage .btn-outline:hover {
-       background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
-       color: #fff;
-       box-shadow: 0 4px 16px rgba(37,99,235,0.13);
-    }
-    #createProfilePage .btn-outline:hover {
-       background: #d0d8e6;
-       color: #125ea2;
-    }
-    #createProfilePage .review-section {
-       background: #f7f9fa;
-       border-radius: 10px;
-       padding: 18px 18px 10px 18px;
-       margin-bottom: 18px;
-       font-size: 1.05rem;
-       color: #333;
-    }
-    #createProfilePage .review-section h3 {
-       color: #2563eb;
-       font-size: 1.1rem;
-       margin-bottom: 8px;
-       font-weight: 700;
-    }
-    #createProfilePage .review-list {
-       list-style: none;
-       padding: 0;
-       margin: 0;
-    }
-    #createProfilePage .review-list li {
-       margin-bottom: 7px;
-       display: flex;
-       align-items: center;
-       gap: 8px;
-    }
-    #createProfilePage .review-list li strong {
-       min-width: 120px;
-       color: #2563eb;
-       font-weight: 500;
-    }
-    #createProfilePage .skills-input-container {
-       width: 100%;
-       margin-top: 10px;
-    }
-    #createProfilePage .skills-input-container input {
-       padding: 8px 10px;
-       border: 1.5px solid #c2d3e8;
-       border-radius: 8px;
-       font-size: 0.95rem;
-       background: #f7f9fa;
-       color: #222;
-       outline: none;
-       width: 100%;
-       box-sizing: border-box;
-       margin-bottom: 6px;
-    }
-    #createProfilePage .skills-input-container input:focus {
-       border: 1.5px solid #2563eb;
-       box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
-       background: #fff;
-    }
-    #createProfilePage .skills-tags {
-       display: flex;
-       flex-wrap: wrap;
-       gap: 7px;
-       padding: 4px 8px;
-       background: #e7f0fe;
-       border-radius: 16px;
-       font-size: 0.97rem;
-       font-weight: 500;
-       color: #2563eb;
-    }
-    #createProfilePage .skill-tag {
-       display: flex;
-       align-items: center;
-       gap: 5px;
-       padding: 4px 12px;
-       border-radius: 16px;
-       background: #e7f0fe;
-       color: #2563eb;
-       font-weight: 500;
-       cursor: default;
-    }
-    #createProfilePage .remove-skill {
-       background: none;
-       border: none;
-       font-size: 1rem;
-       cursor: pointer;
-       color: #2563eb;
-       margin-left: 2px;
-    }
-    @media (max-width: 600px) {
-       #createProfilePage .profile-card {
-           padding: 0 6px 18px 6px;
-       }
-       #createProfilePage .profile-header .logo {
-           font-size: 1.3rem;
-       }
-       #createProfilePage .progress-bar {
-           max-width: 98vw;
-       }
-    }
+        /* --- Professional Create Profile Page Styles --- */
+        #createProfilePage {
+            background: linear-gradient(120deg, #e3e9f0 0%, #f4f6f8 100%);
+            min-height: 100vh;
+            padding: 0 0 2rem 0;
+        }
+
+        #createProfilePage .profile-card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(25, 118, 210, 0.13);
+            padding: 0 36px 36px 36px;
+            max-width: 520px;
+            width: 100%;
+            margin: 36px auto 36px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.7s;
+        }
+
+        #createProfilePage .profile-header {
+            width: 100%;
+            background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+            color: #fff;
+            padding: 32px 0 18px 0;
+            text-align: center;
+            border-radius: 0 0 60% 60% / 0 0 18% 18%;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 12px rgba(25, 118, 210, 0.08);
+        }
+
+        #createProfilePage .profile-header .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            display: inline-block;
+        }
+
+        #createProfilePage .profile-header .subtitle {
+            font-size: 1.08rem;
+            font-weight: 400;
+            opacity: 0.93;
+            margin-bottom: 0;
+        }
+
+        #createProfilePage .divider {
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+            border-radius: 2px;
+            margin: 18px auto 24px auto;
+            opacity: 0.18;
+        }
+
+        #createProfilePage .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 28px auto;
+            position: relative;
+        }
+
+        #createProfilePage .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 30px;
+            right: 30px;
+            height: 3px;
+            background: #e3e9f0;
+            z-index: 0;
+            transform: translateY(-50%);
+        }
+
+        #createProfilePage .progress-step {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            transition: color 0.2s;
+        }
+
+        #createProfilePage .step-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #e3e9f0;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.07);
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+
+        #createProfilePage .progress-step.active .step-circle,
+        #createProfilePage .progress-step.completed .step-circle {
+            background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.13);
+        }
+
+        #createProfilePage .progress-step .step-label {
+            font-size: 0.98rem;
+            color: #888;
+            font-weight: 500;
+            text-align: center;
+            transition: color 0.2s;
+        }
+
+        #createProfilePage .progress-step.active .step-label {
+            color: #2563eb;
+            font-weight: 700;
+        }
+
+        #createProfilePage .form-step {
+            display: none;
+            width: 100%;
+            animation: fadeInUp 0.5s;
+        }
+
+        #createProfilePage .form-step.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #createProfilePage .profile-form label {
+            font-weight: 500;
+            color: #2563eb;
+            margin-bottom: 6px;
+            font-size: 1.05rem;
+            letter-spacing: 0.1px;
+            display: block;
+        }
+
+        #createProfilePage .profile-form input,
+        #createProfilePage .profile-form textarea,
+        #createProfilePage .profile-form select {
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1.5px solid #c2d3e8;
+            font-size: 1rem;
+            background: #f7f9fa;
+            color: #222;
+            transition: border 0.2s, box-shadow 0.2s;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 2px;
+        }
+
+        #createProfilePage .profile-form input:focus,
+        #createProfilePage .profile-form textarea:focus,
+        #createProfilePage .profile-form select:focus {
+            border: 1.5px solid #2563eb;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+            background: #fff;
+        }
+
+        #createProfilePage .profile-form textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        #createProfilePage .profile-form .form-row {
+            display: flex;
+            gap: 16px;
+        }
+
+        #createProfilePage .profile-form .form-row>div {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #createProfilePage .file-upload {
+            background: #f7f9fa;
+            border: 2px dashed #b3d0fd;
+            border-radius: 10px;
+            padding: 18px 0;
+            text-align: center;
+            color: #2563eb;
+            font-size: 1.05rem;
+            cursor: pointer;
+            margin-bottom: 8px;
+            transition: border 0.2s, background 0.2s;
+            position: relative;
+        }
+
+        #createProfilePage .file-upload:hover {
+            border-color: #2563eb;
+            background: #e3e9f0;
+        }
+
+        #createProfilePage .file-upload input[type="file"] {
+            display: none;
+        }
+
+        #createProfilePage .file-upload .file-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            font-size: 1.05rem;
+            color: #2563eb;
+        }
+
+        #createProfilePage .file-upload .file-label i {
+            font-size: 2.1rem;
+            color: #1d4ed8;
+            margin-bottom: 2px;
+        }
+
+        #createProfilePage .file-preview {
+            margin-top: 6px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #createProfilePage .file-preview img,
+        #createProfilePage .file-preview video {
+            max-width: 70px;
+            max-height: 70px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+            object-fit: cover;
+        }
+
+        #createProfilePage .file-preview span {
+            font-size: 0.98rem;
+            color: #444;
+            background: #e3e9f0;
+            border-radius: 6px;
+            padding: 2px 8px;
+            display: inline-block;
+        }
+
+        #createProfilePage .optional {
+            color: #888;
+            font-size: 0.98rem;
+            font-weight: 400;
+            margin-left: 4px;
+        }
+
+        #createProfilePage .step-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        #createProfilePage .submit-btn,
+        #createProfilePage .btn-outline {
+            background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 13px 0;
+            font-size: 1.13rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.18s, box-shadow 0.18s;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.10);
+            letter-spacing: 0.5px;
+        }
+
+        #createProfilePage .btn-outline {
+            background: #e3e9f0;
+            color: #2563eb;
+            font-weight: 600;
+            margin-right: 8px;
+            box-shadow: none;
+        }
+
+        #createProfilePage .submit-btn:hover,
+        #createProfilePage .btn-outline:hover {
+            background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.13);
+        }
+
+        #createProfilePage .btn-outline:hover {
+            background: #d0d8e6;
+            color: #125ea2;
+        }
+
+        #createProfilePage .review-section {
+            background: #f7f9fa;
+            border-radius: 10px;
+            padding: 18px 18px 10px 18px;
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+            color: #333;
+        }
+
+        #createProfilePage .review-section h3 {
+            color: #2563eb;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        #createProfilePage .review-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #createProfilePage .review-list li {
+            margin-bottom: 7px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #createProfilePage .review-list li strong {
+            min-width: 120px;
+            color: #2563eb;
+            font-weight: 500;
+        }
+
+        #createProfilePage .skills-input-container {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        #createProfilePage .skills-input-container input {
+            padding: 8px 10px;
+            border: 1.5px solid #c2d3e8;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background: #f7f9fa;
+            color: #222;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 6px;
+        }
+
+        #createProfilePage .skills-input-container input:focus {
+            border: 1.5px solid #2563eb;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+            background: #fff;
+        }
+
+        #createProfilePage .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            padding: 4px 8px;
+            background: #e7f0fe;
+            border-radius: 16px;
+            font-size: 0.97rem;
+            font-weight: 500;
+            color: #2563eb;
+        }
+
+        #createProfilePage .skill-tag {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 12px;
+            border-radius: 16px;
+            background: #e7f0fe;
+            color: #2563eb;
+            font-weight: 500;
+            cursor: default;
+        }
+
+        #createProfilePage .remove-skill {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #2563eb;
+            margin-left: 2px;
+        }
+
+        @media (max-width: 600px) {
+            #createProfilePage .profile-card {
+                padding: 0 6px 18px 6px;
+            }
+
+            #createProfilePage .profile-header .logo {
+                font-size: 1.3rem;
+            }
+
+            #createProfilePage .progress-bar {
+                max-width: 98vw;
+            }
+        }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header class="header">
@@ -1732,13 +1876,13 @@
                 <i class="fas fa-hard-hat"></i>
                 <span data-i18n="nav.brand">Worker Connect</span>
             </div>
-            
+
             <div class="nav-links">
                 <a href="#" class="nav-link active" data-page="home">
                     <i class="fas fa-home"></i>
                     <span data-i18n="nav.home">Home</span>
                 </a>
-           
+
                 <!-- Option 2: Just a link to language.html -->
                 <a href="language.html" class="nav-link"><span data-i18n="nav.selectLanguage">Select Language</span></a>
                 <a href="#" class="nav-link" id="createProfileNav" data-page="createProfile">
@@ -1749,19 +1893,19 @@
                     <span data-i18n="nav.myProfile">My Profile</span>
                 </a>
             </div>
-            
+
             <div class="user-actions">
-                <div class="language-toggle professional-lang-switcher">
+                <div id="languageSwitcher" class="language-toggle professional-lang-switcher">
                     <button class="lang-btn" data-lang="en"><span>🇬🇧</span> English</button>
                     <button class="lang-btn" data-lang="hi"><span>🇮🇳</span> हिन्दी</button>
                 </div>
                 <a href="login-standalone.html" class="btn btn-outline">
-                  <i class="fas fa-sign-in-alt"></i> <span data-i18n="nav.login">Login</span>
+                    <i class="fas fa-sign-in-alt"></i> <span data-i18n="nav.login">Login</span>
                 </a>
             </div>
-        </nav>
+        </nav>language-toggl
     </header>
-    
+
     <!-- Main Content -->
     <main class="container">
         <!-- Home Page -->
@@ -1770,17 +1914,18 @@
                 <i class="fas fa-home"></i>
                 <span data-i18n="home.heading">Find Skilled Professionals</span>
             </h1>
-            
+
             <div class="search-container">
                 <div class="search-bar">
-                    <input type="text" class="search-input" data-i18n-placeholder="home.searchPlaceholder" placeholder="Search by name, city or profession...">
+                    <input type="text" class="search-input" data-i18n-placeholder="home.searchPlaceholder"
+                        placeholder="Search by name, city or profession...">
                     <button class="search-btn">
                         <i class="fas fa-search"></i>
                         <span data-i18n="home.searchBtn">Search</span>
                     </button>
                     <div id="searchSuggestions" class="search-suggestions"></div>
                 </div>
-                
+
                 <div class="filter-section" id="cityFilterSection" style="margin-top:1rem;">
                     <span style="display:flex;align-items:center;font-weight:600;color:#2563eb;margin-right:0.5rem;">
                         <i class="fas fa-map-marker-alt" style="margin-right:0.4rem;"></i>City:
@@ -1794,19 +1939,21 @@
                     <button class="city-filter-btn">Delhi</button>
                 </div>
             </div>
-            
+
             <div class="profiles-grid" id="profilesContainer">
                 <!-- Profiles will be loaded here dynamically -->
             </div>
         </div>
-        
+
         <!-- Create Profile Page -->
         <div class="page" id="createPage">
             <h1 class="page-title">
-                <i class="fas fa-user-plus"></i>
+                <i class="fas fa-user://randomuser.me/api/portraits/men/32.jpg" alt="Profile" class="profile-view-img">
+                    <h2 class="profile-view-name">Rajesh Kumar</h2>
+                    <div class="profile-vie-plus"></i>
                 Create Your Professional Profile
             </h1>
-            
+
             <div class="profile-form-container">
                 <form id="profileForm">
                     <div class="form-row">
@@ -1834,7 +1981,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-col">
                             <div class="form-group">
@@ -1849,17 +1996,19 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="form-label" for="skills">Skills (comma separated)</label>
-                        <input type="text" id="skills" class="form-input" placeholder="e.g., pipe fitting, faucet repair" required>
+                        <input type="text" id="skills" class="form-input"
+                            placeholder="e.g., pipe fitting, faucet repair" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="form-label" for="bio">Professional Bio</label>
-                        <textarea id="bio" class="form-textarea" placeholder="Describe your experience and expertise..."></textarea>
+                        <textarea id="bio" class="form-textarea"
+                            placeholder="Describe your experience and expertise..."></textarea>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-col">
                             <div class="form-group">
@@ -1874,7 +2023,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="form-label">Portfolio Images</label>
                         <div class="file-upload">
@@ -1886,7 +2035,7 @@
                         </div>
                         <div class="preview-container" id="imagePreview"></div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="form-label">Introduction Video (Optional)</label>
                         <div class="file-upload">
@@ -1904,7 +2053,7 @@
                 </form>
             </div>
         </div>
-        
+
         <!-- Profile View Page -->
         <div class="page" id="profilePage">
             <div class="profile-view-container">
@@ -1913,7 +2062,7 @@
                     <h2 class="profile-view-name">Rajesh Kumar</h2>
                     <div class="profile-view-profession">Plumber</div>
                 </div>
-                
+
                 <div class="profile-actions-bar">
                     <button class="action-bar-btn" id="editProfileBtn">
                         <i class="fas fa-edit"></i> Edit Profile
@@ -1925,7 +2074,7 @@
                         <i class="fas fa-phone"></i> Contact
                     </button>
                 </div>
-                
+
                 <div class="profile-content">
                     <div class="info-grid">
                         <div class="info-card">
@@ -1969,7 +2118,7 @@
                             <div class="info-card-content">Mon-Sat: 9AM-7PM</div>
                         </div>
                     </div>
-                    
+
                     <div class="section-title">
                         <i class="fas fa-tools"></i> Skills
                     </div>
@@ -1981,14 +2130,17 @@
                         <span class="skill-tag-lg">Leak Detection</span>
                         <span class="skill-tag-lg">Drain Cleaning</span>
                     </div>
-                    
+
                     <div class="section-title">
                         <i class="fas fa-file-alt"></i> About Me
                     </div>
                     <p class="profile-bio">
-                        With over 12 years of experience in plumbing, I specialize in residential and commercial pipe fitting, faucet repair, and water tank installations. I pride myself on prompt service, quality workmanship, and transparent pricing. Certified by the National Plumbing Association with expertise in modern plumbing solutions.
+                        With over 12 years of experience in plumbing, I specialize in residential and commercial pipe
+                        fitting, faucet repair, and water tank installations. I pride myself on prompt service, quality
+                        workmanship, and transparent pricing. Certified by the National Plumbing Association with
+                        expertise in modern plumbing solutions.
                     </p>
-                    
+
                     <div class="portfolio-section">
                         <div class="section-title">
                             <i class="fas fa-images"></i> Portfolio
@@ -1996,13 +2148,16 @@
                         <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Work">
+                                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                                        alt="Work">
                                 </div>
                                 <div class="swiper-slide">
-                                    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Work">
+                                    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                                        alt="Work">
                                 </div>
                                 <div class="swiper-slide">
-                                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Work">
+                                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                                        alt="Work">
                                 </div>
                             </div>
                             <div class="swiper-button-next"></div>
@@ -2010,16 +2165,17 @@
                             <div class="swiper-pagination"></div>
                         </div>
                     </div>
-                    
+
                     <div class="reviews-section">
                         <div class="section-title">
                             <i class="fas fa-star"></i> Reviews (128)
                         </div>
-                        
+
                         <div class="review-card">
                             <div class="review-header">
                                 <div class="reviewer">
-                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Reviewer" class="reviewer-img">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Reviewer"
+                                        class="reviewer-img">
                                     <div class="reviewer-info">
                                         <h4>Priya Sharma</h4>
                                         <span>2 days ago</span>
@@ -2034,17 +2190,20 @@
                                 </div>
                             </div>
                             <div class="review-content">
-                                <p>Rajesh fixed our bathroom leak quickly and professionally. He explained the issue clearly and gave us tips to prevent it in the future. Highly recommended!</p>
+                                <p>Rajesh fixed our bathroom leak quickly and professionally. He explained the issue
+                                    clearly and gave us tips to prevent it in the future. Highly recommended!</p>
                             </div>
                             <div class="review-images">
-                                <img src="https://images.unsplash.com/photo-1600585152915-d208bec867a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Review" class="review-img">
+                                <img src="https://images.unsplash.com/photo-1600585152915-d208bec867a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                                    alt="Review" class="review-img">
                             </div>
                         </div>
-                        
+
                         <div class="review-card">
                             <div class="review-header">
                                 <div class="reviewer">
-                                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Reviewer" class="reviewer-img">
+                                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Reviewer"
+                                        class="reviewer-img">
                                     <div class="reviewer-info">
                                         <h4>Anonymous</h4>
                                         <span>1 week ago</span>
@@ -2059,7 +2218,8 @@
                                 </div>
                             </div>
                             <div class="review-content">
-                                <p>Good service, arrived on time and completed the work as promised. Fair pricing and clean work.</p>
+                                <p>Good service, arrived on time and completed the work as promised. Fair pricing and
+                                    clean work.</p>
                             </div>
                         </div>
 
@@ -2098,39 +2258,47 @@
                         <!-- After you navigating to prfile p[ick logic of view profile section -->
                         <div class="review-section">
                             <form class="review-form" id="reviewForm">
-                            <div class="review-form-title">
-                                <i class="fas fa-star"></i> <span data-i18n="review.addYourReview">Add Your Review</span>
-                            </div>
-                            <div class="rating-stars" id="ratingStars">
-                                <i class="far fa-star rating-star" data-rating="1"></i>
-                                <i class="far fa-star rating-star" data-rating="2"></i>
-                                <i class="far fa-star rating-star" data-rating="3"></i>
-                                <i class="far fa-star rating-star" data-rating="4"></i>
-                                <i class="far fa-star rating-star" data-rating="5"></i>
-                            </div>
-                            <textarea id="reviewText" class="form-textarea" data-i18n-placeholder="review.placeholder"></textarea>
-                            <div class="review-photo-upload" id="photoUploadArea">
-                                <input type="file" id="reviewImage" accept="image/*" hidden>
-                                <div class="photo-preview" id="photoPreview">
-                                <span class="photo-placeholder"><i class="fas fa-camera"></i></span>
+                                <div class="review-form-title">
+                                    <i class="fas fa-star"></i> <span data-i18n="review.addYourReview">Add Your
+                                        Review</span>
                                 </div>
-                                <button type="button" class="photo-upload-btn" id="photoUploadBtn">
-                                <i class="fas fa-upload"></i> <span data-i18n="review.uploadPhoto">Upload Photo</span>
+                                <div class="rating-stars" id="ratingStars">
+                                    <i class="far fa-star rating-star" data-rating="1"></i>
+                                    <i class="far fa-star rating-star" data-rating="2"></i>
+                                    <i class="far fa-star rating-star" data-rating="3"></i>
+                                    <i class="far fa-star rating-star" data-rating="4"></i>
+                                    <i class="far fa-star rating-star" data-rating="5"></i>
+                                </div>
+                                <textarea id="reviewText" class="form-textarea"
+                                    data-i18n-placeholder="review.placeholder"></textarea>
+                                <div class="review-photo-upload" id="photoUploadArea">
+                                    <input type="file" id="reviewImage" accept="image/*" hidden>
+                                    <div class="photo-preview" id="photoPreview">
+                                        <span class="photo-placeholder"><i class="fas fa-camera"></i></span>
+                                    </div>
+                                    <button type="button" class="photo-upload-btn" id="photoUploadBtn">
+                                        <i class="fas fa-upload"></i> <span data-i18n="review.uploadPhoto">Upload
+                                            Photo</span>
+                                    </button>
+                                </div>
+                                <div style="margin-bottom:1rem;">
+                                    <label><input type="checkbox" id="anonymousToggle"> <span
+                                            data-i18n="review.postAsAnonymous">Post as Anonymous</span></label>
+                                </div>
+                                <button class="submit-btn" id="submitReviewBtn" type="submit">
+                                    <i class="fas fa-paper-plane"></i> <span data-i18n="review.submit">Submit
+                                        Review</span>
                                 </button>
-                            </div>
-                            <div style="margin-bottom:1rem;">
-                                <label><input type="checkbox" id="anonymousToggle"> <span data-i18n="review.postAsAnonymous">Post as Anonymous</span></label>
-                            </div>
-                            <button class="submit-btn" id="submitReviewBtn" type="submit">
-                                <i class="fas fa-paper-plane"></i> <span data-i18n="review.submit">Submit Review</span>
-                            </button>
                             </form>
                             <div class="review-summary">
-                            <span><b>Weighted Avg:</b> <span id="weightedAvg" style="color:#f59e0b;font-weight:600;">0.00</span></span>
-                            <span><b>Total Reviews:</b> <span id="reviewCount" style="color:#2563eb;font-weight:600;">0</span></span>
+                                <span><b>Weighted Avg:</b> <span id="weightedAvg"
+                                        style="color:#f59e0b;font-weight:600;">0.00</span></span>
+                                <span><b>Total Reviews:</b> <span id="reviewCount"
+                                        style="color:#2563eb;font-weight:600;">0</span></span>
                             </div>
                             <div class="review-list" id="reviewsList"></div>
-                            <button class="submit-btn view-more-btn" id="viewMoreBtn" style="display:none;" data-i18n="review.viewMore">Tap to view more</button>
+                            <button class="submit-btn view-more-btn" id="viewMoreBtn" style="display:none;"
+                                data-i18n="review.viewMore">Tap to view more</button>
                         </div>
 
 
@@ -2142,7 +2310,7 @@
             </div>
         </div>
     </main>
-    
+
     <!-- Share Modal -->
     <div class="modal" id="shareModal">
         <div class="modal-content">
@@ -2172,7 +2340,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Contact Modal -->
     <div class="modal" id="contactModal">
         <div class="modal-content">
@@ -2214,7 +2382,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Auth Modal -->
     <div class="auth-modal" id="authModal">
         <div class="auth-container">
@@ -2282,7 +2450,8 @@
                             </div>
                             <div class="auth-form-group">
                                 <label for="customerSignupPassword">Password</label>
-                                <input type="password" id="customerSignupPassword" placeholder="Create a password" required>
+                                <input type="password" id="customerSignupPassword" placeholder="Create a password"
+                                    required>
                             </div>
                             <button type="submit" class="auth-submit-btn">Create Account</button>
                         </form>
@@ -2301,7 +2470,8 @@
                             </div>
                             <div class="auth-form-group">
                                 <label for="workerSignupPassword">Password</label>
-                                <input type="password" id="workerSignupPassword" placeholder="Create a password" required>
+                                <input type="password" id="workerSignupPassword" placeholder="Create a password"
+                                    required>
                             </div>
                             <div class="auth-form-group">
                                 <label for="workerSignupPhone">Phone Number</label>
@@ -2324,7 +2494,7 @@
                                     <option value="maid">Maid</option>
                                 </select>
                             </div>
-                            
+
                             <button type="submit" class="auth-submit-btn">Apply as Professional</button>
                         </form>
                     </div>
@@ -2335,20 +2505,27 @@
 
             <div class="social-auth">
                 <button class="social-auth-btn google-btn"><i class="fab fa-google"></i> Continue with Google</button>
-                <button class="social-auth-btn facebook-btn"><i class="fab fa-facebook-f"></i> Continue with Facebook</button>
+                <button class="social-auth-btn facebook-btn"><i class="fab fa-facebook-f"></i> Continue with
+                    Facebook</button>
             </div>
         </div>
     </div>
-    
+
     <!-- Create Profile Dynamic Page -->
     <div class="page" id="createProfilePage" style="display:none;">
         <div class="profile-card" style="max-width:600px;margin:2rem auto 2rem auto;">
-            <div class="profile-header" style="background:linear-gradient(90deg,#1976d2 0%,#2196f3 100%);color:#fff;padding:32px 0 18px 0;text-align:center;border-radius:0 0 60% 60% / 0 0 18% 18%;margin-bottom:18px;box-shadow:0 2px 12px rgba(25,118,210,0.08);">
-                <span class="logo" style="font-size:2.2rem;font-weight:700;letter-spacing:1px;margin-bottom:4px;display:inline-block;">WorkerConnect</span>
-                <div class="subtitle" style="font-size:1.08rem;font-weight:400;opacity:0.93;margin-bottom:0;">Create Your Professional Profile</div>
+            <div class="profile-header"
+                style="background:linear-gradient(90deg,#1976d2 0%,#2196f3 100%);color:#fff;padding:32px 0 18px 0;text-align:center;border-radius:0 0 60% 60% / 0 0 18% 18%;margin-bottom:18px;box-shadow:0 2px 12px rgba(25,118,210,0.08);">
+                <span class="logo"
+                    style="font-size:2.2rem;font-weight:700;letter-spacing:1px;margin-bottom:4px;display:inline-block;">WorkerConnect</span>
+                <div class="subtitle" style="font-size:1.08rem;font-weight:400;opacity:0.93;margin-bottom:0;">Create
+                    Your Professional Profile</div>
             </div>
-            <div class="divider" style="width:40px;height:3px;background:linear-gradient(90deg,#1976d2 0%,#2196f3 100%);border-radius:2px;margin:18px auto 24px auto;opacity:0.18;"></div>
-            <div class="progress-bar" id="progressBar" style="display:flex;justify-content:space-between;align-items:center;width:100%;max-width:400px;margin:0 auto 28px auto;position:relative;">
+            <div class="divider"
+                style="width:40px;height:3px;background:linear-gradient(90deg,#1976d2 0%,#2196f3 100%);border-radius:2px;margin:18px auto 24px auto;opacity:0.18;">
+            </div>
+            <div class="progress-bar" id="progressBar"
+                style="display:flex;justify-content:space-between;align-items:center;width:100%;max-width:400px;margin:0 auto 28px auto;position:relative;">
                 <div class="progress-step" data-step="0">
                     <div class="step-circle">1</div>
                     <div class="step-label">Basic Info</div>
@@ -2392,7 +2569,8 @@
                         <option>Welder</option>
                         <option value="other">Other</option>
                     </select>
-                    <input type="text" id="dynamicOtherProfession" name="otherProfession" placeholder="Enter your profession" style="display:none;"/>
+                    <input type="text" id="dynamicOtherProfession" name="otherProfession"
+                        placeholder="Enter your profession" style="display:none;" />
                     <div class="form-row">
                         <div>
                             <label for="dynamicExperience">Experience (years)</label>
@@ -2418,7 +2596,8 @@
                     <label for="dynamicSkillsInput">Skills <span class="optional">(Press Enter to add)</span></label>
                     <div class="skills-input-container" style="margin-bottom:10px;">
                         <input type="text" id="dynamicSkillsInput" placeholder="e.g., Pipe fitting, Tap repair">
-                        <div class="skills-tags" id="dynamicSkillsTags" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:7px;"></div>
+                        <div class="skills-tags" id="dynamicSkillsTags"
+                            style="margin-top:6px;display:flex;flex-wrap:wrap;gap:7px;"></div>
                     </div>
                     <div class="step-actions">
                         <button type="button" class="submit-btn btn-outline" id="dynamicBack1">Back</button>
@@ -2428,13 +2607,15 @@
                 <!-- Step 3: Documents -->
                 <div class="form-step" id="dynamic-step-2">
                     <label for="dynamicAadharNumber">Aadhar Number</label>
-                    <input type="text" id="dynamicAadharNumber" name="aadharNumber" maxlength="12" pattern="\d{12}" placeholder="Enter 12-digit Aadhar number" required>
+                    <input type="text" id="dynamicAadharNumber" name="aadharNumber" maxlength="12" pattern="\d{12}"
+                        placeholder="Enter 12-digit Aadhar number" required>
                     <div class="file-upload" onclick="document.getElementById('dynamicAadharCard').click()">
                         <label class="file-label" for="dynamicAadharCard">
                             <i class="fa-regular fa-id-card"></i>
                             Upload Aadhar Card Image
                         </label>
-                        <input type="file" id="dynamicAadharCard" name="aadharCard" accept="image/*" required style="display:none;">
+                        <input type="file" id="dynamicAadharCard" name="aadharCard" accept="image/*" required
+                            style="display:none;">
                         <div class="file-preview" id="dynamicAadharCardPreview"></div>
                     </div>
                     <div class="file-upload" onclick="document.getElementById('dynamicProfilePhoto').click()">
@@ -2442,7 +2623,8 @@
                             <i class="fa-regular fa-user"></i>
                             Upload Profile Photo
                         </label>
-                        <input type="file" id="dynamicProfilePhoto" name="profilePhoto" accept="image/*" required style="display:none;">
+                        <input type="file" id="dynamicProfilePhoto" name="profilePhoto" accept="image/*" required
+                            style="display:none;">
                         <div class="file-preview" id="dynamicProfilePhotoPreview"></div>
                     </div>
                     <div class="file-upload" onclick="document.getElementById('dynamicWorkImages').click()">
@@ -2450,7 +2632,8 @@
                             <i class="fa-regular fa-images"></i>
                             Upload Previous Work Images <span class="optional">(Optional, multiple allowed)</span>
                         </label>
-                        <input type="file" id="dynamicWorkImages" name="workImages" accept="image/*" multiple style="display:none;">
+                        <input type="file" id="dynamicWorkImages" name="workImages" accept="image/*" multiple
+                            style="display:none;">
                         <div class="file-preview" id="dynamicWorkImagesPreview"></div>
                     </div>
                     <div class="file-upload" onclick="document.getElementById('dynamicIntroVideo').click()">
@@ -2458,7 +2641,8 @@
                             <i class="fa-solid fa-video"></i>
                             Upload Short Intro Video <span class="optional">(Optional)</span>
                         </label>
-                        <input type="file" id="dynamicIntroVideo" name="introVideo" accept="video/*" style="display:none;">
+                        <input type="file" id="dynamicIntroVideo" name="introVideo" accept="video/*"
+                            style="display:none;">
                         <div class="file-preview" id="dynamicIntroVideoPreview"></div>
                     </div>
                     <div class="step-actions">
@@ -2480,7 +2664,7 @@
             </form>
         </div>
     </div>
-    
+
     <script>
         // Initialize Swiper
         var swiper = new Swiper(".mySwiper", {
@@ -2498,88 +2682,116 @@
         });
 
         // Sample profiles data
-        const profiles = [
-            {
-                id: 1,
-                name: "Rajesh Kumar",
-                profession: "Plumber",
-                location: "New Delhi",
-                contact: "+91 9876543210",
-                rating: 4.7,
-                reviews: 128,
-                experience: 12,
-                rate: "₹350/hour",
-                skills: ["Pipe Fitting", "Faucet Repair", "Water Tank Installation"],
-                img: "https://randomuser.me/api/portraits/men/32.jpg"
-            },
-            {
-                id: 2,
-                name: "Amit Singh",
-                profession: "Electrician",
-                location: "Noida",
-                contact: "+91 8765432109",
-                rating: 4.5,
-                reviews: 92,
-                experience: 8,
-                rate: "₹400/hour",
-                skills: ["Wiring", "Switch Repair", "Inverter Installation"],
-                img: "https://randomuser.me/api/portraits/men/44.jpg"
-            },
-            {
-                id: 3,
-                name: "Vijay Malhotra",
-                profession: "Carpenter",
-                location: "Gurgaon",
-                contact: "+91 7654321098",
-                rating: 4.8,
-                reviews: 75,
-                experience: 15,
-                rate: "₹450/hour",
-                skills: ["Furniture Making", "Wood Polishing", "Door Installation"],
-                img: "https://randomuser.me/api/portraits/men/22.jpg"
-            },
-            {
-                id: 4,
-                name: "Sunita Patel",
-                profession: "Painter",
-                location: "Faridabad",
-                contact: "+91 6543210987",
-                rating: 4.6,
-                reviews: 68,
-                experience: 10,
-                rate: "₹300/hour",
-                skills: ["Wall Painting", "Texture Work", "Waterproofing"],
-                img: "https://randomuser.me/api/portraits/women/65.jpg"
-            },
-            {
-                id: 5,
-                name: "Ramesh Gupta",
-                profession: "AC Technician",
-                location: "Ghaziabad",
-                contact: "+91 9432109876",
-                rating: 4.4,
-                reviews: 85,
-                experience: 7,
-                rate: "₹500/hour",
-                skills: ["AC Repair", "Gas Refilling", "Installation"],
-                img: "https://randomuser.me/api/portraits/men/55.jpg"
-            },
-            {
-                id: 6,
-                name: "Sanjay Verma",
-                profession: "Mechanic",
-                location: "Delhi",
-                contact: "+91 8321098765",
-                rating: 4.9,
-                reviews: 120,
-                experience: 18,
-                rate: "₹600/hour",
-                skills: ["Engine Repair", "Brake Service", "Car Maintenance"],
-                img: "https://randomuser.me/api/portraits/men/33.jpg"
-            }
-        ];
+        // const profiles = [
+        //     {
+        //         id: 1,
+        //         name: "Rajesh Kumar",
+        //         profession: "Plumber",
+        //         location: "New Delhi",
+        //         contact: "+91 9876543210",
+        //         rating: 4.7,
+        //         reviews: 128,
+        //         experience: 12,
+        //         rate: "₹350/hour",
+        //         skills: ["Pipe Fitting", "Faucet Repair", "Water Tank Installation"],
+        //         img: "https://randomuser.me/api/portraits/men/32.jpg"
+        //     },
+        //     {
+        //         id: 2,
+        //         name: "Amit Singh",
+        //         profession: "Electrician",
+        //         location: "Noida",
+        //         contact: "+91 8765432109",
+        //         rating: 4.5,
+        //         reviews: 92,
+        //         experience: 8,
+        //         rate: "₹400/hour",
+        //         skills: ["Wiring", "Switch Repair", "Inverter Installation"],
+        //         img: "https://randomuser.me/api/portraits/men/44.jpg"
+        //     },
+        //     {
+        //         id: 3,
+        //         name: "Vijay Malhotra",
+        //         profession: "Carpenter",
+        //         location: "Gurgaon",
+        //         contact: "+91 7654321098",
+        //         rating: 4.8,
+        //         reviews: 75,
+        //         experience: 15,
+        //         rate: "₹450/hour",
+        //         skills: ["Furniture Making", "Wood Polishing", "Door Installation"],
+        //         img: "https://randomuser.me/api/portraits/men/22.jpg"
+        //     },
+        //     {
+        //         id: 4,
+        //         name: "Sunita Patel",
+        //         profession: "Painter",
+        //         location: "Faridabad",
+        //         contact: "+91 6543210987",
+        //         rating: 4.6,
+        //         reviews: 68,
+        //         experience: 10,
+        //         rate: "₹300/hour",
+        //         skills: ["Wall Painting", "Texture Work", "Waterproofing"],
+        //         img: "https://randomuser.me/api/portraits/women/65.jpg"
+        //     },
+        //     {
+        //         id: 5,
+        //         name: "Ramesh Gupta",
+        //         profession: "AC Technician",
+        //         location: "Ghaziabad",
+        //         contact: "+91 9432109876",
+        //         rating: 4.4,
+        //         reviews: 85,
+        //         experience: 7,
+        //         rate: "₹500/hour",
+        //         skills: ["AC Repair", "Gas Refilling", "Installation"],
+        //         img: "https://randomuser.me/api/portraits/men/55.jpg"
+        //     },
+        //     {
+        //         id: 6,
+        //         name: "Sanjay Verma",
+        //         profession: "Mechanic",
+        //         location: "Delhi",
+        //         contact: "+91 8321098765",
+        //         rating: 4.9,
+        //         reviews: 120,
+        //         experience: 18,
+        //         rate: "₹600/hour",
+        //         skills: ["Engine Repair", "Brake Service", "Car Maintenance"],
+        //         img: "https://randomuser.me/api/portraits/men/33.jpg"
+        //     }
+        // ];
 
-        // DOM Elements
+        // // DOM Elements
+
+        const fetchAllWorkers = async () => {
+            try {
+                const token = localStorage.getItem("token");
+
+                const profiles = await fetch("http://localhost:5000/api/workers", {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                if (profiles.ok) {
+                    const data = await profiles.json();
+                    console.log("Workers fetched successfully:", data);
+                    return data
+                    // Use `data` to render workers
+                } else {
+                    const err = await profiles.json();
+                    console.error("Failed to fetch workers:", err.message);
+                }
+            } catch (error) {
+                console.error('Failed to fetch workers:', error.message);
+            }
+        }
+
+
         const pages = document.querySelectorAll('.page');
         const navLinks = document.querySelectorAll('.nav-link');
         const profileForm = document.getElementById('profileForm');
@@ -2601,20 +2813,26 @@
         const authTabs = document.querySelectorAll('.auth-tab');
         const userTypeBtns = document.querySelectorAll('.user-type-btn');
         const langBtns = document.querySelectorAll('.lang-btn');
-        
+
         // Initialize the page
         document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            if (token) {
+                localStorage.setItem('token', token);
+            }
+
             // Load profiles
             renderProfiles();
-            
+
             // Set up event listeners
             setupEventListeners();
         });
 
         // Render profiles to the home page
-        function renderProfiles(city = selectedCity) {
+        async function renderProfiles(city = selectedCity) {
             profilesContainer.innerHTML = '';
-            let filteredProfiles = profiles;
+            let filteredProfiles = await fetchAllWorkers();
             if (city !== "All") {
                 filteredProfiles = filteredProfiles.filter(profile => profile.location === city);
             }
@@ -2663,7 +2881,7 @@
                 `;
                 profilesContainer.appendChild(profileCard);
                 // Add click event to the whole card (except for the contact button)
-                profileCard.addEventListener('click', function(e) {
+                profileCard.addEventListener('click', function (e) {
                     // If the click is on the contact button, do nothing
                     if (e.target.closest('.contact-profile')) return;
                     showProfile(profile.id);
@@ -2741,7 +2959,7 @@
             // Update copy link button
             const copyLinkBtn = document.getElementById('copyLinkBtn');
             if (copyLinkBtn) {
-                copyLinkBtn.onclick = function() {
+                copyLinkBtn.onclick = function () {
                     navigator.clipboard.writeText(link);
                     alert('Link copied to clipboard!');
                 };
@@ -2749,28 +2967,28 @@
             // WhatsApp share
             const whatsappBtn = shareModal.querySelector('.share-btn.whatsapp');
             if (whatsappBtn) {
-                whatsappBtn.onclick = function() {
+                whatsappBtn.onclick = function () {
                     window.open(`https://wa.me/?text=${shareText}`, '_blank');
                 };
             }
             // Facebook share
             const facebookBtn = shareModal.querySelector('.share-btn.facebook');
             if (facebookBtn) {
-                facebookBtn.onclick = function() {
+                facebookBtn.onclick = function () {
                     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`, '_blank');
                 };
             }
             // Twitter share
             const twitterBtn = shareModal.querySelector('.share-btn.twitter');
             if (twitterBtn) {
-                twitterBtn.onclick = function() {
+                twitterBtn.onclick = function () {
                     window.open(`https://twitter.com/intent/tweet?text=${shareText}`, '_blank');
                 };
             }
         }
 
         // On page load, check for hash and show profile if present
-        window.addEventListener('DOMContentLoaded', function() {
+        window.addEventListener('DOMContentLoaded', function () {
             if (window.location.hash && window.location.hash.startsWith('#profile-')) {
                 const profileId = window.location.hash.replace('#profile-', '');
                 showProfile(profileId);
@@ -2778,7 +2996,7 @@
         });
 
         // Also handle hashchange (user pastes or clicks a link)
-        window.addEventListener('hashchange', function() {
+        window.addEventListener('hashchange', function () {
             if (window.location.hash && window.location.hash.startsWith('#profile-')) {
                 const profileId = window.location.hash.replace('#profile-', '');
                 showProfile(profileId);
@@ -2819,7 +3037,7 @@
             // Set WhatsApp button
             const whatsappBtn = document.getElementById('contactModalWhatsappBtn');
             if (whatsappBtn) {
-                whatsappBtn.onclick = function() {
+                whatsappBtn.onclick = function () {
                     // Remove non-digit characters for WhatsApp link
                     const phone = (profile.contact || '').replace(/\D/g, '');
                     if (phone) {
@@ -2843,52 +3061,52 @@
                     setActivePage(page);
                 });
             });
-            
+
             // My Profile button
             myProfileBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 showProfile(1); // Assuming ID 1 is the current user
             });
-            
+
             // Form submission
             profileForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 alert('Profile saved successfully!');
                 setActivePage('homePage');
             });
-            
+
             // Modal controls
             shareProfileBtn.addEventListener('click', () => {
                 document.getElementById('shareModal').classList.add('active');
             });
-            
+
             contactBtn.addEventListener('click', () => {
                 contactModal.classList.add('active');
             });
-            
+
             closeModalButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     shareModal.classList.remove('active');
                     contactModal.classList.remove('active');
                 });
             });
-            
+
             // Copy link functionality
             copyLinkBtn.addEventListener('click', () => {
                 navigator.clipboard.writeText(window.location.href);
                 alert('Link copied to clipboard!');
             });
-            
+
             // Edit profile
             editProfileBtn.addEventListener('click', () => {
                 setActivePage('createPage');
             });
-            
+
             // Rating stars
             ratingStars.forEach(star => {
                 star.addEventListener('click', () => {
                     const rating = parseInt(star.getAttribute('data-rating'));
-                    
+
                     // Update stars
                     ratingStars.forEach((s, index) => {
                         if (index < rating) {
@@ -2901,7 +3119,7 @@
                     });
                 });
             });
-            
+
             // Submit review
             submitReviewBtn.addEventListener('click', () => {
                 const reviewText = document.getElementById('reviewText').value;
@@ -2909,35 +3127,35 @@
                     alert('Please write a review before submitting');
                     return;
                 }
-                
+
                 const rating = document.querySelectorAll('.rating-star.fas').length;
                 if (rating === 0) {
                     alert('Please select a rating');
                     return;
                 }
-                
+
                 alert('Review submitted successfully!');
                 document.getElementById('reviewText').value = '';
-                
+
                 // Reset stars
                 ratingStars.forEach(star => {
                     star.classList.remove('fas', 'active');
                     star.classList.add('far');
                 });
             });
-            
+
             // Login modal toggle
             authToggleBtn.addEventListener('click', () => {
                 authModal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
             });
-            
+
             // Close auth modal
             closeAuthModalBtn.addEventListener('click', () => {
                 authModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
             });
-            
+
             // Close auth modal when clicking outside
             window.addEventListener('click', e => {
                 if (e.target === authModal) {
@@ -2945,10 +3163,10 @@
                     document.body.style.overflow = 'auto';
                 }
             });
-            
+
             // Auth tab switching
             authTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
+                tab.addEventListener('click', function () {
                     const tabName = this.getAttribute('data-tab');
                     authTabs.forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
@@ -2956,10 +3174,10 @@
                     document.getElementById(`${tabName}Form`).classList.add('active');
                 });
             });
-            
+
             // User type switching
             userTypeBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     const userType = this.getAttribute('data-user-type');
                     const formType = document.querySelector('.auth-form.active').id.replace('Form', '');
                     this.parentNode.querySelectorAll('.user-type-btn').forEach(b => b.classList.remove('active'));
@@ -2968,40 +3186,40 @@
                     document.getElementById(`${userType}${formType.charAt(0).toUpperCase() + formType.slice(1)}`).classList.add('active');
                 });
             });
-            
+
             // Form submission handling
             const authForms = document.querySelectorAll('.auth-form form');
             authForms.forEach(form => {
-                form.addEventListener('submit', function(e) {
+                form.addEventListener('submit', function (e) {
                     e.preventDefault();
                     alert('Form submitted successfully!');
                     authModal.style.display = 'none';
                     document.body.style.overflow = 'auto';
-                    
+
                     // Update login button to logout
                     authToggleBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i> Logout';
                     this.reset();
                 });
             });
-            
+
             // Aadhaar validation for worker signup
             const workerAadhaar = document.getElementById('workerAadhaar');
             if (workerAadhaar) {
-                workerAadhaar.addEventListener('input', function() {
+                workerAadhaar.addEventListener('input', function () {
                     this.value = this.value.replace(/\D/g, '').slice(0, 12);
                 });
             }
-            
+
             // File upload previews
-            document.getElementById('portfolioImages').addEventListener('change', function(e) {
+            document.getElementById('portfolioImages').addEventListener('change', function (e) {
                 const previewContainer = document.getElementById('imagePreview');
                 previewContainer.innerHTML = '';
-                
+
                 for (const file of e.target.files) {
                     if (file.type.startsWith('image/')) {
                         const reader = new FileReader();
-                        
-                        reader.onload = function(e) {
+
+                        reader.onload = function (e) {
                             const previewItem = document.createElement('div');
                             previewItem.className = 'preview-item';
                             previewItem.innerHTML = `
@@ -3009,27 +3227,27 @@
                                 <button class="remove-btn">&times;</button>
                             `;
                             previewContainer.appendChild(previewItem);
-                            
+
                             // Add remove button functionality
                             previewItem.querySelector('.remove-btn').addEventListener('click', () => {
                                 previewItem.remove();
                             });
                         }
-                        
+
                         reader.readAsDataURL(file);
                     }
                 }
             });
-            
-            document.getElementById('introVideo').addEventListener('change', function(e) {
+
+            document.getElementById('introVideo').addEventListener('change', function (e) {
                 const previewContainer = document.getElementById('videoPreview');
                 previewContainer.innerHTML = '';
-                
+
                 for (const file of e.target.files) {
                     if (file.type.startsWith('video/')) {
                         const reader = new FileReader();
-                        
-                        reader.onload = function(e) {
+
+                        reader.onload = function (e) {
                             const previewItem = document.createElement('div');
                             previewItem.className = 'preview-item';
                             previewItem.innerHTML = `
@@ -3039,21 +3257,21 @@
                                 <button class="remove-btn">&times;</button>
                             `;
                             previewContainer.appendChild(previewItem);
-                            
+
                             // Add remove button functionality
                             previewItem.querySelector('.remove-btn').addEventListener('click', () => {
                                 previewItem.remove();
                             });
                         }
-                        
+
                         reader.readAsDataURL(file);
                     }
                 }
             });
-            
+
             // Language toggle
             langBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     const lang = this.getAttribute('data-lang');
                     langBtns.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
@@ -3194,12 +3412,12 @@
             const now = Date.now();
             const diff = Math.floor((now - ts) / 1000);
             if (diff < 60) return 'just now';
-            if (diff < 3600) return `${Math.floor(diff/60)} min ago`;
-            if (diff < 86400) return `${Math.floor(diff/3600)} hr ago`;
-            return `${Math.floor(diff/86400)} days ago`;
+            if (diff < 3600) return `${Math.floor(diff / 60)} min ago`;
+            if (diff < 86400) return `${Math.floor(diff / 3600)} hr ago`;
+            return `${Math.floor(diff / 86400)} days ago`;
         }
         function escapeHtml(str) {
-            return str.replace(/[&<>"']/g, function(tag) {
+            return str.replace(/[&<>"']/g, function (tag) {
                 const charsToReplace = {
                     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
                 };
@@ -3212,7 +3430,7 @@
 
 
 
-        
+
         // --- Review Form Logic ---
         function setupReviewForm(profileId) {
             const form = document.getElementById('reviewForm');
@@ -3263,7 +3481,7 @@
                 };
             }
             // Submit handler
-            form.onsubmit = function(e) {
+            form.onsubmit = function (e) {
                 e.preventDefault();
                 const textInput = form.querySelector('#reviewText');
                 const anonymousToggle = form.querySelector('#anonymousToggle');
@@ -3341,7 +3559,7 @@
 
         // --- Patch showProfile to load reviews ---
         const origShowProfile = showProfile;
-        showProfile = function(profileId) {
+        showProfile = function (profileId) {
             origShowProfile(profileId);
             renderReviews(profileId);
             setupReviewForm(profileId);
@@ -3361,7 +3579,7 @@
         let selectedRating = 0;
         const proStars = document.querySelectorAll('#customRatingStars .rating-star');
         proStars.forEach(star => {
-            star.onclick = function() {
+            star.onclick = function () {
                 selectedRating = +this.dataset.rating;
                 proStars.forEach(s => s.classList.toggle('fas', +s.dataset.rating <= selectedRating));
                 proStars.forEach(s => s.classList.toggle('far', +s.dataset.rating > selectedRating));
@@ -3371,7 +3589,7 @@
         // ... existing code ...
 
         function renderReviewSystemForProfile(profileId, container) {
-          container.innerHTML = `
+            container.innerHTML = `
             <form class="review-form" id="reviewForm_${profileId}">
               <div class="review-form-title">
                 <i class="fas fa-star"></i> Add Your Review
@@ -3408,100 +3626,100 @@
             <button class="submit-btn view-more-btn" id="viewMoreBtn_${profileId}" style="display:none;">View more</button>
           `;
 
-          // --- Star rating logic ---
-          let selectedRating = 0;
-          const stars = container.querySelectorAll(`#ratingStars_${profileId} .rating-star`);
-          stars.forEach(star => {
-            star.onclick = function() {
-              selectedRating = +this.dataset.rating;
-              stars.forEach(s => s.classList.toggle('fas', +s.dataset.rating <= selectedRating));
-              stars.forEach(s => s.classList.toggle('far', +s.dataset.rating > selectedRating));
-              stars.forEach(s => s.classList.toggle('selected', +s.dataset.rating <= selectedRating));
-            }
-          });
+            // --- Star rating logic ---
+            let selectedRating = 0;
+            const stars = container.querySelectorAll(`#ratingStars_${profileId} .rating-star`);
+            stars.forEach(star => {
+                star.onclick = function () {
+                    selectedRating = +this.dataset.rating;
+                    stars.forEach(s => s.classList.toggle('fas', +s.dataset.rating <= selectedRating));
+                    stars.forEach(s => s.classList.toggle('far', +s.dataset.rating > selectedRating));
+                    stars.forEach(s => s.classList.toggle('selected', +s.dataset.rating <= selectedRating));
+                }
+            });
 
-          // --- Photo upload logic ---
-          const photoUploadBtn = container.querySelector(`#photoUploadBtn_${profileId}`);
-          const photoInput = container.querySelector(`#reviewImage_${profileId}`);
-          const photoPreview = container.querySelector(`#photoPreview_${profileId}`);
-          photoUploadBtn.onclick = () => photoInput.click();
-          photoInput.onchange = function() {
-            if (this.files && this.files[0]) {
-              const reader = new FileReader();
-              reader.onload = function(e) {
-                photoPreview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
-              };
-              reader.readAsDataURL(this.files[0]);
-            } else {
-              photoPreview.innerHTML = `<span class="photo-placeholder"><i class="fas fa-camera"></i></span>`;
-            }
-          };
+            // --- Photo upload logic ---
+            const photoUploadBtn = container.querySelector(`#photoUploadBtn_${profileId}`);
+            const photoInput = container.querySelector(`#reviewImage_${profileId}`);
+            const photoPreview = container.querySelector(`#photoPreview_${profileId}`);
+            photoUploadBtn.onclick = () => photoInput.click();
+            photoInput.onchange = function () {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        photoPreview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+                    };
+                    reader.readAsDataURL(this.files[0]);
+                } else {
+                    photoPreview.innerHTML = `<span class="photo-placeholder"><i class="fas fa-camera"></i></span>`;
+                }
+            };
 
-          // --- Review form submission ---
-          container.querySelector(`#reviewForm_${profileId}`).onsubmit = function(e) {
-            e.preventDefault();
-            const text = container.querySelector(`#reviewText_${profileId}`).value.trim();
-            const isAnon = container.querySelector(`#anonymousToggle_${profileId}`).checked;
-            const imgInput = container.querySelector(`#reviewImage_${profileId}`);
-            const userId = getUserId();
-            let reviews = getReviews(profileId);
-            const existing = reviews.find(r => r.userId === userId);
-            if (!selectedRating) return alert('Select a rating!');
-            if (!text) return alert('Enter your review!');
-            if (existing && !imgInput.files.length) return alert('Second review requires image upload!');
-            let imgData = '';
-            if (imgInput.files.length) {
-              const reader = new FileReader();
-              reader.onload = function(ev) {
-                imgData = ev.target.result;
-                saveReview();
-              };
-              reader.readAsDataURL(imgInput.files[0]);
-            } else {
-              saveReview();
-            }
-            function saveReview() {
-              const type = getReviewType({
-                isAnon,
-                hasImg: !!imgData,
-                hasProfile: true // or your logic
-              });
-              reviews.push({
-                userId,
-                rating: selectedRating,
-                text,
-                image: imgData,
-                type,
-                timestamp: Date.now(),
-                anonymous: isAnon
-              });
-              saveReviews(profileId, reviews);
-              renderReviews();
-              container.querySelector(`#reviewForm_${profileId}`).reset();
-              photoPreview.innerHTML = `<span class="photo-placeholder"><i class="fas fa-camera"></i></span>`;
-              selectedRating = 0;
-              stars.forEach(s => { s.classList.remove('fas', 'selected'); s.classList.add('far'); });
-            }
-          };
+            // --- Review form submission ---
+            container.querySelector(`#reviewForm_${profileId}`).onsubmit = function (e) {
+                e.preventDefault();
+                const text = container.querySelector(`#reviewText_${profileId}`).value.trim();
+                const isAnon = container.querySelector(`#anonymousToggle_${profileId}`).checked;
+                const imgInput = container.querySelector(`#reviewImage_${profileId}`);
+                const userId = getUserId();
+                let reviews = getReviews(profileId);
+                const existing = reviews.find(r => r.userId === userId);
+                if (!selectedRating) return alert('Select a rating!');
+                if (!text) return alert('Enter your review!');
+                if (existing && !imgInput.files.length) return alert('Second review requires image upload!');
+                let imgData = '';
+                if (imgInput.files.length) {
+                    const reader = new FileReader();
+                    reader.onload = function (ev) {
+                        imgData = ev.target.result;
+                        saveReview();
+                    };
+                    reader.readAsDataURL(imgInput.files[0]);
+                } else {
+                    saveReview();
+                }
+                function saveReview() {
+                    const type = getReviewType({
+                        isAnon,
+                        hasImg: !!imgData,
+                        hasProfile: true // or your logic
+                    });
+                    reviews.push({
+                        userId,
+                        rating: selectedRating,
+                        text,
+                        image: imgData,
+                        type,
+                        timestamp: Date.now(),
+                        anonymous: isAnon
+                    });
+                    saveReviews(profileId, reviews);
+                    renderReviews();
+                    container.querySelector(`#reviewForm_${profileId}`).reset();
+                    photoPreview.innerHTML = `<span class="photo-placeholder"><i class="fas fa-camera"></i></span>`;
+                    selectedRating = 0;
+                    stars.forEach(s => { s.classList.remove('fas', 'selected'); s.classList.add('far'); });
+                }
+            };
 
-          function renderReviews(showAll = false) {
-            let reviews = getReviews(profileId);
-            container.querySelector(`#weightedAvg_${profileId}`).textContent = weightedAvg(reviews);
-            container.querySelector(`#reviewCount_${profileId}`).textContent = reviews.length;
-            const list = container.querySelector(`#reviewsList_${profileId}`);
-            list.innerHTML = '';
-            const toShow = showAll ? reviews : reviews.slice(0,3);
-            toShow.forEach(r => {
-              const div = document.createElement('div');
-              div.className = 'review-card';
-              div.innerHTML = `
+            function renderReviews(showAll = false) {
+                let reviews = getReviews(profileId);
+                container.querySelector(`#weightedAvg_${profileId}`).textContent = weightedAvg(reviews);
+                container.querySelector(`#reviewCount_${profileId}`).textContent = reviews.length;
+                const list = container.querySelector(`#reviewsList_${profileId}`);
+                list.innerHTML = '';
+                const toShow = showAll ? reviews : reviews.slice(0, 3);
+                toShow.forEach(r => {
+                    const div = document.createElement('div');
+                    div.className = 'review-card';
+                    div.innerHTML = `
                 <div class="review-header">
                   <div>
                     <span style="font-weight:600;">${r.anonymous ? 'Anonymous' : 'User'}</span>
                     <span style="color:#64748b;font-size:0.8rem;margin-left:0.3rem;">${new Date(r.timestamp).toLocaleDateString()}</span>
                   </div>
                   <div class="review-rating">
-                    ${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}
+                    ${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}
                   </div>
                 </div>
                 <div class="review-content">
@@ -3509,63 +3727,63 @@
                 </div>
                 ${r.image ? `<img src="${r.image}" class="review-img"/>` : ''}
               `;
-              list.appendChild(div);
-            });
-            const btn = container.querySelector(`#viewMoreBtn_${profileId}`);
-            btn.style.display = (reviews.length > 3 && !showAll) ? 'block' : 'none';
-            btn.onclick = () => renderReviews(true);
-          }
+                    list.appendChild(div);
+                });
+                const btn = container.querySelector(`#viewMoreBtn_${profileId}`);
+                btn.style.display = (reviews.length > 3 && !showAll) ? 'block' : 'none';
+                btn.onclick = () => renderReviews(true);
+            }
 
-          // --- Storage helpers for dynamic profileId ---
-          function getReviews(profileId) {
-            return JSON.parse(localStorage.getItem('reviews_' + profileId) || '[]');
-          }
-          function saveReviews(profileId, reviews) {
-            localStorage.setItem('reviews_' + profileId, JSON.stringify(reviews));
-          }
-          function weightedAvg(reviews) {
-            let sum = 0, wsum = 0;
-            reviews.forEach(r => {
-              const w = REVIEW_WEIGHTS[r.type] || 1;
-              sum += r.rating * w;
-              wsum += w;
-            });
-            return wsum ? (sum/wsum).toFixed(2) : '0.00';
-          }
-          function getReviewType({isAnon, hasImg, hasProfile}) {
-            if (!IS_LOGGED_IN) return 'anonymous';
-            if (hasImg && hasProfile) return 'verified_photo_full';
-            if (hasImg) return 'verified_photo';
-            return 'verified';
-          }
-          function getUserId() {
-            if (!IS_LOGGED_IN) return 'anon_' + (localStorage.getItem('anon_id') || (function(){const id = 'a'+Math.random().toString(36).slice(2);localStorage.setItem('anon_id',id);return id;})());
-            return 'user_123';
-          }
+            // --- Storage helpers for dynamic profileId ---
+            function getReviews(profileId) {
+                return JSON.parse(localStorage.getItem('reviews_' + profileId) || '[]');
+            }
+            function saveReviews(profileId, reviews) {
+                localStorage.setItem('reviews_' + profileId, JSON.stringify(reviews));
+            }
+            function weightedAvg(reviews) {
+                let sum = 0, wsum = 0;
+                reviews.forEach(r => {
+                    const w = REVIEW_WEIGHTS[r.type] || 1;
+                    sum += r.rating * w;
+                    wsum += w;
+                });
+                return wsum ? (sum / wsum).toFixed(2) : '0.00';
+            }
+            function getReviewType({ isAnon, hasImg, hasProfile }) {
+                if (!IS_LOGGED_IN) return 'anonymous';
+                if (hasImg && hasProfile) return 'verified_photo_full';
+                if (hasImg) return 'verified_photo';
+                return 'verified';
+            }
+            function getUserId() {
+                if (!IS_LOGGED_IN) return 'anon_' + (localStorage.getItem('anon_id') || (function () { const id = 'a' + Math.random().toString(36).slice(2); localStorage.setItem('anon_id', id); return id; })());
+                return 'user_123';
+            }
 
-          renderReviews();
+            renderReviews();
         }
 
         // --- Attach to all profile review containers on page load ---
-        document.addEventListener('DOMContentLoaded', function() {
-          document.querySelectorAll('.profile-reviews').forEach(container => {
-            const profileId = container.getAttribute('data-profile-id');
-            renderReviewSystemForProfile(profileId, container);
-          });
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.profile-reviews').forEach(container => {
+                const profileId = container.getAttribute('data-profile-id');
+                renderReviewSystemForProfile(profileId, container);
+            });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-          if (localStorage.getItem('isLoggedIn') === 'true') {
-            // Update UI to show user is logged in
-            document.getElementById('authToggleBtn').innerHTML = '<i class="fas fa-sign-out-alt"></i> Logout';
-          }
+        document.addEventListener('DOMContentLoaded', function () {
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                // Update UI to show user is logged in
+                document.getElementById('authToggleBtn').innerHTML = '<i class="fas fa-sign-out-alt"></i> Logout';
+            }
         });
 
         // --- Live Search Suggestions ---
         const searchInput = document.querySelector('.search-input');
         const suggestionsBox = document.getElementById('searchSuggestions');
 
-        searchInput.addEventListener('input', function() {
+        searchInput.addEventListener('input', function () {
             const query = this.value.trim().toLowerCase();
             if (!query) {
                 suggestionsBox.style.display = 'none';
@@ -3592,14 +3810,14 @@
         });
 
         // Hide suggestions when clicking outside
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (!suggestionsBox.contains(e.target) && e.target !== searchInput) {
                 suggestionsBox.style.display = 'none';
             }
         });
 
         // Handle click on suggestion
-        suggestionsBox.addEventListener('click', function(e) {
+        suggestionsBox.addEventListener('click', function (e) {
             const item = e.target.closest('.search-suggestion-item');
             if (item) {
                 const profileId = item.getAttribute('data-id');
@@ -3612,7 +3830,7 @@
         let selectedCity = "All";
 
         document.querySelectorAll('.city-filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function () {
                 document.querySelectorAll('.city-filter-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 selectedCity = this.textContent.trim();
@@ -3627,24 +3845,24 @@
         });
     </script>
     <script>
-    function setLanguage(lang) {
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
-          el.textContent = translations[lang][key];
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            localStorage.setItem('lang', lang);
         }
-      });
-      localStorage.setItem('lang', lang);
-    }
 
-    document.getElementById('languageSwitcher').addEventListener('change', function() {
-      setLanguage(this.value);
-    });
+        document.getElementById('languageSwitcher').addEventListener('change', function () {
+            setLanguage(this.value);
+        });
 
   /*  // On page load, set language from localStorage or default to English
     const savedLang = localStorage.getItem('lang') || 'en';
     document.getElementById('languageSwitcher').value = savedLang;
-    setLanguage(savedLang);
+    setLanguage(savedLang); */
     </script>
     <script>
     // ... existing code ...
@@ -3882,8 +4100,6 @@
             });
         });
     });
-    </script>
-    <script>
     // ... existing code ...
     let editProfileId = null; // Track which profile is being edited
 
@@ -4048,8 +4264,6 @@
     document.querySelectorAll('.lang-btn').forEach(btn => {
       if (btn.getAttribute('data-lang') === savedLang) btn.classList.add('active');
     });
-    </script>
-    <script>
     // Remove old select-based language switcher event handler and duplicate savedLang
     // Only use the .lang-btn logic for language switching
     // On page load, set the active .lang-btn and apply translations
@@ -4063,6 +4277,8 @@
       applyTranslations();
     })();
     // ... existing code ...
+    
     </script>
 </body>
+
 </html>
