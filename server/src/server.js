@@ -20,7 +20,7 @@ connectDB();
 
 app.use(express.json());
 app.use(cors({
-  origin: ['https://workerconnect-neon.vercel.app/'], // update this
+  origin: ['https://workerconnect-neon.vercel.app'], // update this
   credentials: true,
 }));
 
