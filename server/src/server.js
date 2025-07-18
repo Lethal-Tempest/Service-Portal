@@ -20,7 +20,7 @@ connectDB();
 
 app.use(express.json());
 app.use(cors({
-  origin: ['https://workerconnect-neon.vercel.app'], // for testing
+  origin: ['https://workerconnect-neon.vercel.app',"http://127.0.0.1:5500",], // for testing
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
