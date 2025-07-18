@@ -19,7 +19,10 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: ['https://workerconnect-neon.vercel.app/'], // update this
+  credentials: true,
+}));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/workers", workerRoutes);
