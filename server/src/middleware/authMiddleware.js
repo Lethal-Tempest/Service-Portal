@@ -23,7 +23,8 @@ const authenticateToken = (req, res, next) => {
 
 const requireRole = (roles) => {
     return (req, res, next) => {
-        if (!roles.includes(req.user.role)) {
+        const allowedRoles = Array.isArray(roles) ? roles : [roles];
+        if (!allowedRoles.includes(req.user.role)) {
             return res
                 .status(403)
                 .json({ message: "Insufficient permissions" });
@@ -31,5 +32,6 @@ const requireRole = (roles) => {
         next();
     };
 };
+
 
 export { authenticateToken, requireRole };

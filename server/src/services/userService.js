@@ -28,7 +28,7 @@ class UserService {
 
     static async registerUser(
         name, email, password, role, location,
-        profession, experience, phone, bio, skills, aadhar,
+        profession, experience, phone, bio, skills, hourlyRate, aadhar,
         uploads = {} // default fallback
     ) {
         if (!uploads) {
@@ -55,6 +55,7 @@ class UserService {
             phone,
             bio,
             skills,
+            hourlyRate,
             aadhar,
             aadharImgUrl: uploads.aadharImgUrl || null,
             profilePicUrl: uploads.profilePicUrl || null,
@@ -66,27 +67,6 @@ class UserService {
         await user.save();
 
         return user;
-    }
-
-
-
-
-    static generateToken(user) {
-        return jwt.sign(
-            { email: user.email },
-            process.env.JWT_SECRET || "your_jwt_secret",
-            { expiresIn: "7d" }
-        );
-    }
-
-    static formatUserResponse(user) {
-        return {
-            id: user._id,
-            name: user.name,
-            email: user.email,
-            role: user.role,
-            location: user.location,
-        };
     }
 
     static async authenticateUser(email, password) {

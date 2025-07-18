@@ -1,9 +1,14 @@
 import UserService from "../services/userService.js";
 import uploadToCloudinary from '../utils/uploadToCloudinary.js';
+import { generateToken, formatUserResponse } from '../utils/auth.js';
 
 class UserController {
     static async getProfile(req, res) {
         try {
+            if (!req.user?.userId) {
+                return res.status(401).json({ message: "Unauthorized" });
+            }
+
             const userId = req.user.userId;
             const user = await UserService.getUserById(userId);
 
@@ -24,6 +29,10 @@ class UserController {
 
     static async updateProfile(req, res) {
         try {
+            if (!req.user?.userId) {
+                return res.status(401).json({ message: "Unauthorized" });
+            }
+
             const userId = req.user.userId;
             const updates = req.body;
 
@@ -46,12 +55,13 @@ class UserController {
 
     static async signup(req, res) {
         try {
-            console.log(req);
+            // console.log(req);
 
             const {
                 name, email, password, role, location,
-                profession, experience, phone, bio, skills, aadhar
+                profession, experience, phone, bio, skills, aadhar, hourlyRate
             } = req.body;
+
 
             console.log("def");
 
@@ -86,11 +96,14 @@ class UserController {
             const user = await UserService.registerUser(
                 name, email, password, role, location,
                 profession, experience, phone, bio, skills, aadhar,
-                uploads // now always defined
+                hourlyRate,
+                uploads
             );
 
-            const token = UserService.generateToken(user);
-            const userResponse = UserService.formatUserResponse(user);
+
+            const token = generateToken(user);
+            const userResponse = formatUserResponse(user);
+
 
             res.status(201).json({
                 message: "User registered successfully",
@@ -120,9 +133,9 @@ class UserController {
             const { email, password } = req.body;
 
             const user = await UserService.authenticateUser(email, password);
-            const token = UserService.generateToken(user);
+            const token = generateToken(user);
             console.log("Backend Token", token);
-            const userResponse = UserService.formatUserResponse(user);
+            const userResponse = formatUserResponse(user);
 
             res.json({
                 message: "Login successful",

@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import mongoose from "mongoose";
 
 class WorkerService {
     static async getWorkers(filters = {}) {
@@ -40,7 +41,7 @@ class WorkerService {
         return worker;
     }
 
-    static async rateWorker(workerId, clientId, rating, comment) {
+    static async rateWorker(workerId, clientId, rating, comment = "") {
         // Validate rating
         if (!rating || rating < 1 || rating > 5) {
             throw new Error("Rating must be between 1 and 5");
@@ -52,28 +53,33 @@ class WorkerService {
             throw new Error("Worker not found");
         }
 
-        // Check if client already rated this worker
-        const existingRatingIndex = worker.ratings.findIndex(
-            (r) => r.clientId.toString() === clientId
+        // Ensure clientId is an ObjectId
+        const clientObjectId = new mongoose.Types.ObjectId(clientId);
+
+        // Check if the client has already rated
+        const existingIndex = worker.ratings.findIndex(
+            (r) => r.clientId.toString() === clientObjectId.toString()
         );
 
-        if (existingRatingIndex !== -1) {
+        if (existingIndex !== -1) {
             // Update existing rating
-            worker.ratings[existingRatingIndex] = {
-                clientId,
-                rating,
-                comment: comment || "",
-                createdAt: new Date(),
-            };
+            worker.ratings[existingIndex].rating = rating;
+            worker.ratings[existingIndex].comment = comment;
+            worker.ratings[existingIndex].createdAt = new Date();
         } else {
             // Add new rating
             worker.ratings.push({
-                clientId,
+                clientId: clientObjectId,
                 rating,
-                comment: comment || "",
+                comment,
                 createdAt: new Date(),
             });
         }
+
+        // Recalculate averageRating and totalRatings
+        const total = worker.ratings.reduce((acc, r) => acc + r.rating, 0);
+        worker.totalRatings = worker.ratings.length;
+        worker.averageRating = total / worker.totalRatings;
 
         await worker.save();
 

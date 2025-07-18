@@ -22,7 +22,7 @@ router.get("/:id", authenticateToken, WorkerController.getWorkerById);
 router.post(
     "/:id/rate",
     authenticateToken,
-    requireRole(["client"]),
+    // requireRole(["client"]),
     WorkerController.rateWorker
 );
 

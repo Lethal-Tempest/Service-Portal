@@ -40,32 +40,13 @@ class WorkerController {
 
     static async rateWorker(req, res) {
         try {
-            const { rating, comment } = req.body;
-            const workerId = req.params.id;
-            const clientId = req.user.userId;
+            const { workerId, rating, comment } = req.body;
+            const clientId = req.user._id; // Assuming you're using auth middleware
 
-            const result = await WorkerService.rateWorker(
-                workerId,
-                clientId,
-                rating,
-                comment
-            );
-
-            res.json({
-                message: "Rating submitted successfully",
-                ...result,
-            });
+            const result = await WorkerService.rateWorker(workerId, clientId, rating, comment);
+            res.status(200).json({ success: true, ...result });
         } catch (error) {
-            if (
-                error.message === "Rating must be between 1 and 5" ||
-                error.message === "Worker not found"
-            ) {
-                return res.status(400).json({ message: error.message });
-            }
-            res.status(500).json({
-                message: "Server error",
-                error: error.message,
-            });
+            res.status(400).json({ success: false, message: error.message });
         }
     }
 
