@@ -27,20 +27,24 @@ class UserService {
     }
 
     static async registerUser(
-        firstName, lastName, name, email, password, role, location,
+        name, email, password, role, location,
         profession, experience, phone, bio, skills, aadhar,
-        uploads // contains cloudinary URLs
+        uploads = {} // default fallback
     ) {
+        if (!uploads) {
+            console.log("🚨 uploads is undefined! Defaulting to empty object.");
+            uploads = {};
+        }
+
         const existingUser = await User.findOne({ email });
-        if (existingUser) throw new Error("User already exists");
+
+        if (existingUser) {
+            throw new Error("User already exists");
+        }
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        if(name===null){
-            name = firstName + " " + lastName;
-        }
-
-        const newUser = new User({
+        const userData = {
             name,
             email,
             password: hashedPassword,
@@ -52,15 +56,19 @@ class UserService {
             bio,
             skills,
             aadhar,
-            aadharImg: uploads.aadharImgUrl,
-            profilePic: uploads.profilePicUrl,
-            introVideo: uploads.introVideoUrl,
-            previousWorkPics: uploads.previousWorkUrls
-        });
+            aadharImgUrl: uploads.aadharImgUrl || null,
+            profilePicUrl: uploads.profilePicUrl || null,
+            introVideoUrl: uploads.introVideoUrl || null,
+            previousWorkUrls: uploads.previousWorkUrls || [],
+        };
 
-        await newUser.save();
-        return newUser;
+        const user = new User(userData);
+        await user.save();
+
+        return user;
     }
+
+
 
 
     static generateToken(user) {

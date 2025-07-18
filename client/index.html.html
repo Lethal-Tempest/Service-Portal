@@ -2780,7 +2780,7 @@
                 if (profiles.ok) {
                     const data = await profiles.json();
                     console.log("Workers fetched successfully:", data);
-                    return data
+                    return data;
                     // Use `data` to render workers
                 } else {
                     const err = await profiles.json();
@@ -2822,9 +2822,6 @@
                 localStorage.setItem('token', token);
             }
 
-            // Load profiles
-            renderProfiles();
-
             // Set up event listeners
             setupEventListeners();
         });
@@ -2832,15 +2829,18 @@
         // Render profiles to the home page
         async function renderProfiles(city = selectedCity) {
             profilesContainer.innerHTML = '';
-            let filteredProfiles = await fetchAllWorkers();
+            let data = await fetchAllWorkers();
+            let filteredProfiles = data.workers;
             if (city !== "All") {
                 filteredProfiles = filteredProfiles.filter(profile => profile.location === city);
             }
+            console.log("FP", filteredProfiles);
             if (filteredProfiles.length === 0) {
                 profilesContainer.innerHTML = '<div style="padding:2rem;text-align:center;color:#64748b;font-size:1.2rem;">No profiles found for this city.</div>';
                 return;
             }
-            filteredProfiles.forEach(profile => {
+            filteredProfiles.forEach((profile) => {
+                console.log("Showing profile: ", profile);
                 const profileCard = document.createElement('div');
                 profileCard.className = 'profile-card';
                 profileCard.innerHTML = `
@@ -2866,9 +2866,7 @@
                             <i class="fas fa-rupee-sign"></i>
                             <span>${profile.rate}</span>
                         </div>
-                        <div class="skills">
-                            ${profile.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
-                        </div>
+                        
                     </div>
                     <div class="profile-actions">
                         <a href="#" class="action-btn view-profile" data-id="${profile.id}">
@@ -3568,7 +3566,6 @@
         // --- Patch initial load to show reviews for default profile ---
         document.addEventListener('DOMContentLoaded', () => {
             // ... existing code ...
-            renderProfiles();
             setupEventListeners();
             // Show reviews for default profile (ID 1)
             renderReviews(1);
@@ -4221,7 +4218,7 @@
         // Re-render profiles on home page
         renderProfiles(selectedCity);
         window.scrollTo({top:0,behavior:'smooth'});
-        localStorage.setItem('profiles', JSON.stringify(profiles));
+        localStorage.setItem('profiles', JSON.stringify(profiles)); //7303063371
     };
     // ... existing code ...
     </script>

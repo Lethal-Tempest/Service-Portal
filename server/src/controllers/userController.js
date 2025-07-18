@@ -46,44 +46,47 @@ class UserController {
 
     static async signup(req, res) {
         try {
+            console.log(req);
+
             const {
                 name, email, password, role, location,
                 profession, experience, phone, bio, skills, aadhar
             } = req.body;
 
-            let aadharImgUrl = null;
-            let profilePicUrl = null;
-            let introVideoUrl = null;
-            let previousWorkUrls = [];
+            console.log("def");
+
+            let uploads = {
+                aadharImgUrl: null,
+                profilePicUrl: null,
+                introVideoUrl: null,
+                previousWorkUrls: []
+            };
 
             if (role === 'worker' && req.files) {
                 const { aadharImg, profilePic, previousWorkPics, introVideo } = req.files;
 
-                if (aadharImg?.length) {
-                    aadharImgUrl = await uploadToCloudinary(aadharImg[0], 'users/aadhar');
-                }
+                uploads.aadharImgUrl = aadharImg?.[0]
+                    ? await uploadToCloudinary(aadharImg[0], 'users/aadhar')
+                    : null;
 
-                if (profilePic?.length) {
-                    profilePicUrl = await uploadToCloudinary(profilePic[0], 'users/profile');
-                }
+                uploads.profilePicUrl = profilePic?.[0]
+                    ? await uploadToCloudinary(profilePic[0], 'users/profile')
+                    : null;
 
-                if (introVideo?.length) {
-                    introVideoUrl = await uploadToCloudinary(introVideo[0], 'users/videos');
-                }
+                uploads.introVideoUrl = introVideo?.[0]
+                    ? await uploadToCloudinary(introVideo[0], 'users/videos')
+                    : null;
 
-                if (previousWorkPics?.length) {
-                    previousWorkUrls = await Promise.all(
-                        previousWorkPics.map(file =>
-                            uploadToCloudinary(file, 'users/work')
-                        )
-                    );
-                }
+                uploads.previousWorkUrls = previousWorkPics?.length
+                    ? await Promise.all(previousWorkPics.map(file =>
+                        uploadToCloudinary(file, 'users/work')))
+                    : [];
             }
 
             const user = await UserService.registerUser(
                 name, email, password, role, location,
                 profession, experience, phone, bio, skills, aadhar,
-                { aadharImgUrl, profilePicUrl, introVideoUrl, previousWorkUrls }
+                uploads // now always defined
             );
 
             const token = UserService.generateToken(user);
@@ -93,25 +96,22 @@ class UserController {
                 message: "User registered successfully",
                 token,
                 user: userResponse,
-                uploads: {
-                    aadharImgUrl,
-                    profilePicUrl,
-                    introVideoUrl,
-                    previousWorkUrls
-                }
+                uploads
             });
 
         } catch (error) {
-            console.error("Signup Error:", error);
+            console.log("Error coming abc", error);
             if (error.message === "User already exists") {
                 return res.status(400).json({ message: error.message });
             }
             res.status(500).json({
-                message: "Server error",
+                message: "Server error X",
                 error: error.message,
             });
         }
     }
+
+
 
 
 

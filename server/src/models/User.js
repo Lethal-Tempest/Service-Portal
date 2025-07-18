@@ -55,6 +55,10 @@ const userSchema = new mongoose.Schema(
             type: Boolean,
             default: true,
         },
+        skills:{
+            type: [String],
+            default: [],
+        },
         ratings: [
             {
                 clientId: {
