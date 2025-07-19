@@ -1,19 +1,134 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <title>Sign Up</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        background: #f7f8fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+      }
+
+      .glass-container {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        width: 100%;
+        max-width: 420px;
+        padding: 2.5rem;
+        color: #333;
+        background-color: white;
+        animation: fadeIn 1s ease forwards;
+        transform: translateY(20px);
+        opacity: 0;
+      }
+
+      @keyframes fadeIn {
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+        letter-spacing: 0.5px;
+        color: #2d7ff9;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: #333;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        margin-bottom: 1.2rem;
+        border: 2px solid transparent;
+        border-radius: 12px;
+        background: #f7f8fa;
+        color: #111;
+        font-size: 1rem;
+        transition: 0.3s ease;
+      }
+
+      input::placeholder {
+        color: #aaa;
+      }
+
+      input:focus {
+        outline: none;
+        border: 2px solid #2d7ff9;
+        background: #ffffff;
+        box-shadow: 0 0 5px rgba(45, 127, 249, 0.25);
+      }
+
+      button[type="submit"] {
+        width: 100%;
+        padding: 0.9rem;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: white;
+        background: linear-gradient(135deg, #00c6ff, #0072ff);
+        cursor: pointer;
+        box-shadow: 0 0 15px rgba(0, 198, 255, 0.5);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      button:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 25px rgba(0, 198, 255, 0.7);
+      }
+
+      @media (max-width: 480px) {
+        .glass-container {
+          padding: 1.8rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    <h1>Sign Up User</h1>
-    <form id="signUpForm">
-      name <input type="text" name="name" required /><br />
-      email <input type="email" name="email" required /><br />
-      password <input type="password" name="password" required /><br />
-      <button type="submit">Sign Up</button>
-    </form>
+    <div class="glass-container">
+      <h1>Create Account</h1>
+      <form id="signUpForm">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="John Doe" required />
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="john@example.com" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="••••••••" required />
+
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
 
     <script>
-      //Redeploying
       const form = document.getElementById("signUpForm");
 
       form.addEventListener("submit", async (e) => {
@@ -36,16 +151,19 @@
             throw new Error(data.message || "Signup failed");
           }
 
-          // Save token and optionally user data
           localStorage.setItem("token", data.token);
           localStorage.setItem("user", JSON.stringify(data.user));
 
-          // Redirect to homepage
           window.location.href = "login-standalone.html";
         } catch (err) {
           alert("Signup failed: " + err.message);
           console.error("Signup error:", err);
         }
+      });
+
+
+      document.addEventListener("DOMContentLoaded", () => {
+        //  console.log(localStorage.getItem("token"));
       });
     </script>
   </body>
