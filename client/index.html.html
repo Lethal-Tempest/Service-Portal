@@ -2853,13 +2853,22 @@
             try {
                 const token = localStorage.getItem("token");
 
-                const profiles = await fetch("https://worker-connect.onrender.com/api/workers", {
+                // const profiles = await fetch("https://worker-connect.onrender.com/api/workers", {
+                //     method: "GET",
+                //     headers: {
+                //         "Authorization": `Bearer ${token}`,
+                //         "Content-Type": "application/json"
+                //     }
+                // });
+
+                const profiles = await fetch("http://localhost:5000/api/workers", {
                     method: "GET",
                     headers: {
                         "Authorization": `Bearer ${token}`,
                         "Content-Type": "application/json"
                     }
                 });
+
 
                 if (profiles.ok) {
                     const data = await profiles.json();

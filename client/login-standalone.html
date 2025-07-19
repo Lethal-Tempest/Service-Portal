@@ -549,7 +549,15 @@
             }
 
             try {
-                const res = await fetch('https://worker-connect.onrender.com/api/signin', {
+                // const res = await fetch('https://worker-connect.onrender.com/api/signin', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     // Your signin endpoint only *requires* email + password.
+                //     // If you want to confirm role server-side, include it:
+                //     body: JSON.stringify({ email, password, role: step==='worker' ? 'worker' : 'client' })
+                // });
+
+                const res = await fetch('http://localhost:5000/api/signin', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     // Your signin endpoint only *requires* email + password.
