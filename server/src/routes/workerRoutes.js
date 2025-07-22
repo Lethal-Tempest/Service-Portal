@@ -4,6 +4,9 @@ import {
     authenticateToken,
     requireRole,
 } from "../middleware/authMiddleware.js";
+import multer from 'multer';
+const storage = multer.memoryStorage(); // Use memory to get buffer
+const upload = multer({ storage })
 
 const router = express.Router();
 
@@ -21,6 +24,9 @@ router.get("/:id", authenticateToken, WorkerController.getWorkerById);
 // POST /api/workers/:id/rate - Rate a worker (clients only)
 router.post(
     "/:id/rate",
+    upload.fields([
+        { name: 'reviewPic', maxCount: 1 },
+    ]),
     authenticateToken,
     // requireRole(["client"]),
     WorkerController.rateWorker

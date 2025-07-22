@@ -66,6 +66,10 @@ const userSchema = new mongoose.Schema(
                     ref: "User",
                     required: true,
                 },
+                isAnon: {
+                    type: Boolean,
+                    default: false,
+                },
                 rating: {
                     type: Number,
                     min: 1,
@@ -73,6 +77,10 @@ const userSchema = new mongoose.Schema(
                     required: true,
                 },
                 comment: {
+                    type: String,
+                    default: "",
+                },
+                reviewPicUrl: {
                     type: String,
                     default: "",
                 },

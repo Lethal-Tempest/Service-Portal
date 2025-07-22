@@ -41,7 +41,13 @@ class WorkerService {
         return worker;
     }
 
-    static async rateWorker(workerId, clientId, rating, comment = "") {
+    static async rateWorker(workerId, clientId, rating, comment = "", isAnon, uploads={}) {
+
+        if (!uploads) {
+            console.log("🚨 uploads is undefined! Defaulting to empty object.");
+            uploads = {};
+        }
+
         // Validate rating
         if (!rating || rating < 1 || rating > 5) {
             throw new Error("Rating must be between 1 and 5");
@@ -65,13 +71,17 @@ class WorkerService {
             // Update existing rating
             worker.ratings[existingIndex].rating = rating;
             worker.ratings[existingIndex].comment = comment;
+            worker.ratings[existingIndex].isAnon = isAnon;
+            worker.ratings[existingIndex].reviewImgUrl = uploads.reviewImgUrl;
             worker.ratings[existingIndex].createdAt = new Date();
         } else {
             // Add new rating
             worker.ratings.push({
                 clientId: clientObjectId,
+                isAnon,
                 rating,
                 comment,
+                reviewImgUrl: uploads.reviewImgUrl,
                 createdAt: new Date(),
             });
         }

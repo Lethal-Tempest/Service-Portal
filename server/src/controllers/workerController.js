@@ -1,5 +1,6 @@
 import WorkerService from "../services/workerService.js";
 import jwt from 'jsonwebtoken';
+import uploadToCloudinary from '../utils/uploadToCloudinary.js';
 
 class WorkerController {
     static async getWorkers(req, res) {
@@ -45,15 +46,30 @@ class WorkerController {
 
     static async rateWorker(req, res) {
         try {
-            const { workerId, rating, comment } = req.body;
+            const { workerId, rating, comment, isAnon } = req.body;
+
+            let uploads = {
+                reviewPicUrl: null,
+            };
+
+            let reviewPic;
+            if (req.files) {
+                ({ reviewPic } = req.files); // Use destructuring assignment properly
+            }
+
+            uploads.reviewPicUrl = reviewPic?.[0]
+                ? await uploadToCloudinary(reviewPic[0], 'workers/reviews')
+                : null;
+
             const clientId = req.user._id; // Assuming you're using auth middleware
 
-            const result = await WorkerService.rateWorker(workerId, clientId, rating, comment);
+            const result = await WorkerService.rateWorker(workerId, clientId, rating, comment, isAnon, uploads);
             res.status(200).json({ success: true, ...result });
         } catch (error) {
             res.status(400).json({ success: false, message: error.message });
         }
     }
+
 
     static async updateAvailability(req, res) {
         try {

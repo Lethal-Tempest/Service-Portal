@@ -2896,10 +2896,10 @@
                             
                     </div>
                     <div class="profile-actions">
-                        <a href="#" class="action-btn view-profile" data-id="${profile.id}">
+                        <a href="#" class="action-btn view-profile" data-id="${profile._id}">
                             <i class="fas fa-eye"></i> View
                         </a>
-                        <a href="#" class="action-btn contact-profile" data-id="${profile.id}">
+                        <a href="#" class="action-btn contact-profile" data-id="${profile.phone}">
                             <i class="fas fa-phone"></i> Contact
                         </a>
                     </div>
@@ -2909,7 +2909,7 @@
                 profileCard.addEventListener('click', function (e) {
                     // If the click is on the contact button, do nothing
                     if (e.target.closest('.contact-profile')) return;
-                    showProfile(profile.id);
+                    showProfile(profile._id);
                 });
             });
             // Add event listeners to view and contact buttons
@@ -2935,23 +2935,13 @@
 
         // Show a specific profile
         async function showProfile(profileId) {
-            console.log("Successing: ", profileId)
-            console.log(profiles);
-            let profile = profiles.find(p => p.id == profileId);
+            console.log("Successing: ", profileId);
+            console.log("Hehehehehe", profiles);
+
+            let profile = profiles.find(p => p._id == profileId); // Declare profile once here
+            console.log("After finding: ", profile);
+
             if (!profile) {
-                // await fetch (`http://localhost:5000/api/workers/${profileId}`, {
-                //     method: 'GET',
-                //     headers: {
-                //         'Content-Type': 'application/json',
-                //         'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                //     },
-                // })
-                // .then(res => res.json())
-                // .then(data => {
-                //     profile = data;
-                //     console.log("Heavenly: ",data);
-                // })
-                // .catch(err => console.log(err));
                 const res = await fetch('http://localhost:5000/api/profile', {
                     method: 'GET',
                     headers: {
@@ -2964,7 +2954,9 @@
                 profile = data.user;
                 console.log("Heavenly: ", profile);
             }
+
             console.log("Out of curiosity: ", profile);
+
 
             /*
 
@@ -3391,8 +3383,8 @@
 
         // Get reviews for a profile
         function getReviews(profileId) {
-            const all = JSON.parse(localStorage.getItem('reviews') || '{}');
-            return all[profileId] || [];
+            let profile = profiles.find(p => p._id == profileId);
+            return profile?.reviews || [];
         }
         // Save reviews for a profile
         function saveReviews(profileId, reviews) {
@@ -3820,13 +3812,6 @@
                 btn.onclick = () => renderReviews(true);
             }
 
-            // --- Storage helpers for dynamic profileId ---
-            function getReviews(profileId) {
-                return JSON.parse(localStorage.getItem('reviews_' + profileId) || '[]');
-            }
-            function saveReviews(profileId, reviews) {
-                localStorage.setItem('reviews_' + profileId, JSON.stringify(reviews));
-            }
             function weightedAvg(reviews) {
                 let sum = 0, wsum = 0;
                 reviews.forEach(r => {
