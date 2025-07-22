@@ -63,7 +63,7 @@ class UserController {
             } = req.body;
 
 
-            console.log("def");
+            // console.log("req incoming: ", req.body);
 
             let uploads = {
                 aadharImgUrl: null,
@@ -103,6 +103,8 @@ class UserController {
 
             const token = generateToken(user);
             const userResponse = formatUserResponse(user);
+
+            console.log("Reponse incoming: ", userResponse);
 
 
             res.status(201).json({

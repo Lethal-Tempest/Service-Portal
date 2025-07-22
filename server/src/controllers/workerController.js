@@ -1,4 +1,5 @@
 import WorkerService from "../services/workerService.js";
+import jwt from 'jsonwebtoken';
 
 class WorkerController {
     static async getWorkers(req, res) {
@@ -20,7 +21,11 @@ class WorkerController {
 
     static async getWorkerById(req, res) {
         try {
-            const workerId = req.params.id;
+            const token = req.headers.authorization.split(' ')[1];
+            const { id: workerId } = await jwt.verify(
+                token,
+                process.env.JWT_SECRET
+            );
             const worker = await WorkerService.getWorkerById(workerId);
 
             res.json({

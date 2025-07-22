@@ -273,6 +273,7 @@
             gap: 1.5rem;
             margin-top: 1.5rem;
         }
+
         .profile-card {
             background: white;
             border-radius: 12px;
@@ -1866,40 +1867,41 @@
         }
 
         .dropdown {
-    position: relative;
-    display: inline-block;
-}
- /* its basically for signup page beauty ui */
-     .dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: #fff;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-    z-index: 1;
-    border-radius: 8px;
-    overflow: hidden;
-}
+            position: relative;
+            display: inline-block;
+        }
 
-.dropdown-content a {
-    color: #333;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
+        /* its basically for signup page beauty ui */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #fff;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 8px;
+            overflow: hidden;
+        }
 
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
-}
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-}
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
 
-.hidden {
-    display: none;
-}
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 
@@ -1991,7 +1993,7 @@
 
             <div class="profiles-grid" id="profilesContainer">
                 <!-- Profiles will be loaded here dynamically -->
-                 
+
             </div>
 
 
@@ -2005,7 +2007,8 @@
             <h1 class="page-title">
                 <i class="fas fa-user://randomuser.me/api/portraits/men/32.jpg" alt="Profile" class="profile-view-img">
                     <h2 class="profile-view-name">Rajesh Kumar</h2>
-                    <div class="profile-vie-plus"></i>
+                    <div class="profile-vie-plus">
+                </i>
                 Create Your Professional Profile
             </h1>
 
@@ -2736,116 +2739,30 @@
             },
         });
 
-        // Sample profiles data
-        // const profiles = [
-        //     {
-        //         id: 1,
-        //         name: "Rajesh Kumar",
-        //         profession: "Plumber",
-        //         location: "New Delhi",
-        //         contact: "+91 9876543210",
-        //         rating: 4.7,
-        //         reviews: 128,
-        //         experience: 12,
-        //         rate: "₹350/hour",
-        //         skills: ["Pipe Fitting", "Faucet Repair", "Water Tank Installation"],
-        //         img: "https://randomuser.me/api/portraits/men/32.jpg"
-        //     },
-        //     {
-        //         id: 2,
-        //         name: "Amit Singh",
-        //         profession: "Electrician",
-        //         location: "Noida",
-        //         contact: "+91 8765432109",
-        //         rating: 4.5,
-        //         reviews: 92,
-        //         experience: 8,
-        //         rate: "₹400/hour",
-        //         skills: ["Wiring", "Switch Repair", "Inverter Installation"],
-        //         img: "https://randomuser.me/api/portraits/men/44.jpg"
-        //     },
-        //     {
-        //         id: 3,
-        //         name: "Vijay Malhotra",
-        //         profession: "Carpenter",
-        //         location: "Gurgaon",
-        //         contact: "+91 7654321098",
-        //         rating: 4.8,
-        //         reviews: 75,
-        //         experience: 15,
-        //         rate: "₹450/hour",
-        //         skills: ["Furniture Making", "Wood Polishing", "Door Installation"],
-        //         img: "https://randomuser.me/api/portraits/men/22.jpg"
-        //     },
-        //     {
-        //         id: 4,
-        //         name: "Sunita Patel",
-        //         profession: "Painter",
-        //         location: "Faridabad",
-        //         contact: "+91 6543210987",
-        //         rating: 4.6,
-        //         reviews: 68,
-        //         experience: 10,
-        //         rate: "₹300/hour",
-        //         skills: ["Wall Painting", "Texture Work", "Waterproofing"],
-        //         img: "https://randomuser.me/api/portraits/women/65.jpg"
-        //     },
-        //     {
-        //         id: 5,
-        //         name: "Ramesh Gupta",
-        //         profession: "AC Technician",
-        //         location: "Ghaziabad",
-        //         contact: "+91 9432109876",
-        //         rating: 4.4,
-        //         reviews: 85,
-        //         experience: 7,
-        //         rate: "₹500/hour",
-        //         skills: ["AC Repair", "Gas Refilling", "Installation"],
-        //         img: "https://randomuser.me/api/portraits/men/55.jpg"
-        //     },
-        //     {
-        //         id: 6,
-        //         name: "Sanjay Verma",
-        //         profession: "Mechanic",
-        //         location: "Delhi",
-        //         contact: "+91 8321098765",
-        //         rating: 4.9,
-        //         reviews: 120,
-        //         experience: 18,
-        //         rate: "₹600/hour",
-        //         skills: ["Engine Repair", "Brake Service", "Car Maintenance"],
-        //         img: "https://randomuser.me/api/portraits/men/33.jpg"
-        //     }
-        // ];
+        function updateHeaderUI() {
+            const token = localStorage.getItem('token');
+            console.log("From navbar", token);
+            if (token) {
+                loginBtn?.classList.add('hidden');
+                userDropdown?.classList.remove('hidden');
+            } else {
+                loginBtn?.classList.remove('hidden');
+                userDropdown?.classList.add('hidden');
+            }
+        }
 
-        // // DOM Elements
-        
-        //add the logic for tokem in the backend while he is in authentication section
-            
-            
-             
-            document.addEventListener('DOMContentLoaded', () => {
+
+        document.addEventListener('DOMContentLoaded', () => {
             const loginBtn = document.getElementById('loginBtn');
             const userDropdown = document.getElementById('userDropdown');
             const logoutBtn = document.getElementById('logoutBtn');
 
-            function updateHeaderUI() {
-            const token = localStorage.getItem('token');
-            if (token) {
-                loginBtn.classList.add('hidden');
-                userDropdown.classList.remove('hidden');
-            } else {
-                loginBtn.classList.remove('hidden');
-                userDropdown.classList.add('hidden');
-            }
-            }
-
-            logoutBtn.addEventListener('click', () => {
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            localStorage.removeItem('role');
-            updateHeaderUI();
-            window.location.href = 'index.html.html'; // or login.html
+            logoutBtn?.addEventListener('click', () => {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                localStorage.removeItem('role');
+                // updateHeaderUI();
+                window.location.href = 'login-standalone.html?action=logout';
             });
 
             updateHeaderUI();
@@ -2878,6 +2795,7 @@
                 if (profiles.ok) {
                     const data = await profiles.json();
                     console.log("Workers fetched successfully:", data);
+                    updateHeaderUI();
                     return data;
                     // Use `data` to render workers
                 } else {
@@ -2889,6 +2807,13 @@
             }
         }
 
+
+        let profiles = [{ name: "Daksh Arora" }];
+        (async () => {
+            const response = await fetchAllWorkers();
+            profiles = response.workers;
+            console.log("Profiles (global):", profiles);
+        })();
 
         const pages = document.querySelectorAll('.page');
         const navLinks = document.querySelectorAll('.nav-link');
@@ -2944,7 +2869,7 @@
                 profileCard.className = 'profile-card';
                 profileCard.innerHTML = `
                     <div class="profile-header">
-                        <img src="${profile.img}" alt="${profile.name}" class="profile-img">
+                        <img src="${profile.profilePicUrl}" alt="${profile.name}" class="profile-img">
                         <div class="profile-name">${profile.name}</div>
                         <div class="profile-profession">${profile.profession}</div>
                     </div>
@@ -2955,7 +2880,7 @@
                         </div>
                         <div class="profile-info">
                             <i class="fas fa-star"></i>
-                            <span class="rating">${profile.rating} (${profile.reviews} reviews)</span>
+                            <span class="rating">${profile.averageRating} (${profile.totalRatings} reviews)</span>
                         </div>
                         <div class="profile-info">
                             <i class="fas fa-briefcase"></i>
@@ -3009,10 +2934,49 @@
 
 
         // Show a specific profile
-        function showProfile(profileId) {
-            const profile = profiles.find(p => p.id == profileId);
-            if (!profile) return;
+        async function showProfile(profileId) {
+            console.log("Successing: ", profileId)
+            console.log(profiles);
+            let profile = profiles.find(p => p.id == profileId);
+            if (!profile) {
+                // await fetch (`http://localhost:5000/api/workers/${profileId}`, {
+                //     method: 'GET',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //         'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                //     },
+                // })
+                // .then(res => res.json())
+                // .then(data => {
+                //     profile = data;
+                //     console.log("Heavenly: ",data);
+                // })
+                // .catch(err => console.log(err));
+                const res = await fetch('http://localhost:5000/api/profile', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    },
+                });
+
+                const data = await res.json();
+                profile = data.user;
+                console.log("Heavenly: ", profile);
+            }
+            console.log("Out of curiosity: ", profile);
+
+            /*
+
+            #############################################################################################################################
+            Update my profile UI with the help of profile here
+            #############################################################################################################################
+
+            */
+
+
             // Update profile view with actual data
+            console.log("Naam: ", profile.name);
             document.querySelector('.profile-view-name').textContent = profile.name;
             document.querySelector('.profile-view-profession').textContent = profile.profession;
             // Update profile image
@@ -3166,11 +3130,30 @@
                 });
             });
 
+            function parseJwt(token) {
+                try {
+                    const base64Payload = token.split('.')[1]; // payload part
+                    const payload = atob(base64Payload);       // decode base64
+                    return JSON.parse(payload);                // convert to object
+                } catch (err) {
+                    console.error('Failed to parse token:', err);
+                    return null;
+                }
+            }
+
+
             // My Profile button
             myProfileBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                showProfile(1); // Assuming ID 1 is the current user
+                const token = localStorage.getItem('token');
+                console.log("Bringing token here: ", token)
+                const user = parseJwt(token);
+                console.log("Then bringing: ", user);
+                const userId = user?.userId; // depends on your backend
+
+                showProfile(userId); // Now uses actual user ID
             });
+
 
             // Form submission
             profileForm.addEventListener('submit', (e) => {
@@ -3962,139 +3945,139 @@
             setLanguage(this.value);
         });
 
-  /*  // On page load, set language from localStorage or default to English
-    const savedLang = localStorage.getItem('lang') || 'en';
-    document.getElementById('languageSwitcher').value = savedLang;
-    setLanguage(savedLang); */
+        /*  // On page load, set language from localStorage or default to English
+          const savedLang = localStorage.getItem('lang') || 'en';
+          document.getElementById('languageSwitcher').value = savedLang;
+          setLanguage(savedLang); */
     </script>
     <script>
-    // ... existing code ...
-    // --- DYNAMIC CREATE PROFILE PAGE LOGIC ---
-    (function(){
-        // Navigation: Show/hide create profile page
-        const createProfileNav = document.getElementById('createProfileNav');
-        const createProfilePage = document.getElementById('createProfilePage');
-        const allPages = document.querySelectorAll('.page');
-        createProfileNav.addEventListener('click', function(e) {
-            e.preventDefault();
-            allPages.forEach(p => p.classList.remove('active'));
-            createProfilePage.style.display = 'block';
-            createProfilePage.classList.add('active');
-            allPages.forEach(p => { if(p!==createProfilePage) p.style.display='none'; });
-            window.scrollTo({top:0,behavior:'smooth'});
-            showDynamicStep(0);
-        });
-        // Hide create profile page when navigating elsewhere
-        document.querySelectorAll('.nav-link').forEach(link => {
-            if(link!==createProfileNav) {
-                link.addEventListener('click',()=>{
-                    createProfilePage.style.display='none';
-                    createProfilePage.classList.remove('active');
+        // ... existing code ...
+        // --- DYNAMIC CREATE PROFILE PAGE LOGIC ---
+        (function () {
+            // Navigation: Show/hide create profile page
+            const createProfileNav = document.getElementById('createProfileNav');
+            const createProfilePage = document.getElementById('createProfilePage');
+            const allPages = document.querySelectorAll('.page');
+            createProfileNav.addEventListener('click', function (e) {
+                e.preventDefault();
+                allPages.forEach(p => p.classList.remove('active'));
+                createProfilePage.style.display = 'block';
+                createProfilePage.classList.add('active');
+                allPages.forEach(p => { if (p !== createProfilePage) p.style.display = 'none'; });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                showDynamicStep(0);
+            });
+            // Hide create profile page when navigating elsewhere
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link !== createProfileNav) {
+                    link.addEventListener('click', () => {
+                        createProfilePage.style.display = 'none';
+                        createProfilePage.classList.remove('active');
+                    });
+                }
+            });
+            // Multi-step logic
+            let dynamicCurrentStep = 0;
+            const dynamicSteps = [0, 1, 2, 3].map(i => document.getElementById('dynamic-step-' + i));
+            const dynamicProgressSteps = document.querySelectorAll('#progressBar .progress-step');
+            function showDynamicStep(idx) {
+                dynamicSteps.forEach((s, i) => s.classList.toggle('active', i === idx));
+                dynamicProgressSteps.forEach((ps, i) => {
+                    ps.classList.toggle('active', i === idx);
+                    ps.classList.toggle('completed', i < idx);
+                });
+                dynamicCurrentStep = idx;
+                if (idx === 3) fillDynamicReview();
+            }
+            document.getElementById('dynamicNext0').onclick = () => { if (validateDynamicStep(0)) showDynamicStep(1); };
+            document.getElementById('dynamicBack1').onclick = () => showDynamicStep(0);
+            document.getElementById('dynamicNext1').onclick = () => { if (validateDynamicStep(1)) showDynamicStep(2); };
+            document.getElementById('dynamicBack2').onclick = () => showDynamicStep(1);
+            document.getElementById('dynamicNext2').onclick = () => { if (validateDynamicStep(2)) showDynamicStep(3); };
+            document.getElementById('dynamicBack3').onclick = () => showDynamicStep(2);
+            // Profession select/other logic
+            document.getElementById('dynamicProfessionSelect').onchange = function () {
+                const other = document.getElementById('dynamicOtherProfession');
+                if (this.value === 'other') { other.style.display = 'block'; other.required = true; }
+                else { other.style.display = 'none'; other.required = false; }
+            };
+            // File preview logic
+            function showDynamicPreview(inputId, previewId) {
+                const input = document.getElementById(inputId);
+                const preview = document.getElementById(previewId);
+                preview.innerHTML = '';
+                const files = input.files;
+                if (!files || !files.length) return;
+                Array.from(files).forEach(file => {
+                    let el;
+                    if (file.type.startsWith('image/')) {
+                        el = document.createElement('img');
+                        el.src = URL.createObjectURL(file);
+                        el.style.maxWidth = '70px';
+                        el.style.maxHeight = '70px';
+                        el.style.borderRadius = '8px';
+                        el.style.objectFit = 'cover';
+                    } else if (file.type.startsWith('video/')) {
+                        el = document.createElement('video');
+                        el.src = URL.createObjectURL(file);
+                        el.controls = true;
+                        el.style.maxWidth = '70px';
+                        el.style.maxHeight = '70px';
+                        el.style.borderRadius = '8px';
+                    } else {
+                        el = document.createElement('span');
+                        el.textContent = file.name;
+                    }
+                    preview.appendChild(el);
                 });
             }
-        });
-        // Multi-step logic
-        let dynamicCurrentStep = 0;
-        const dynamicSteps = [0,1,2,3].map(i=>document.getElementById('dynamic-step-'+i));
-        const dynamicProgressSteps = document.querySelectorAll('#progressBar .progress-step');
-        function showDynamicStep(idx) {
-            dynamicSteps.forEach((s,i)=>s.classList.toggle('active',i===idx));
-            dynamicProgressSteps.forEach((ps,i)=>{
-                ps.classList.toggle('active',i===idx);
-                ps.classList.toggle('completed',i<idx);
-            });
-            dynamicCurrentStep = idx;
-            if(idx===3) fillDynamicReview();
-        }
-        document.getElementById('dynamicNext0').onclick = ()=>{ if(validateDynamicStep(0)) showDynamicStep(1); };
-        document.getElementById('dynamicBack1').onclick = ()=>showDynamicStep(0);
-        document.getElementById('dynamicNext1').onclick = ()=>{ if(validateDynamicStep(1)) showDynamicStep(2); };
-        document.getElementById('dynamicBack2').onclick = ()=>showDynamicStep(1);
-        document.getElementById('dynamicNext2').onclick = ()=>{ if(validateDynamicStep(2)) showDynamicStep(3); };
-        document.getElementById('dynamicBack3').onclick = ()=>showDynamicStep(2);
-        // Profession select/other logic
-        document.getElementById('dynamicProfessionSelect').onchange = function() {
-            const other = document.getElementById('dynamicOtherProfession');
-            if(this.value==='other') { other.style.display='block'; other.required=true; }
-            else { other.style.display='none'; other.required=false; }
-        };
-        // File preview logic
-        function showDynamicPreview(inputId, previewId) {
-            const input = document.getElementById(inputId);
-            const preview = document.getElementById(previewId);
-            preview.innerHTML = '';
-            const files = input.files;
-            if (!files || !files.length) return;
-            Array.from(files).forEach(file => {
-                let el;
-                if (file.type.startsWith('image/')) {
-                    el = document.createElement('img');
-                    el.src = URL.createObjectURL(file);
-                    el.style.maxWidth = '70px';
-                    el.style.maxHeight = '70px';
-                    el.style.borderRadius = '8px';
-                    el.style.objectFit = 'cover';
-                } else if (file.type.startsWith('video/')) {
-                    el = document.createElement('video');
-                    el.src = URL.createObjectURL(file);
-                    el.controls = true;
-                    el.style.maxWidth = '70px';
-                    el.style.maxHeight = '70px';
-                    el.style.borderRadius = '8px';
-                } else {
-                    el = document.createElement('span');
-                    el.textContent = file.name;
+            document.getElementById('dynamicAadharCard').onchange = function (e) { showDynamicPreview('dynamicAadharCard', 'dynamicAadharCardPreview'); };
+            document.getElementById('dynamicProfilePhoto').onchange = function (e) { showDynamicPreview('dynamicProfilePhoto', 'dynamicProfilePhotoPreview'); };
+            document.getElementById('dynamicWorkImages').onchange = function (e) { showDynamicPreview('dynamicWorkImages', 'dynamicWorkImagesPreview'); };
+            document.getElementById('dynamicIntroVideo').onchange = function (e) { showDynamicPreview('dynamicIntroVideo', 'dynamicIntroVideoPreview'); };
+            // Skills tag input logic
+            const dynamicSkillsInput = document.getElementById('dynamicSkillsInput');
+            const dynamicSkillsTags = document.getElementById('dynamicSkillsTags');
+            let dynamicSkillsArr = [];
+            dynamicSkillsInput.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' && this.value.trim()) {
+                    e.preventDefault();
+                    addDynamicSkillTag(this.value.trim());
+                    this.value = '';
                 }
-                preview.appendChild(el);
             });
-        }
-        document.getElementById('dynamicAadharCard').onchange = function(e){ showDynamicPreview('dynamicAadharCard','dynamicAadharCardPreview'); };
-        document.getElementById('dynamicProfilePhoto').onchange = function(e){ showDynamicPreview('dynamicProfilePhoto','dynamicProfilePhotoPreview'); };
-        document.getElementById('dynamicWorkImages').onchange = function(e){ showDynamicPreview('dynamicWorkImages','dynamicWorkImagesPreview'); };
-        document.getElementById('dynamicIntroVideo').onchange = function(e){ showDynamicPreview('dynamicIntroVideo','dynamicIntroVideoPreview'); };
-        // Skills tag input logic
-        const dynamicSkillsInput = document.getElementById('dynamicSkillsInput');
-        const dynamicSkillsTags = document.getElementById('dynamicSkillsTags');
-        let dynamicSkillsArr = [];
-        dynamicSkillsInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && this.value.trim()) {
-                e.preventDefault();
-                addDynamicSkillTag(this.value.trim());
-                this.value = '';
+            function addDynamicSkillTag(skill) {
+                if (!dynamicSkillsArr.includes(skill)) {
+                    dynamicSkillsArr.push(skill);
+                    renderDynamicSkillsTags();
+                }
             }
-        });
-        function addDynamicSkillTag(skill) {
-            if (!dynamicSkillsArr.includes(skill)) {
-                dynamicSkillsArr.push(skill);
+            function removeDynamicSkillTag(skill) {
+                dynamicSkillsArr = dynamicSkillsArr.filter(s => s !== skill);
                 renderDynamicSkillsTags();
             }
-        }
-        function removeDynamicSkillTag(skill) {
-            dynamicSkillsArr = dynamicSkillsArr.filter(s => s !== skill);
-            renderDynamicSkillsTags();
-        }
-        function renderDynamicSkillsTags() {
-            dynamicSkillsTags.innerHTML = '';
-            dynamicSkillsArr.forEach(skill => {
-                const tag = document.createElement('span');
-                tag.className = 'skill-tag';
-                tag.style = 'background:#e7f0fe;color:#1976d2;border-radius:16px;padding:4px 12px;font-size:0.97rem;display:flex;align-items:center;gap:5px;font-weight:500;cursor:default;margin-bottom:4px;';
-                tag.innerHTML = `${skill} <button class='remove-skill' title='Remove' style='color:#1976d2;background:none;border:none;font-size:1rem;cursor:pointer;margin-left:2px;' onclick='(function(){removeDynamicSkillTag("${skill}")})()'>&times;</button>`;
-                dynamicSkillsTags.appendChild(tag);
-            });
-        }
-        window.removeDynamicSkillTag = removeDynamicSkillTag;
-        // Review step logic
-        function fillDynamicReview() {
-            const getVal = id => document.getElementById(id)?.value || '';
-            const getProf = () => {
-                const sel = document.getElementById('dynamicProfessionSelect');
-                if(sel.value === 'other') return getVal('dynamicOtherProfession');
-                return sel.value;
-            };
-            const reviewList = document.getElementById('dynamicReviewList');
-            const workImages = document.getElementById('dynamicWorkImages').files;
-            reviewList.innerHTML = `
+            function renderDynamicSkillsTags() {
+                dynamicSkillsTags.innerHTML = '';
+                dynamicSkillsArr.forEach(skill => {
+                    const tag = document.createElement('span');
+                    tag.className = 'skill-tag';
+                    tag.style = 'background:#e7f0fe;color:#1976d2;border-radius:16px;padding:4px 12px;font-size:0.97rem;display:flex;align-items:center;gap:5px;font-weight:500;cursor:default;margin-bottom:4px;';
+                    tag.innerHTML = `${skill} <button class='remove-skill' title='Remove' style='color:#1976d2;background:none;border:none;font-size:1rem;cursor:pointer;margin-left:2px;' onclick='(function(){removeDynamicSkillTag("${skill}")})()'>&times;</button>`;
+                    dynamicSkillsTags.appendChild(tag);
+                });
+            }
+            window.removeDynamicSkillTag = removeDynamicSkillTag;
+            // Review step logic
+            function fillDynamicReview() {
+                const getVal = id => document.getElementById(id)?.value || '';
+                const getProf = () => {
+                    const sel = document.getElementById('dynamicProfessionSelect');
+                    if (sel.value === 'other') return getVal('dynamicOtherProfession');
+                    return sel.value;
+                };
+                const reviewList = document.getElementById('dynamicReviewList');
+                const workImages = document.getElementById('dynamicWorkImages').files;
+                reviewList.innerHTML = `
                 <li><strong>Name:</strong> ${getVal('dynamicFirstName')} ${getVal('dynamicLastName')}</li>
                 <li><strong>Profession:</strong> ${getProf()}</li>
                 <li><strong>Experience:</strong> ${getVal('dynamicExperience') ? getVal('dynamicExperience') + ' years' : '-'}</li>
@@ -4106,33 +4089,151 @@
                 <li><strong>Aadhar Number:</strong> ${getVal('dynamicAadharNumber')}</li>
                 <li><strong>Aadhar Card:</strong> ${document.getElementById('dynamicAadharCard').files[0]?.name || '-'}</li>
                 <li><strong>Profile Photo:</strong> ${document.getElementById('dynamicProfilePhoto').files[0]?.name || '-'}</li>
-                <li><strong>Work Images:</strong> ${workImages.length ? Array.from(workImages).map(f=>f.name).join(', ') : '-'}</li>
+                <li><strong>Work Images:</strong> ${workImages.length ? Array.from(workImages).map(f => f.name).join(', ') : '-'}</li>
                 <li><strong>Intro Video:</strong> ${document.getElementById('dynamicIntroVideo').files[0]?.name || '-'}</li>
             `;
+            }
+            // Validation logic
+            function validateDynamicStep(step) {
+                if (step === 0) {
+                    if (!document.getElementById('dynamicFirstName').value.trim() || !document.getElementById('dynamicLastName').value.trim()) return alert('Please enter your name.'), false;
+                    const sel = document.getElementById('dynamicProfessionSelect');
+                    if (!sel.value) return alert('Please select your profession.'), false;
+                    if (sel.value === 'other' && !document.getElementById('dynamicOtherProfession').value.trim()) return alert('Please enter your profession.'), false;
+                    return true;
+                }
+                if (step === 1) {
+                    if (!document.getElementById('dynamicEmail').value.trim() || !document.getElementById('dynamicPhone').value.trim() || !document.getElementById('dynamicBio').value.trim()) return alert('Please fill all fields.'), false;
+                    return true;
+                }
+                if (step === 2) {
+                    if (!document.getElementById('dynamicAadharNumber').value.trim() || !/^\d{12}$/.test(document.getElementById('dynamicAadharNumber').value.trim())) return alert('Enter a valid 12-digit Aadhar number.'), false;
+                    if (!document.getElementById('dynamicAadharCard').files.length) return alert('Please upload your Aadhar card image.'), false;
+                    if (!document.getElementById('dynamicProfilePhoto').files.length) return alert('Please upload your profile photo.'), false;
+                    return true;
+                }
+                return true;
+            }
+            // Form submit
+            document.getElementById('dynamicProfileForm').onsubmit = function (e) {
+                e.preventDefault();
+                // Gather form data
+                const firstName = document.getElementById('dynamicFirstName').value.trim();
+                const lastName = document.getElementById('dynamicLastName').value.trim();
+                const name = firstName + ' ' + lastName;
+                const professionSel = document.getElementById('dynamicProfessionSelect');
+                const profession = (professionSel.value === 'other') ? document.getElementById('dynamicOtherProfession').value.trim() : professionSel.value;
+                const contact = document.getElementById('dynamicPhone').value.trim();
+                const email = document.getElementById('dynamicEmail').value.trim();
+                const bio = document.getElementById('dynamicBio').value.trim();
+                const skills = dynamicSkillsArr.slice();
+                const experience = document.getElementById('dynamicExperience').value.trim();
+                const location = document.getElementById('dynamicLocation').value.trim();
+                const rate = '';
+                // Handle profile photo
+                let img = 'https://randomuser.me/api/portraits/lego/1.jpg';
+                const photoInput = document.getElementById('dynamicProfilePhoto');
+                if (photoInput.files && photoInput.files[0]) {
+                    img = URL.createObjectURL(photoInput.files[0]);
+                }
+                // Add to profiles array (at the start)
+                profiles.unshift({
+                    id: Date.now(),
+                    name,
+                    profession,
+                    location,
+                    contact,
+                    rating: 0,
+                    reviews: 0,
+                    experience,
+                    rate,
+                    skills,
+                    img,
+                    bio
+                });
+                // Re-render profiles on home page
+                renderProfiles(selectedCity);
+                alert('Profile created successfully!');
+                // Switch to home page
+                allPages.forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
+                const homePage = document.getElementById('homePage');
+                homePage.classList.add('active');
+                homePage.style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                localStorage.setItem('profiles', JSON.stringify(profiles));
+            };
+        })();
+        // ... existing code ...
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const allPages = document.querySelectorAll('.page');
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const pageAttr = link.getAttribute('data-page');
+                    if (pageAttr) {
+                        e.preventDefault();
+                        // Hide all pages
+                        allPages.forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
+                        // Show the correct page
+                        const showPage = document.getElementById(pageAttr + 'Page');
+                        if (showPage) {
+                            showPage.classList.add('active');
+                            showPage.style.display = 'block';
+                        }
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+        // ... existing code ...
+        let editProfileId = null; // Track which profile is being edited
+
+        // Edit Profile button logic
+        if (typeof editProfileBtn !== 'undefined' && editProfileBtn) {
+            editProfileBtn.onclick = function () {
+                // Find the currently viewed profile
+                const profileName = document.querySelector('.profile-view-name').textContent;
+                const profile = profiles.find(p => p.name === profileName);
+                if (!profile) return;
+                editProfileId = profile.id;
+                // Open create profile page and pre-fill form
+                setActivePage('createProfilePage');
+                // Fill form fields
+                document.getElementById('dynamicFirstName').value = profile.name.split(' ')[0] || '';
+                document.getElementById('dynamicLastName').value = profile.name.split(' ').slice(1).join(' ') || '';
+                document.getElementById('dynamicProfessionSelect').value = profile.profession;
+                document.getElementById('dynamicOtherProfession').value = '';
+                document.getElementById('dynamicExperience').value = profile.experience || '';
+                document.getElementById('dynamicLocation').value = profile.location || '';
+                document.getElementById('dynamicEmail').value = '';
+                document.getElementById('dynamicPhone').value = profile.contact || '';
+                document.getElementById('dynamicBio').value = profile.bio || '';
+                // Skills
+                dynamicSkillsArr = Array.isArray(profile.skills) ? profile.skills.slice() : [];
+                renderDynamicSkillsTags();
+                // Photo preview (cannot set file input for security, but can show preview)
+                const preview = document.getElementById('dynamicProfilePhotoPreview');
+                preview.innerHTML = '';
+                if (profile.img) {
+                    const img = document.createElement('img');
+                    img.src = profile.img;
+                    img.style.maxWidth = '70px';
+                    img.style.maxHeight = '70px';
+                    img.style.borderRadius = '8px';
+                    img.style.objectFit = 'cover';
+                    preview.appendChild(img);
+                }
+                // Reset file input
+                document.getElementById('dynamicProfilePhoto').value = '';
+                // Go to first step
+                showDynamicStep(0);
+            };
         }
-        // Validation logic
-        function validateDynamicStep(step) {
-            if(step === 0) {
-                if(!document.getElementById('dynamicFirstName').value.trim() || !document.getElementById('dynamicLastName').value.trim()) return alert('Please enter your name.'), false;
-                const sel = document.getElementById('dynamicProfessionSelect');
-                if(!sel.value) return alert('Please select your profession.'), false;
-                if(sel.value === 'other' && !document.getElementById('dynamicOtherProfession').value.trim()) return alert('Please enter your profession.'), false;
-                return true;
-            }
-            if(step === 1) {
-                if(!document.getElementById('dynamicEmail').value.trim() || !document.getElementById('dynamicPhone').value.trim() || !document.getElementById('dynamicBio').value.trim()) return alert('Please fill all fields.'), false;
-                return true;
-            }
-            if(step === 2) {
-                if(!document.getElementById('dynamicAadharNumber').value.trim() || !/^\d{12}$/.test(document.getElementById('dynamicAadharNumber').value.trim())) return alert('Enter a valid 12-digit Aadhar number.'), false;
-                if(!document.getElementById('dynamicAadharCard').files.length) return alert('Please upload your Aadhar card image.'), false;
-                if(!document.getElementById('dynamicProfilePhoto').files.length) return alert('Please upload your profile photo.'), false;
-                return true;
-            }
-            return true;
-        }
-        // Form submit
-        document.getElementById('dynamicProfileForm').onsubmit = function(e) {
+
+        // Modify form submit to update profile if editing
+        const dynamicProfileForm = document.getElementById('dynamicProfileForm');
+        dynamicProfileForm.onsubmit = function (e) {
             e.preventDefault();
             // Gather form data
             const firstName = document.getElementById('dynamicFirstName').value.trim();
@@ -4152,235 +4253,117 @@
             const photoInput = document.getElementById('dynamicProfilePhoto');
             if (photoInput.files && photoInput.files[0]) {
                 img = URL.createObjectURL(photoInput.files[0]);
+            } else if (editProfileId) {
+                // If editing and no new photo, keep old photo
+                const oldProfile = profiles.find(p => p.id === editProfileId);
+                if (oldProfile && oldProfile.img) img = oldProfile.img;
             }
-            // Add to profiles array (at the start)
-            profiles.unshift({
-                id: Date.now(),
-                name,
-                profession,
-                location,
-                contact,
-                rating: 0,
-                reviews: 0,
-                experience,
-                rate,
-                skills,
-                img,
-                bio
-            });
-            // Re-render profiles on home page
-            renderProfiles(selectedCity);
-            alert('Profile created successfully!');
-            // Switch to home page
-            allPages.forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
-            const homePage = document.getElementById('homePage');
-            homePage.classList.add('active');
-            homePage.style.display = 'block';
-            window.scrollTo({top:0,behavior:'smooth'});
-            localStorage.setItem('profiles', JSON.stringify(profiles));
-        };
-    })();
-    // ... existing code ...
-    </script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const allPages = document.querySelectorAll('.page');
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                const pageAttr = link.getAttribute('data-page');
-                if (pageAttr) {
-                    e.preventDefault();
-                    // Hide all pages
-                    allPages.forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
-                    // Show the correct page
-                    const showPage = document.getElementById(pageAttr + 'Page');
-                    if (showPage) {
-                        showPage.classList.add('active');
-                        showPage.style.display = 'block';
-                    }
-                    window.scrollTo({top:0,behavior:'smooth'});
+            if (editProfileId) {
+                // Update existing profile
+                const idx = profiles.findIndex(p => p.id === editProfileId);
+                if (idx !== -1) {
+                    profiles[idx] = {
+                        ...profiles[idx],
+                        name,
+                        profession,
+                        location,
+                        contact,
+                        rating: profiles[idx].rating || 0,
+                        reviews: profiles[idx].reviews || 0,
+                        experience,
+                        rate,
+                        skills,
+                        img,
+                        bio
+                    };
                 }
-            });
-        });
-    });
-    // ... existing code ...
-    let editProfileId = null; // Track which profile is being edited
-
-    // Edit Profile button logic
-    if (typeof editProfileBtn !== 'undefined' && editProfileBtn) {
-        editProfileBtn.onclick = function() {
-            // Find the currently viewed profile
-            const profileName = document.querySelector('.profile-view-name').textContent;
-            const profile = profiles.find(p => p.name === profileName);
-            if (!profile) return;
-            editProfileId = profile.id;
-            // Open create profile page and pre-fill form
-            setActivePage('createProfilePage');
-            // Fill form fields
-            document.getElementById('dynamicFirstName').value = profile.name.split(' ')[0] || '';
-            document.getElementById('dynamicLastName').value = profile.name.split(' ').slice(1).join(' ') || '';
-            document.getElementById('dynamicProfessionSelect').value = profile.profession;
-            document.getElementById('dynamicOtherProfession').value = '';
-            document.getElementById('dynamicExperience').value = profile.experience || '';
-            document.getElementById('dynamicLocation').value = profile.location || '';
-            document.getElementById('dynamicEmail').value = '';
-            document.getElementById('dynamicPhone').value = profile.contact || '';
-            document.getElementById('dynamicBio').value = profile.bio || '';
-            // Skills
-            dynamicSkillsArr = Array.isArray(profile.skills) ? profile.skills.slice() : [];
-            renderDynamicSkillsTags();
-            // Photo preview (cannot set file input for security, but can show preview)
-            const preview = document.getElementById('dynamicProfilePhotoPreview');
-            preview.innerHTML = '';
-            if (profile.img) {
-                const img = document.createElement('img');
-                img.src = profile.img;
-                img.style.maxWidth = '70px';
-                img.style.maxHeight = '70px';
-                img.style.borderRadius = '8px';
-                img.style.objectFit = 'cover';
-                preview.appendChild(img);
-            }
-            // Reset file input
-            document.getElementById('dynamicProfilePhoto').value = '';
-            // Go to first step
-            showDynamicStep(0);
-        };
-    }
-
-    // Modify form submit to update profile if editing
-    const dynamicProfileForm = document.getElementById('dynamicProfileForm');
-    dynamicProfileForm.onsubmit = function(e) {
-        e.preventDefault();
-        // Gather form data
-        const firstName = document.getElementById('dynamicFirstName').value.trim();
-        const lastName = document.getElementById('dynamicLastName').value.trim();
-        const name = firstName + ' ' + lastName;
-        const professionSel = document.getElementById('dynamicProfessionSelect');
-        const profession = (professionSel.value === 'other') ? document.getElementById('dynamicOtherProfession').value.trim() : professionSel.value;
-        const contact = document.getElementById('dynamicPhone').value.trim();
-        const email = document.getElementById('dynamicEmail').value.trim();
-        const bio = document.getElementById('dynamicBio').value.trim();
-        const skills = dynamicSkillsArr.slice();
-        const experience = document.getElementById('dynamicExperience').value.trim();
-        const location = document.getElementById('dynamicLocation').value.trim();
-        const rate = '';
-        // Handle profile photo
-        let img = 'https://randomuser.me/api/portraits/lego/1.jpg';
-        const photoInput = document.getElementById('dynamicProfilePhoto');
-        if (photoInput.files && photoInput.files[0]) {
-            img = URL.createObjectURL(photoInput.files[0]);
-        } else if (editProfileId) {
-            // If editing and no new photo, keep old photo
-            const oldProfile = profiles.find(p => p.id === editProfileId);
-            if (oldProfile && oldProfile.img) img = oldProfile.img;
-        }
-        if (editProfileId) {
-            // Update existing profile
-            const idx = profiles.findIndex(p => p.id === editProfileId);
-            if (idx !== -1) {
-                profiles[idx] = {
-                    ...profiles[idx],
+                alert('Profile updated successfully!');
+                // Show updated profile
+                showProfile(editProfileId);
+                editProfileId = null;
+            } else {
+                // Add to profiles array (at the start)
+                profiles.unshift({
+                    id: Date.now(),
                     name,
                     profession,
                     location,
                     contact,
-                    rating: profiles[idx].rating || 0,
-                    reviews: profiles[idx].reviews || 0,
+                    rating: 0,
+                    reviews: 0,
                     experience,
                     rate,
                     skills,
                     img,
                     bio
-                };
+                });
+                alert('Profile created successfully!');
+                // Switch to home page
+                allPages.forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
+                const homePage = document.getElementById('homePage');
+                homePage.classList.add('active');
+                homePage.style.display = 'block';
             }
-            alert('Profile updated successfully!');
-            // Show updated profile
-            showProfile(editProfileId);
-            editProfileId = null;
-        } else {
-            // Add to profiles array (at the start)
-            profiles.unshift({
-                id: Date.now(),
-                name,
-                profession,
-                location,
-                contact,
-                rating: 0,
-                reviews: 0,
-                experience,
-                rate,
-                skills,
-                img,
-                bio
+            // Re-render profiles on home page
+            renderProfiles(selectedCity);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            localStorage.setItem('profiles', JSON.stringify(profiles)); //7303063371
+        };
+        // ... existing code ...
+    </script>
+    <script>
+        function applyTranslations() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                el.textContent = t(el.getAttribute('data-i18n'));
             });
-            alert('Profile created successfully!');
-            // Switch to home page
-            allPages.forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
-            const homePage = document.getElementById('homePage');
-            homePage.classList.add('active');
-            homePage.style.display = 'block';
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                el.placeholder = t(el.getAttribute('data-i18n-placeholder'));
+            });
         }
-        // Re-render profiles on home page
-        renderProfiles(selectedCity);
-        window.scrollTo({top:0,behavior:'smooth'});
-        localStorage.setItem('profiles', JSON.stringify(profiles)); //7303063371
-    };
-    // ... existing code ...
     </script>
     <script>
-    function applyTranslations() {
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        el.textContent = t(el.getAttribute('data-i18n'));
-      });
-      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-        el.placeholder = t(el.getAttribute('data-i18n-placeholder'));
-      });
-    }
+        function t(key) {
+            const lang = localStorage.getItem('lang') || 'en';
+            return (translations[lang] && translations[lang][key]) || translations['en'][key] || key;
+        }
     </script>
     <script>
-    function t(key) {
-      const lang = localStorage.getItem('lang') || 'en';
-      return (translations[lang] && translations[lang][key]) || translations['en'][key] || key;
-    }
+        document.getElementById('languageSwitcher').addEventListener('change', function () {
+            localStorage.setItem('lang', this.value);
+            applyTranslations();
+            // Also re-render any dynamic content with translations if needed
+        });
     </script>
     <script>
-    document.getElementById('languageSwitcher').addEventListener('change', function() {
-      localStorage.setItem('lang', this.value);
-      applyTranslations();
-      // Also re-render any dynamic content with translations if needed
-    });
-    </script>
-    <script>
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        const lang = this.getAttribute('data-lang');
-        localStorage.setItem('lang', lang);
-        applyTranslations();
-        // Re-render dynamic content if needed
-      });
-    });
-    // On page load, set active button
-    const savedLang = localStorage.getItem('lang') || 'en';
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      if (btn.getAttribute('data-lang') === savedLang) btn.classList.add('active');
-    });
-    // Remove old select-based language switcher event handler and duplicate savedLang
-    // Only use the .lang-btn logic for language switching
-    // On page load, set the active .lang-btn and apply translations
-    (function() {
-      // Set active language button and apply translations on load
-      const savedLang = localStorage.getItem('lang') || 'en';
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        if (btn.getAttribute('data-lang') === savedLang) btn.classList.add('active');
-        else btn.classList.remove('active');
-      });
-      applyTranslations();
-    })();
-    // ... existing code ...
-    
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const lang = this.getAttribute('data-lang');
+                localStorage.setItem('lang', lang);
+                applyTranslations();
+                // Re-render dynamic content if needed
+            });
+        });
+        // On page load, set active button
+        const savedLang = localStorage.getItem('lang') || 'en';
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            if (btn.getAttribute('data-lang') === savedLang) btn.classList.add('active');
+        });
+        // Remove old select-based language switcher event handler and duplicate savedLang
+        // Only use the .lang-btn logic for language switching
+        // On page load, set the active .lang-btn and apply translations
+        (function () {
+            // Set active language button and apply translations on load
+            const savedLang = localStorage.getItem('lang') || 'en';
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.getAttribute('data-lang') === savedLang) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+            applyTranslations();
+        })();
+        // ... existing code ...
+
     </script>
 </body>
 

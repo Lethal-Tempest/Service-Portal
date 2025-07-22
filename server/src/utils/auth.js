@@ -14,6 +14,7 @@ export const generateToken = (user) => {
 
 
 export const formatUserResponse = (user) => {
+  console.log("Auth user: ", user);
   const response = {
     id: user._id,
     name: user.name,

@@ -2,7 +2,7 @@
 import cloudinary from '../config/cloudinary.js';
 
 const uploadToCloudinary = async (file, folder = 'users') => {
-  console.log(file);
+  // console.log(file);
   return new Promise((resolve, reject) => {
     cloudinary.uploader.upload_stream(
       {
@@ -11,7 +11,7 @@ const uploadToCloudinary = async (file, folder = 'users') => {
       },
       (error, result) => {
         if (error) return reject(error);
-        console.log(result);
+        // console.log(result);
         resolve(result.secure_url);
       }
     ).end(file.buffer);

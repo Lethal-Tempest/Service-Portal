@@ -28,7 +28,7 @@ class UserService {
 
     static async registerUser(
         name, email, password, role, location,
-        profession, experience, phone, bio, skills, hourlyRate, aadhar,
+        profession, experience, phone, bio, skills, aadhar, hourlyRate,
         uploads = {} // default fallback
     ) {
         if (!uploads) {
@@ -55,8 +55,8 @@ class UserService {
             phone,
             bio,
             skills,
-            hourlyRate,
             aadhar,
+            hourlyRate,
             aadharImgUrl: uploads.aadharImgUrl || null,
             profilePicUrl: uploads.profilePicUrl || null,
             introVideoUrl: uploads.introVideoUrl || null,
