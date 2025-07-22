@@ -55,7 +55,7 @@ class UserController {
 
     static async signup(req, res) {
         try {
-            // console.log(req);
+            console.log(req);
 
             const {
                 name, email, password, role, location,

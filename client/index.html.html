@@ -3914,8 +3914,7 @@
             setupEventListeners();
             // ... rest of your code ...
         });
-    </script>
-    <script>
+
         function setLanguage(lang) {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
@@ -3934,15 +3933,15 @@
           const savedLang = localStorage.getItem('lang') || 'en';
           document.getElementById('languageSwitcher').value = savedLang;
           setLanguage(savedLang); */
-    </script>
-    <script>
+
         // ... existing code ...
         // --- DYNAMIC CREATE PROFILE PAGE LOGIC ---
+        let dynamicSkillsArr = [];
+        const allPages = document.querySelectorAll('.page');
         (function () {
             // Navigation: Show/hide create profile page
             const createProfileNav = document.getElementById('createProfileNav');
             const createProfilePage = document.getElementById('createProfilePage');
-            const allPages = document.querySelectorAll('.page');
             createProfileNav.addEventListener('click', function (e) {
                 e.preventDefault();
                 allPages.forEach(p => p.classList.remove('active'));
@@ -4023,7 +4022,7 @@
             // Skills tag input logic
             const dynamicSkillsInput = document.getElementById('dynamicSkillsInput');
             const dynamicSkillsTags = document.getElementById('dynamicSkillsTags');
-            let dynamicSkillsArr = [];
+            // let dynamicSkillsArr = [];
             dynamicSkillsInput.addEventListener('keydown', function (e) {
                 if (e.key === 'Enter' && this.value.trim()) {
                     e.preventDefault();
@@ -4100,57 +4099,88 @@
                 return true;
             }
             // Form submit
-            document.getElementById('dynamicProfileForm').onsubmit = function (e) {
+            document.getElementById('dynamicProfileForm').onsubmit = async function (e) {
                 e.preventDefault();
-                // Gather form data
+
+                // Gather form inputs
                 const firstName = document.getElementById('dynamicFirstName').value.trim();
                 const lastName = document.getElementById('dynamicLastName').value.trim();
-                const name = firstName + ' ' + lastName;
-                const professionSel = document.getElementById('dynamicProfessionSelect');
-                const profession = (professionSel.value === 'other') ? document.getElementById('dynamicOtherProfession').value.trim() : professionSel.value;
-                const contact = document.getElementById('dynamicPhone').value.trim();
+                const name = `${firstName} ${lastName}`;
                 const email = document.getElementById('dynamicEmail').value.trim();
-                const bio = document.getElementById('dynamicBio').value.trim();
-                const skills = dynamicSkillsArr.slice();
-                const experience = document.getElementById('dynamicExperience').value.trim();
+                const password = 'worker123'; // You can dynamically ask the user or set a default
+                const role = 'worker';
                 const location = document.getElementById('dynamicLocation').value.trim();
-                const rate = '';
-                // Handle profile photo
-                let img = 'https://randomuser.me/api/portraits/lego/1.jpg';
-                const photoInput = document.getElementById('dynamicProfilePhoto');
-                if (photoInput.files && photoInput.files[0]) {
-                    img = URL.createObjectURL(photoInput.files[0]);
+                const professionSelect = document.getElementById('dynamicProfessionSelect');
+                const profession = professionSelect.value === 'other'
+                    ? document.getElementById('dynamicOtherProfession').value.trim()
+                    : professionSelect.value;
+                const experience = document.getElementById('dynamicExperience').value.trim();
+                const hourlyRate = document.getElementById('dynamicHourlyRate')?.value?.trim() || 0; // Optional input
+                const phone = document.getElementById('dynamicPhone').value.trim();
+                const bio = document.getElementById('dynamicBio').value.trim();
+                const aadhar = document.getElementById('dynamicAadharNumber').value.trim();
+                const skills = dynamicSkillsArr;
+                console.log("Skills: ", skills);
+
+                // Get files
+                const aadharImg = document.getElementById('dynamicAadharCard').files[0];
+                const profilePic = document.getElementById('dynamicProfilePhoto').files[0];
+                const previousWorkPics = Array.from(document.getElementById('dynamicWorkImages').files);
+                const introVideo = document.getElementById('dynamicIntroVideo').files[0];
+
+                const formData = new FormData();
+                formData.append('name', name);
+                formData.append('email', email);
+                formData.append('password', password);
+                formData.append('role', role);
+                formData.append('location', location);
+                formData.append('profession', profession);
+                formData.append('experience', experience);
+                formData.append('hourlyRate', hourlyRate);
+                formData.append('phone', phone);
+                formData.append('bio', bio);
+                formData.append('aadhar', aadhar);
+                formData.append('skills', JSON.stringify(skills));
+
+                if (aadharImg) formData.append('aadharImg', aadharImg);
+                if (profilePic) formData.append('profilePic', profilePic);
+                if (introVideo) formData.append('introVideo', introVideo);
+                previousWorkPics.forEach(file => formData.append('previousWorkPics', file));
+
+                try {
+                    const res = await fetch('http://localhost:5000/api/signup', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const data = await res.json();
+                    if (!res.ok) {
+                        throw new Error(data.message || 'Signup failed');
+                    }
+
+                    // alert('Profile created successfully!');
+                    alert("Created worker:", data);
+
+                    // Switch back to homepage view
+                    allPages.forEach(p => p.classList.remove('active'));
+                    const homePage = document.getElementById('homePage');
+                    homePage.classList.add('active');
+                    homePage.style.display = 'block';
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                    // Optional: Refresh profiles list
+                    renderProfiles(selectedCity);
+
+                } catch (err) {
+                    console.error('Error:', err);
+                    alert('Failed to create worker profile: ' + err.message);
                 }
-                // Add to profiles array (at the start)
-                profiles.unshift({
-                    id: Date.now(),
-                    name,
-                    profession,
-                    location,
-                    contact,
-                    rating: 0,
-                    reviews: 0,
-                    experience,
-                    rate,
-                    skills,
-                    img,
-                    bio
-                });
-                // Re-render profiles on home page
-                renderProfiles(selectedCity);
-                alert('Profile created successfully!');
-                // Switch to home page
-                allPages.forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
-                const homePage = document.getElementById('homePage');
-                homePage.classList.add('active');
-                homePage.style.display = 'block';
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                localStorage.setItem('profiles', JSON.stringify(profiles));
             };
+
+
         })();
         // ... existing code ...
-    </script>
-    <script>
+
         document.addEventListener('DOMContentLoaded', function () {
             const allPages = document.querySelectorAll('.page');
             document.querySelectorAll('.nav-link').forEach(link => {
@@ -4218,85 +4248,89 @@
 
         // Modify form submit to update profile if editing
         const dynamicProfileForm = document.getElementById('dynamicProfileForm');
-        dynamicProfileForm.onsubmit = function (e) {
+        dynamicProfileForm.onsubmit = async function (e) {
             e.preventDefault();
-            // Gather form data
+
+            // Gather form inputs
             const firstName = document.getElementById('dynamicFirstName').value.trim();
             const lastName = document.getElementById('dynamicLastName').value.trim();
-            const name = firstName + ' ' + lastName;
-            const professionSel = document.getElementById('dynamicProfessionSelect');
-            const profession = (professionSel.value === 'other') ? document.getElementById('dynamicOtherProfession').value.trim() : professionSel.value;
-            const contact = document.getElementById('dynamicPhone').value.trim();
+            const name = `${firstName} ${lastName}`;
             const email = document.getElementById('dynamicEmail').value.trim();
-            const bio = document.getElementById('dynamicBio').value.trim();
-            const skills = dynamicSkillsArr.slice();
-            const experience = document.getElementById('dynamicExperience').value.trim();
+            const password = 'worker123'; // You can dynamically ask the user or set a default
+            const role = 'worker';
             const location = document.getElementById('dynamicLocation').value.trim();
-            const rate = '';
-            // Handle profile photo
-            let img = 'https://randomuser.me/api/portraits/lego/1.jpg';
-            const photoInput = document.getElementById('dynamicProfilePhoto');
-            if (photoInput.files && photoInput.files[0]) {
-                img = URL.createObjectURL(photoInput.files[0]);
-            } else if (editProfileId) {
-                // If editing and no new photo, keep old photo
-                const oldProfile = profiles.find(p => p.id === editProfileId);
-                if (oldProfile && oldProfile.img) img = oldProfile.img;
-            }
-            if (editProfileId) {
-                // Update existing profile
-                const idx = profiles.findIndex(p => p.id === editProfileId);
-                if (idx !== -1) {
-                    profiles[idx] = {
-                        ...profiles[idx],
-                        name,
-                        profession,
-                        location,
-                        contact,
-                        rating: profiles[idx].rating || 0,
-                        reviews: profiles[idx].reviews || 0,
-                        experience,
-                        rate,
-                        skills,
-                        img,
-                        bio
-                    };
-                }
-                alert('Profile updated successfully!');
-                // Show updated profile
-                showProfile(editProfileId);
-                editProfileId = null;
-            } else {
-                // Add to profiles array (at the start)
-                profiles.unshift({
-                    id: Date.now(),
-                    name,
-                    profession,
-                    location,
-                    contact,
-                    rating: 0,
-                    reviews: 0,
-                    experience,
-                    rate,
-                    skills,
-                    img,
-                    bio
+            const professionSelect = document.getElementById('dynamicProfessionSelect');
+            const profession = professionSelect.value === 'other'
+                ? document.getElementById('dynamicOtherProfession').value.trim()
+                : professionSelect.value;
+            const experience = document.getElementById('dynamicExperience').value.trim();
+            const hourlyRate = document.getElementById('dynamicHourlyRate')?.value?.trim() || 0; // Optional input
+            const phone = document.getElementById('dynamicPhone').value.trim();
+            const bio = document.getElementById('dynamicBio').value.trim();
+            const aadhar = document.getElementById('dynamicAadharNumber').value.trim();
+            const skills = dynamicSkillsArr;
+            console.log("Skills: ", skills);
+
+            // Get files
+            const aadharImg = document.getElementById('dynamicAadharCard').files[0];
+            const profilePic = document.getElementById('dynamicProfilePhoto').files[0];
+            const previousWorkPics = Array.from(document.getElementById('dynamicWorkImages').files);
+            const introVideo = document.getElementById('dynamicIntroVideo').files[0];
+
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('password', password);
+            formData.append('role', role);
+            formData.append('location', location);
+            formData.append('profession', profession);
+            formData.append('experience', experience);
+            formData.append('hourlyRate', hourlyRate);
+            formData.append('phone', phone);
+            formData.append('bio', bio);
+            formData.append('aadhar', aadhar);
+            formData.append('skills', JSON.stringify(skills));
+
+            if (aadharImg) formData.append('aadharImg', aadharImg);
+            if (profilePic) formData.append('profilePic', profilePic);
+            if (introVideo) formData.append('introVideo', introVideo);
+            previousWorkPics.forEach(file => formData.append('previousWorkPics', file));
+
+            try {
+                const res = await fetch('http://localhost:5000/api/signup', {
+                    method: 'POST',
+                    body: formData
                 });
-                alert('Profile created successfully!');
-                // Switch to home page
-                allPages.forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
+
+                const data = await res.json();
+                if (!res.ok) {
+                    throw new Error(data.message || 'Signup failed');
+                }
+
+                // alert('Profile created successfully!');
+                alert("Created worker:", data);
+
+                // Switch back to homepage view
+                allPages.forEach(p => p.classList.remove('active'));
                 const homePage = document.getElementById('homePage');
                 homePage.classList.add('active');
                 homePage.style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Optional: Refresh profiles list
+                renderProfiles(selectedCity);
+
+            } catch (err) {
+                console.error('Error:', err);
+                alert('Failed to create worker profile: ' + err.message);
             }
             // Re-render profiles on home page
             renderProfiles(selectedCity);
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            localStorage.setItem('profiles', JSON.stringify(profiles)); //7303063371
+            localStorage.setItem('profiles', JSON.stringify(profiles));
         };
         // ... existing code ...
-    </script>
-    <script>
+
         function applyTranslations() {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 el.textContent = t(el.getAttribute('data-i18n'));
@@ -4305,21 +4339,18 @@
                 el.placeholder = t(el.getAttribute('data-i18n-placeholder'));
             });
         }
-    </script>
-    <script>
+
         function t(key) {
             const lang = localStorage.getItem('lang') || 'en';
             return (translations[lang] && translations[lang][key]) || translations['en'][key] || key;
         }
-    </script>
-    <script>
+
         document.getElementById('languageSwitcher').addEventListener('change', function () {
             localStorage.setItem('lang', this.value);
             applyTranslations();
             // Also re-render any dynamic content with translations if needed
         });
-    </script>
-    <script>
+
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', function () {
                 document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));

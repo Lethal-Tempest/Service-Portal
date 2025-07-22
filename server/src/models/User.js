@@ -23,14 +23,7 @@ const userSchema = new mongoose.Schema(
         // Worker-specific fields
         profession: {
             type: String,
-            enum: [
-                "carpenter",
-                "plumber",
-                "electrician",
-                "painter",
-                "mechanic",
-                "other",
-            ],
+            default: "",
             required: function () {
                 return this.role === "worker";
             },
