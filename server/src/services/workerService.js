@@ -23,7 +23,7 @@ class WorkerService {
         sortOptions[sortBy] = order === "desc" ? -1 : 1;
 
         const workers = await User.find(query)
-            .select("-password -ratings")
+            .select("-password")
             .sort(sortOptions);
 
         return workers;
