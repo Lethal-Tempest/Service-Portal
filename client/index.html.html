@@ -2956,6 +2956,7 @@
             }
 
             console.log("Out of curiosity: ", profile);
+            localStorage.setItem('selectedProfile',  JSON.stringify(profile));
 
 
             /*
@@ -3210,27 +3211,60 @@ function setActivePage(pageId) {
             });
 
             // Submit review
-            submitReviewBtn.addEventListener('click', () => {
-                const reviewText = document.getElementById('reviewText').value;
-                if (!reviewText) {
-                    alert('Please write a review before submitting');
-                    return;
+            submitReviewBtn.addEventListener('click', async (e) => {
+                try {
+                    e.preventDefault();
+                    const reviewText = document.getElementById('reviewText').value;
+                    if (!reviewText) {
+                        alert('Please write a review before submitting');
+                        return;
+                    }
+
+                    const rating = document.querySelectorAll('.rating-star.fas').length;
+                    if (rating === 0) {
+                        alert('Please select a rating');
+                        return;
+                    }
+
+                    alert("Gotcha: ", rating, reviewText);
+                    alert(rating);
+                    alert(reviewText);
+                    const token = localStorage.getItem('token');
+                    console.log("Bringing token here: ", token)
+                    const user = parseJwt(token);
+                    console.log("Then bringing: ", user);
+                    const userId = user?.userId; // depends on your backend
+                    const currentWorker = JSON.parse(localStorage.getItem('selectedProfile'));
+                    const currentWorkerId = currentWorker.userId;
+                    console.log(currentWorker);
+                    console.log(currentWorkerId);
+
+                    const response = await fetch(`http://localhost:5000/api/${currentWorkerId}/rating`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            workerId: currentWorker,
+                            rating: rating,
+                            comment: reviewText,
+                            isAnon: false
+                        })
+                    })
+
+                    alert('Review submitted successfully!');
+                    document.getElementById('reviewText').value = '';
+
+                    // Reset stars
+                    ratingStars.forEach(star => {
+                        star.classList.remove('fas', 'active');
+                        star.classList.add('far');
+                    });
                 }
-
-                const rating = document.querySelectorAll('.rating-star.fas').length;
-                if (rating === 0) {
-                    alert('Please select a rating');
-                    return;
+                catch (error) {
+                    console.error('Error submitting review:', error);
                 }
-
-                alert('Review submitted successfully!');
-                document.getElementById('reviewText').value = '';
-
-                // Reset stars
-                ratingStars.forEach(star => {
-                    star.classList.remove('fas', 'active');
-                    star.classList.add('far');
-                });
             });
 
             // Login modal toggle
@@ -3394,10 +3428,12 @@ function setActivePage(pageId) {
         // Get reviews for a profile
         function getReviews(profileId) {
             let profile = profiles.find(p => p._id == profileId);
-            return profile?.reviews || [];
+            console.log("Reviewing: ", profile);
+            return profile?.ratings || [];
         }
         // Save reviews for a profile
         function saveReviews(profileId, reviews) {
+            alert("Ooh la la", reviews)
             const all = JSON.parse(localStorage.getItem('reviews') || '{}');
             all[profileId] = reviews;
             localStorage.setItem('reviews', JSON.stringify(all));
@@ -3421,6 +3457,23 @@ function setActivePage(pageId) {
         // --- UI/DOM for Reviews ---
         function renderReviews(profileId, showAll = false) {
             const reviews = getReviews(profileId).sort((a, b) => b.timestamp - a.timestamp);
+            console.log("Finaling: ", profileId);
+            console.log("Final", reviews);
+
+            /*
+
+
+
+            ############################################################################################################################################
+
+            Handle the ratings UI here
+
+            ############################################################################################################################################
+
+
+
+            */
+
             const reviewsSection = document.querySelector('.reviews-section');
             if (!reviewsSection) return;
             // Remove old reviews
@@ -3570,8 +3623,9 @@ function setActivePage(pageId) {
                 };
             }
             // Submit handler
-            form.onsubmit = function (e) {
+            form.onsubmit = async function (e) {
                 e.preventDefault();
+
                 const textInput = form.querySelector('#reviewText');
                 const anonymousToggle = form.querySelector('#anonymousToggle');
                 const userId = (typeof getCurrentUser === 'function' ? getCurrentUser() : null) || 'anon_' + (localStorage.getItem('anon_id') || (() => {
@@ -3579,64 +3633,87 @@ function setActivePage(pageId) {
                     localStorage.setItem('anon_id', id);
                     return id;
                 })());
-                // Get existing reviews for this profile from localStorage
+
                 const reviews = getReviews(profileId);
                 const existing = reviews.find(r => r.userId === userId);
-                if (!selectedRating) {
-                    alert('Please select a rating');
-                    return;
+
+                if (!selectedRating) return alert('Please select a rating');
+                if (!textInput.value.trim()) return alert('Please write a review before submitting');
+                if (existing && !imageData) return alert('You have already reviewed. Please upload a photo to submit another review.');
+
+                // Prepare FormData for backend submission
+                const formData = new FormData();
+                formData.append('workerId', profileId);
+                formData.append('rating', selectedRating);
+                formData.append('comment', textInput.value.trim());
+                formData.append('isAnon', anonymousToggle?.checked || false);
+                if (imageInput?.files?.length) {
+                    formData.append('reviewPic', imageInput.files[0]);
                 }
-                if (!textInput.value.trim()) {
-                    alert('Please write a review before submitting');
-                    return;
+
+                try {
+                    const token = localStorage.getItem('token'); // or however you store it
+                    const response = await fetch('/api/workers/rate', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}` // don't add Content-Type with FormData
+                        },
+                        body: formData
+                    });
+
+                    const data = await response.json();
+                    if (!data.success) throw new Error(data.message || 'Failed to submit review');
+
+                    // Optionally save to localStorage too (for offline/view cache)
+                    let type = 'anonymous';
+                    let name = '';
+                    let avatar = '';
+                    const anonymous = anonymousToggle?.checked;
+
+                    if (typeof isUserLoggedIn === 'function' && isUserLoggedIn()) {
+                        if (imageData && typeof getUserProfileStatus === 'function' && getUserProfileStatus()) type = 'verified_photo_full';
+                        else if (imageData) type = 'verified_photo';
+                        else type = 'verified';
+                        name = anonymous ? '' : 'Demo User';
+                        avatar = anonymous ? '' : 'https://randomuser.me/api/portraits/men/32.jpg';
+                    }
+
+                    reviews.push({
+                        id: 'r' + Date.now(),
+                        profileId,
+                        rating: selectedRating,
+                        text: textInput.value.trim(),
+                        image: imageData,
+                        type,
+                        timestamp: Date.now(),
+                        userId,
+                        name,
+                        avatar,
+                        anonymous
+                    });
+                    saveReviews(profileId, reviews);
+
+                    alert('Review submitted successfully!');
+
+                    // Reset form
+                    selectedRating = 0;
+                    textInput.value = '';
+                    if (imageInput) imageInput.value = '';
+                    imageData = null;
+                    if (photoPreview) photoPreview.innerHTML = `<span class="photo-placeholder"><i class="fas fa-camera"></i></span>`;
+                    stars.forEach(s => {
+                        s.classList.remove('fas', 'active');
+                        s.classList.add('far');
+                    });
+
+                    renderReviews(profileId);
+                    setupReviewForm(profileId);
+                } catch (err) {
+                    console.error(err);
+                    alert('Error: ' + err.message);
                 }
-                if (existing && !imageData) {
-                    alert('You have already reviewed. Please upload a photo to submit another review.');
-                    return;
-                }
-                // Determine review type and identity
-                let type = 'anonymous';
-                let name = '';
-                let avatar = '';
-                const anonymous = anonymousToggle?.checked;
-                if (typeof isUserLoggedIn === 'function' && isUserLoggedIn()) {
-                    if (imageData && typeof getUserProfileStatus === 'function' && getUserProfileStatus()) type = 'verified_photo_full';
-                    else if (imageData) type = 'verified_photo';
-                    else type = 'verified';
-                    name = anonymous ? '' : 'Demo User';
-                    avatar = anonymous ? '' : 'https://randomuser.me/api/portraits/men/32.jpg';
-                }
-                // Save review to localStorage for this profile
-                reviews.push({
-                    id: 'r' + Date.now(),
-                    profileId,
-                    rating: selectedRating,
-                    text: textInput.value.trim(),
-                    image: imageData,
-                    type,
-                    timestamp: Date.now(),
-                    userId,
-                    name,
-                    avatar,
-                    anonymous
-                });
-                saveReviews(profileId, reviews); // Save updated reviews array to localStorage
-                alert('Review submitted successfully!');
-                // Reset form
-                selectedRating = 0;
-                textInput.value = '';
-                if (imageInput) imageInput.value = '';
-                imageData = null;
-                if (photoPreview) photoPreview.innerHTML = `<span class="photo-placeholder"><i class="fas fa-camera"></i></span>`;
-                stars.forEach(s => {
-                    s.classList.remove('fas', 'active');
-                    s.classList.add('far');
-                });
-                // Rerender reviews for this profile so the new review appears instantly
-                renderReviews(profileId);
-                // Re-attach the form handler for the new form (if the DOM was re-rendered)
-                setupReviewForm(profileId);
             };
+
         }
 
 
@@ -3746,48 +3823,57 @@ function setActivePage(pageId) {
             // --- Review form submission ---
             container.querySelector(`#reviewForm_${profileId}`).onsubmit = function (e) {
                 e.preventDefault();
+
                 const text = container.querySelector(`#reviewText_${profileId}`).value.trim();
                 const isAnon = container.querySelector(`#anonymousToggle_${profileId}`).checked;
                 const imgInput = container.querySelector(`#reviewImage_${profileId}`);
-                const userId = getUserId();
-                let reviews = getReviews(profileId);
+                const userId = getUserId(); // You can remove this if backend handles auth
+                let reviews = getReviews(profileId); // Optional if you want local caching
                 const existing = reviews.find(r => r.userId === userId);
+
                 if (!selectedRating) return alert('Select a rating!');
                 if (!text) return alert('Enter your review!');
                 if (existing && !imgInput.files.length) return alert('Second review requires image upload!');
-                let imgData = '';
+
+                const formData = new FormData();
+                formData.append('workerId', profileId); // assuming profileId == workerId
+                formData.append('rating', selectedRating);
+                formData.append('comment', text);
+                formData.append('isAnon', isAnon);
                 if (imgInput.files.length) {
-                    const reader = new FileReader();
-                    reader.onload = function (ev) {
-                        imgData = ev.target.result;
-                        saveReview();
-                    };
-                    reader.readAsDataURL(imgInput.files[0]);
-                } else {
-                    saveReview();
+                    formData.append('reviewPic', imgInput.files[0]);
                 }
-                function saveReview() {
-                    const type = getReviewType({
-                        isAnon,
-                        hasImg: !!imgData,
-                        hasProfile: true // or your logic
+
+                const token = localStorage.getItem('token'); // or sessionStorage
+
+                fetch(`/api/workers/${profileId}/rate`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}` // if your route requires auth
+                        // DO NOT add Content-Type header when using FormData
+                    },
+                    body: formData
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Review submitted!');
+                            container.querySelector(`#reviewForm_${profileId}`).reset();
+                            photoPreview.innerHTML = `<span class="photo-placeholder"><i class="fas fa-camera"></i></span>`;
+                            selectedRating = 0;
+                            stars.forEach(s => {
+                                s.classList.remove('fas', 'selected');
+                                s.classList.add('far');
+                            });
+                            renderReviews(); // optionally update UI
+                        } else {
+                            alert('Failed to submit review: ' + data.message);
+                        }
+                    })
+                    .catch(err => {
+                        console.error('Submit error', err);
+                        alert('Something went wrong. Try again.');
                     });
-                    reviews.push({
-                        userId,
-                        rating: selectedRating,
-                        text,
-                        image: imgData,
-                        type,
-                        timestamp: Date.now(),
-                        anonymous: isAnon
-                    });
-                    saveReviews(profileId, reviews);
-                    renderReviews();
-                    container.querySelector(`#reviewForm_${profileId}`).reset();
-                    photoPreview.innerHTML = `<span class="photo-placeholder"><i class="fas fa-camera"></i></span>`;
-                    selectedRating = 0;
-                    stars.forEach(s => { s.classList.remove('fas', 'selected'); s.classList.add('far'); });
-                }
             };
 
             function renderReviews(showAll = false) {
@@ -3947,6 +4033,7 @@ function setActivePage(pageId) {
         // ... existing code ...
         // --- DYNAMIC CREATE PROFILE PAGE LOGIC ---
         let dynamicSkillsArr = [];
+        let temp = [];
         const allPages = document.querySelectorAll('.page');
         (function () {
             // Navigation: Show/hide create profile page
@@ -4043,6 +4130,7 @@ function setActivePage(pageId) {
             function addDynamicSkillTag(skill) {
                 if (!dynamicSkillsArr.includes(skill)) {
                     dynamicSkillsArr.push(skill);
+                    temp.push(skill);
                     renderDynamicSkillsTags();
                 }
             }
@@ -4150,7 +4238,7 @@ function setActivePage(pageId) {
                 formData.append('phone', phone);
                 formData.append('bio', bio);
                 formData.append('aadhar', aadhar);
-                formData.append('skills', JSON.stringify(skills));
+                formData.append('skills', skills);
 
                 if (aadharImg) formData.append('aadharImg', aadharImg);
                 if (profilePic) formData.append('profilePic', profilePic);
@@ -4169,22 +4257,23 @@ function setActivePage(pageId) {
                     }
 
                     // alert('Profile created successfully!');
-                    alert("Created worker:", data);
+                    alert('Profile created successfully! Your token is: ' + data.token);
 
                     // Switch back to homepage view
                     allPages.forEach(p => p.classList.remove('active'));
                     const homePage = document.getElementById('homePage');
                     homePage.classList.add('active');
                     homePage.style.display = 'block';
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-                    // Optional: Refresh profiles list
-                    renderProfiles(selectedCity);
+                    window.location.href = 'index.html.html?token=' + data.token;
 
                 } catch (err) {
                     console.error('Error:', err);
                     alert('Failed to create worker profile: ' + err.message);
                 }
+                // Re-render profiles on home page
+                renderProfiles(selectedCity);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                localStorage.setItem('profiles', JSON.stringify(profiles));
             };
 
 
@@ -4299,7 +4388,7 @@ function setActivePage(pageId) {
             formData.append('phone', phone);
             formData.append('bio', bio);
             formData.append('aadhar', aadhar);
-            formData.append('skills', JSON.stringify(skills));
+            formData.append('skills', temp);
 
             if (aadharImg) formData.append('aadharImg', aadharImg);
             if (profilePic) formData.append('profilePic', profilePic);
@@ -4317,18 +4406,14 @@ function setActivePage(pageId) {
                     throw new Error(data.message || 'Signup failed');
                 }
 
-                // alert('Profile created successfully!');
-                alert("Created worker:", data);
+                alert('Profile created successfully! Your token is: ' + data.token);
 
                 // Switch back to homepage view
                 allPages.forEach(p => p.classList.remove('active'));
                 const homePage = document.getElementById('homePage');
                 homePage.classList.add('active');
                 homePage.style.display = 'block';
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-
-                // Optional: Refresh profiles list
-                renderProfiles(selectedCity);
+                window.location.href = 'index.html.html?token=' + data.token;
 
             } catch (err) {
                 console.error('Error:', err);
