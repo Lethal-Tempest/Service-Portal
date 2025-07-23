@@ -551,13 +551,13 @@
             background: #e2e8f0;
         }
 
-        .profile-view-name {
+        .profile-view-name-banner{
             color: white;
             margin-top: 1rem;
             font-size: 1.8rem;
         }
 
-        .profile-view-profession {
+        .profile-view-profession-banner {
             background: rgba(255, 255, 255, 0.2);
             color: white;
             padding: 0.4rem 1.2rem;
@@ -2117,8 +2117,8 @@
             <div class="profile-view-container">
                 <div class="profile-banner">
                     <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" class="profile-view-img">
-                    <h2 class="profile-view-name">Rajesh Kumar</h2>
-                    <div class="profile-view-profession">Plumber</div>
+                    <h2 class="profile-view-name-banner">Rajesh Kumar</h2>
+                    <div class="profile-view-profession-banner">Plumber</div>
                 </div>
 
                 <div class="profile-actions-bar">
@@ -2969,17 +2969,18 @@
 
             // Update profile view with actual data
             console.log("Naam: ", profile.name);
-            document.querySelector('.profile-view-name').textContent = profile.name;
-            document.querySelector('.profile-view-profession').textContent = profile.profession;
-            // Update profile image
-            document.querySelector('.profile-view-img').src = profile.img;
-            // Update info cards
+            let username = profile.name
+            document.querySelector('.profile-view-name-banner').textContent = profile.name || '-';
+            document.querySelector('.profile-view-profession-banner').textContent = profile.profession || profile.role || '-';
+            document.querySelector('.profile-view-img').src = profile.profilePicUrl || 'https://randomuser.me/api/portraits/men/32.jpg';
+
             const infoCards = document.querySelectorAll('.profile-content .info-card');
             infoCards[0].querySelector('.info-card-content').textContent = profile.location || '-';
-            infoCards[1].querySelector('.info-card-content').textContent = profile.contact || '-';
-            infoCards[2].querySelector('.info-card-content').innerHTML = `<span class="rating"><i class="fas fa-star"></i> ${profile.rating} (${profile.reviews} reviews)</span>`;
-            infoCards[3].querySelector('.info-card-content').textContent = profile.experience ? profile.experience + ' years' : '-';
-            infoCards[4].querySelector('.info-card-content').textContent = profile.rate || '-';
+            infoCards[1].querySelector('.info-card-content').textContent = profile.contact || profile.email || '-';
+            infoCards[2].querySelector('.info-card-content').innerHTML = `<span class="rating"><i class="fas fa-star"></i> ${profile.averageRating || 0} (${profile.totalRatings || 0} reviews)</span>`;
+            infoCards[3].querySelector('.info-card-content').textContent = profile.experience ? `${profile.experience} years` : '-';
+            infoCards[4].querySelector('.info-card-content').textContent = profile.hourlyRate ? `₹${profile.hourlyRate}/hour` : '-';
+
             // Skills
             const skillsContainer = document.querySelector('.skills-container');
             skillsContainer.innerHTML = '';
@@ -2991,12 +2992,14 @@
                     skillsContainer.appendChild(span);
                 });
             }
+
             // Bio
             document.querySelector('.profile-bio').textContent = profile.bio || '';
-            // Portfolio images (not implemented for dynamic profiles, can be extended)
-            // Set up share modal for this profile
+
+            // Set share modal (optional)
             setupShareModal(profile);
-            // Set active page
+
+            // ✅ Show the profile page
             setActivePage('profilePage');
         }
 
@@ -3023,7 +3026,9 @@
                     navigator.clipboard.writeText(link);
                     alert('Link copied to clipboard!');
                 };
-            }
+        }
+
+
             // WhatsApp share
             const whatsappBtn = shareModal.querySelector('.share-btn.whatsapp');
             if (whatsappBtn) {
@@ -3064,23 +3069,28 @@
         });
 
         // Set active page
-        function setActivePage(pageId) {
-            pages.forEach(page => {
-                page.classList.remove('active');
-                page.style.display = 'none';
-                if (page.id === pageId) {
-                    page.classList.add('active');
-                    page.style.display = 'block';
-                }
-            });
-            // Update active nav link
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-page') === pageId.replace('Page', '')) {
-                    link.classList.add('active');
-                }
-            });
+        // Define at the top of your main JS file, before any other function that calls it
+function setActivePage(pageId) {
+    const pages = document.querySelectorAll('.page');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    pages.forEach(page => {
+        page.classList.remove('active');
+        page.style.display = 'none';
+        if (page.id === pageId) {
+            page.classList.add('active');
+            page.style.display = 'block';
         }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-page') === pageId.replace('Page', '')) {
+            link.classList.add('active');
+        }
+    });
+}
+
 
         // Show contact modal
         function showContactModal(profileId) {
