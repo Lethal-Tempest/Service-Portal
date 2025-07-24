@@ -20,7 +20,7 @@ connectDB();
 
 app.use(express.json());
 app.use(cors({
-  origin: ['https://service-portal-rose.vercel.app',"http://127.0.0.1:5000",], // for testing
+  origin: ['https://service-portal-uvvo.vercel.app',"http://127.0.0.1:5000",], // for testing
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
