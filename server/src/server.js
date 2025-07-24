@@ -20,7 +20,7 @@ connectDB();
 
 app.use(express.json());
 app.use(cors({
-  origin: ['https://workercconnect.vercel.app/',"http://127.0.0.1:5500",], // for testing
+  origin: ['https://service-portal-rose.vercel.app/',"http://127.0.0.1:5000",], // for testing
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
