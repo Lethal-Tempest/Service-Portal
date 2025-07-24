@@ -557,7 +557,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     // Your signin endpoint only *requires* email + password.
                     // If you want to confirm role server-side, include it:
-                    body: JSON.stringify({ email, password, role: step==='worker' ? 'worker' : 'client' })
+                    body: JSON.stringify({ email, password, role: selectedRole==='worker' ? 'worker' : 'client' })
                 });
 
                 // console.log(email, password, step);
